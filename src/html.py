@@ -1,0 +1,203 @@
+#!/usr/bin/python
+
+import os
+import shutil
+
+import plotter
+
+class Html:
+	def __init__(self, OutDir, Fs, Bs, BaseFiles, Set1Files):
+		self.outdir = OutDir
+		self.fs = Fs
+		self.bs = Bs
+		self.basefiles = BaseFiles
+		self.set1files = Set1Files
+		if not (os.path.exists(OutDir)):
+			os.makedirs(OutDir)
+		shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
+		self.htmldoc=open(OutDir+'/index.html','w')
+
+		self.plotter = plotter.Plotter(self.outdir)
+
+	def write_header(self):
+		html_header='''
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+		<title>Iozone results</title>
+		</head>
+		<body>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<div class="main">
+		<div class="inner">
+		'''
+		self.htmldoc.write(html_header)
+
+	def write_footer(self):
+		html_footer='''
+		</div>
+		</div>
+		</body>
+		</html>
+		'''
+		self.htmldoc.write(html_footer)
+		self.htmldoc.close()
+		print 'Finished.\nTo view results open in your web browser:'
+		print 'file://' + os.getcwd() + '/' + self.outdir + '/index.html'
+
+	def write_info(self):
+		self.htmldoc.write('<hr>')
+		self.htmldoc.write('<DL class="filelist">')
+		self.htmldoc.write('<DT><STRONG>Baseline data set</STRONG><UL>')
+		for file_name in self.basefiles:
+			self.htmldoc.write('<LI>'+file_name)
+		self.htmldoc.write('</UL>')
+		self.htmldoc.write('<DT><STRONG>Investigated data set</STRONG><UL>')
+		for file_name in self.set1files:
+			self.htmldoc.write('<LI>'+file_name)
+		self.htmldoc.write('</UL>')
+		self.htmldoc.write('</DL>')
+		self.htmldoc.write('<p>mean => Arithmetic mean<br>')
+		self.htmldoc.write('standar dev. => Sample standard deviation<br>')
+		self.htmldoc.write('ci. max 90%, ci.min => confidence interval at confidence level 90% => it means that mean value of the distribution lies with 90% propability in interval ci_min-ci_max<br>')
+		self.htmldoc.write('geom. mean => Geometric mean<br>')
+		self.htmldoc.write('median => Second quartile = cuts data set in half = 50th percentile <br>')
+		self.htmldoc.write('first quartile => cuts off lowest 25% of data = 25th percentile <br>')
+		self.htmldoc.write('third quartile => cuts off highest 25% of data, or lowest 75% = 75th percentile <br>')
+		self.htmldoc.write('minimum => Lowest value of data set <br>')
+		self.htmldoc.write('maximum => Hightest value of data set <br>')
+		self.htmldoc.write('baseline set1 difference => Difference of medians of both sets in percennt. Arithmetic means are used in detail mode instead.<br>')
+		self.htmldoc.write('ttest p-value => Student\'s t-test p-value = probability the both data sets are equal <br>')
+		self.htmldoc.write('ttest equality => If p-value is higher than 0.1, data sets are considered being equal with 90% probability. Otherwise the data sets are considered being different.<br>')
+		self.htmldoc.write('Linear regression of all results regression line is in y = ax form, b coeficient is zero. </p>')
+		self.htmldoc.write('<p>for details about operations performed see <a href="http://www.iozone.org/docs/IOzone_msword_98.pdf">Iozone documentation</a>')
+		self.htmldoc.write('</p>')
+
+	def normal_mode(self):
+		self.write_header()
+		self.norm_summary()
+		self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
+
+		for op in self.plotter.order:
+			if op not in self.fs.common_ops:
+				break
+			self.norm_operation(op)			
+		self.write_info()
+		self.write_footer()
+		
+	def norm_operation(self, Op):
+		self.htmldoc.write('<hr>\n')
+		self.htmldoc.write('<h3 id="' + Op + '">' + self.plotter.opnames[Op] + '</h3>\n')
+		self.htmldoc.write('<img src=\"' + Op + '_fs.png\" alt=\"' + Op + '_fs\" class="plot"/>\n')
+		self.norm_table(Op, self.fs)
+		self.plotter.norm_plot(Op, self.fs)
+		self.htmldoc.write('<img src=\"' + Op + '_bs.png\" alt=\"' + Op + '_bs\" class="plot"/>\n')
+		self.norm_table(Op, self.bs)
+		self.htmldoc.write('<a href="#top">Back on top</a>\n')
+		self.plotter.norm_plot(Op, self.bs)
+		
+
+	def norm_table(self, Op, Source):
+		self.htmldoc.write('<table>\n')
+		# table header
+		self.htmldoc.write('<tr>')
+		self.htmldoc.write('<th class=\"bottomline\">'+self.plotter.opnames[Op]+'</th>\n')
+		self.htmldoc.write('<th class=\"bottomline\">'+Source.base[Op].xlabel+'</th>\n')
+		for colname in Source.base[Op].colnames:
+			self.htmldoc.write('<th>'+str(int(colname))+'</th>\n')
+		self.htmldoc.write('</tr>\n')
+
+		# the two table main parts
+		self.norm_table_set(Op, Source, 'baseline')
+		self.norm_table_set(Op, Source, 'set1')
+
+		self.write_diff_ttest(Source.differences[Op], Source.ttest_pvals[Op], Source.ttest_res[Op])
+
+		self.htmldoc.write('</table>\n')
+		# TODO csv links
+		
+
+	def write_diff_ttest(self, Diffs, Pvals, Results):
+		# write differences
+		self.htmldoc.write('<tr class=\"bottomline topline\">\n')
+		self.htmldoc.write('<td colspan="2">baseline set1 difference</td>\n')
+		for diff in Diffs:
+			self.htmldoc.write('<td>'+str(round(diff,2))+' % </td>\n')
+		self.htmldoc.write('</tr>\n')
+
+		# write p-values
+		self.htmldoc.write('<tr class=\"bottomline\">\n')
+		self.htmldoc.write('<td colspan="2">ttest p-value</td>\n')
+		for pval in Pvals:
+			self.htmldoc.write('<td>'+str(round(pval,4))+'</td>\n')
+		self.htmldoc.write('</tr>\n')
+
+		# write ttest results in text form
+		self.htmldoc.write('<tr class=\"bottomline\">\n')
+		self.htmldoc.write('<td colspan="2">ttest equality</td>\n')
+		for res in Results:
+			self.htmldoc.write('<td>'+res+'</td>\n')
+		self.htmldoc.write('</tr>\n')
+
+	def norm_table_set(self, Op, Source, SetName):
+		self.htmldoc.write('<tr class=\"topline\">\n')
+		self.htmldoc.write('<td rowspan="10">' + SetName + '</td><td>mean val.</td>\n')
+		for mean in Source.base[Op].means:
+			self.htmldoc.write('<td class=\"topline\">'+str(round(mean,2))+'</td>\n')
+		self.htmldoc.write('</tr>\n')
+
+		rows = (('standard dev.', Source.base[Op].devs), ('ci. min. 90%', Source.base[Op].ci_mins),
+			('ci. max. 90%', Source.base[Op].ci_maxes), ('geom. mean', Source.base[Op].gmeans),
+			('median', Source.base[Op].medians), ('first quartile', Source.base[Op].first_qrts),
+			('third quartile', Source.base[Op].third_qrts), ('minimum', Source.base[Op].mins),
+			('maximum', Source.base[Op].maxes))
+		for (name, data) in rows:
+			self.htmldoc.write('<td>' + name + '</td>\n')
+			for val in data:
+				self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
+			self.htmldoc.write('</tr>\n')
+
+	# TODO ALL pseudooperation
+	def norm_summary(self):
+		rownames = ('standard dev.', 'ci. min. 90%', 'ci. max. 90%', 'geom. mean',
+			'median', 'first quartile', 'third quartile', 'minimum', 'maximum')
+
+		self.htmldoc.write('<h3 id="summary top">Overall summary</h3>')
+
+		self.htmldoc.write('<img src=\"summary.png\" alt=\"summary\" class="plot"/>\n')
+		self.htmldoc.write('<table>\n')
+		self.htmldoc.write('<tr>')
+		self.htmldoc.write('<td/><td>Operation</td>\n')
+		for op in self.plotter.order:
+			if op not in self.fs.common_ops:
+				break
+			self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.plotter.opnames[op]+'</a></td>\n')
+		self.htmldoc.write('</tr>\n')
+
+		# summary data is stored in fs instance, no need for counting this redundantly in bs
+		for (setname, source) in (('baeline', self.fs.summary_base), ('set1', self.fs.summary_set1)):
+			self.htmldoc.write('<tr class=\"topline\">\n')
+			self.htmldoc.write('<td rowspan="10">' + setname + '</td><td>mean val.</td>\n')
+			for val in source[0]:
+				self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
+			self.htmldoc.write('</tr>\n')
+			for i in range(len(rownames)):
+				self.htmldoc.write('<td>' + rownames[i] + '</td>\n')
+				# source[0] is mean
+				for val in source[1+i]:
+					self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
+				self.htmldoc.write('</tr>\n')
+
+		self.htmldoc.write('<tr class=\"bottomline topline\">\n')
+		self.htmldoc.write('<td colspan="2">linear regression slope 90%</td>\n')
+		for m in self.fs.common_ops:
+			self.htmldoc.write('<td>'+'TODO'+'</td>\n')
+		self.htmldoc.write('</tr>\n')
+
+		self.write_diff_ttest(self.fs.summary_diffs, self.fs.summary_pvals, self.fs.summary_res)
+		self.htmldoc.write('</table>\n')
+
+
+if __name__ == '__main__':
+	print 'Try running iozone_results_comparator.py'
