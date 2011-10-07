@@ -1,0 +1,7 @@
+ * implement all functionality of previous parse.py to current version
+  * visual comparision of set data and linear regression
+  * csv output
+  * detail mode
+
+ * Add new features
+  * data sanity check - warn if results in one set differ a lot
