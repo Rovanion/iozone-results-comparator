@@ -1,0 +1,5781 @@
+
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+	<title>freread for fixed FS</title>
+	</head>
+	<body>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<div class="main">
+	<div class="inner">
+
+	<h1 id="top">
+	Iozone results for freread, data are arranged by file size
+	</h1>
+	<DL class="filelist"><DT><STRONG>Baseline data set</STRONG><UL><LI>./ext4/ext4_1.iozone<LI>./ext4/ext4_2.iozone<LI>./ext4/ext4_3.iozone<LI>./ext4/ext4_4.iozone<LI>./ext4/ext4_5.iozone</UL><DT><STRONG>Investigated data set</STRONG><UL><LI>./xfs/xfs1.iozone<LI>./xfs/xfs2.iozone<LI>./xfs/xfs3.iozone<LI>./xfs/xfs4.iozone<LI>./xfs/xfs5.iozone</UL></DL><p>mean => Arithmetic mean<br>standar dev. => Sample standard deviation<br>ci. max 90%, ci.min => confidence interval at confidence level 90% => it means that mean value of the distribution lies with 90% propability in interval ci_min-ci_max<br>geom. mean => Geometric mean<br>median => Second quartile = cuts data set in half = 50th percentile <br>first quartile => cuts off lowest 25% of data = 25th percentile <br>third quartile => cuts off highest 25% of data, or lowest 75% = 75th percentile <br>minimum => Lowest value of data set <br>maximum => Hightest value of data set <br>baseline set1 difference => Difference of medians of both sets in percennt. Arithmetic means are used in detail mode instead.<br>ttest p-value => Student's t-test p-value = probability the both data sets are equal <br>ttest equality => If p-value is higher than 0.1, data sets are considered being equal with 90% probability. Otherwise the data sets are considered being different.<br>Linear regression of all results regression line is in y = ax form, b coeficient is zero. </p><p>for details about operations performed see <a href="http://www.iozone.org/docs/IOzone_msword_98.pdf">Iozone documentation</a></p><a name="4"></a> 
+<img src="4.png" alt="4" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="1">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>4</td><td>66.38</td></tr>
+<tr><td>4</td><td>15.58</td></tr>
+<tr><td>4</td><td>67.48</td></tr>
+<tr><td>4</td><td>70.99</td></tr>
+<tr><td>4</td><td>62.11</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>56.51</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>23.1</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>34.48</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>78.53</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>49.84</td>
+</tr>
+<tr>
+<td>median</td>
+<td>66.38</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>62.11</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>67.48</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>15.58</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>70.99</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>4</td><td>61.87</td></tr>
+<tr><td>4</td><td>58.35</td></tr>
+<tr><td>4</td><td>44.42</td></tr>
+<tr><td>4</td><td>53.58</td></tr>
+<tr><td>4</td><td>55.02</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>54.65</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>6.55</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>48.4</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>60.89</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>54.31</td>
+</tr>
+<tr>
+<td>median</td>
+<td>55.02</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>53.58</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>58.35</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>44.42</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>61.87</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-3.29 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.8668</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="8"></a> 
+<img src="8.png" alt="8" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="2">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>8</td><td>97.87</td><td>105.43</td></tr>
+<tr><td>8</td><td>124.21</td><td>90.82</td></tr>
+<tr><td>8</td><td>105.77</td><td>104.09</td></tr>
+<tr><td>8</td><td>88.85</td><td>118.38</td></tr>
+<tr><td>8</td><td>105.77</td><td>88.85</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>104.49</td>
+<td>101.51</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>13.04</td>
+<td>12.05</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>92.06</td>
+<td>90.02</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>116.93</td>
+<td>113.0</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>103.86</td>
+<td>100.95</td>
+</tr>
+<tr>
+<td>median</td>
+<td>105.77</td>
+<td>104.09</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>97.87</td>
+<td>90.82</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>105.77</td>
+<td>105.43</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>88.85</td>
+<td>88.85</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>124.21</td>
+<td>118.38</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>8</td><td>108.57</td><td>97.58</td></tr>
+<tr><td>8</td><td>40.51</td><td>36.87</td></tr>
+<tr><td>8</td><td>40.02</td><td>46.76</td></tr>
+<tr><td>8</td><td>84.06</td><td>107.15</td></tr>
+<tr><td>8</td><td>107.15</td><td>92.09</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>76.06</td>
+<td>76.09</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>34.1</td>
+<td>31.94</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>43.56</td>
+<td>45.64</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>108.57</td>
+<td>106.55</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>69.19</td>
+<td>69.83</td>
+</tr>
+<tr>
+<td>median</td>
+<td>84.06</td>
+<td>92.09</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>40.51</td>
+<td>46.76</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>107.15</td>
+<td>97.58</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>40.02</td>
+<td>36.87</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>108.57</td>
+<td>107.15</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-27.21 % </td>
+<td>-25.04 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.1198</td>
+<td>0.1345</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="16"></a> 
+<img src="16.png" alt="16" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="3">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>16</td><td>175.79</td><td>190.62</td><td>173.92</td></tr>
+<tr><td>16</td><td>154.64</td><td>161.1</td><td>154.64</td></tr>
+<tr><td>16</td><td>169.87</td><td>168.12</td><td>65.09</td></tr>
+<tr><td>16</td><td>147.34</td><td>164.33</td><td>175.79</td></tr>
+<tr><td>16</td><td>173.46</td><td>129.06</td><td>157.61</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>164.22</td>
+<td>162.65</td>
+<td>145.41</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>12.53</td>
+<td>22.06</td>
+<td>45.88</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>152.27</td>
+<td>141.62</td>
+<td>101.67</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>176.17</td>
+<td>183.67</td>
+<td>189.16</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>163.83</td>
+<td>161.39</td>
+<td>137.14</td>
+</tr>
+<tr>
+<td>median</td>
+<td>169.87</td>
+<td>164.33</td>
+<td>157.61</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>154.64</td>
+<td>161.1</td>
+<td>154.64</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>173.46</td>
+<td>168.12</td>
+<td>173.92</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>147.34</td>
+<td>129.06</td>
+<td>65.09</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>175.79</td>
+<td>190.62</td>
+<td>175.79</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>16</td><td>173.46</td><td>185.76</td><td>153.19</td></tr>
+<tr><td>16</td><td>164.33</td><td>190.62</td><td>159.14</td></tr>
+<tr><td>16</td><td>52.94</td><td>118.34</td><td>154.64</td></tr>
+<tr><td>16</td><td>120.07</td><td>185.76</td><td>100.08</td></tr>
+<tr><td>16</td><td>53.33</td><td>164.33</td><td>108.54</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>112.83</td>
+<td>168.96</td>
+<td>135.12</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>58.11</td>
+<td>30.07</td>
+<td>28.37</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>57.43</td>
+<td>140.29</td>
+<td>108.07</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>168.23</td>
+<td>197.63</td>
+<td>162.16</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>99.32</td>
+<td>166.49</td>
+<td>132.57</td>
+</tr>
+<tr>
+<td>median</td>
+<td>120.07</td>
+<td>185.76</td>
+<td>153.19</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>53.33</td>
+<td>164.33</td>
+<td>108.54</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>164.33</td>
+<td>185.76</td>
+<td>154.64</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>52.94</td>
+<td>118.34</td>
+<td>100.08</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>173.46</td>
+<td>190.62</td>
+<td>159.14</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-31.29 % </td>
+<td>3.88 % </td>
+<td>-7.08 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0893</td>
+<td>0.7149</td>
+<td>0.6809</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="32"></a> 
+<img src="32.png" alt="32" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="4">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>32</td><td>190.57</td><td>199.26</td><td>256.1</td><td>269.25</td></tr>
+<tr><td>32</td><td>173.65</td><td>174.57</td><td>289.47</td><td>252.16</td></tr>
+<tr><td>32</td><td>198.95</td><td>184.92</td><td>271.48</td><td>281.39</td></tr>
+<tr><td>32</td><td>141.42</td><td>174.57</td><td>249.75</td><td>70.06</td></tr>
+<tr><td>32</td><td>113.21</td><td>197.75</td><td>260.68</td><td>267.05</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>163.56</td>
+<td>186.22</td>
+<td>265.5</td>
+<td>227.98</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>35.74</td>
+<td>12.0</td>
+<td>15.57</td>
+<td>88.89</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>129.49</td>
+<td>174.78</td>
+<td>250.65</td>
+<td>143.24</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>197.63</td>
+<td>197.65</td>
+<td>280.34</td>
+<td>312.73</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>160.17</td>
+<td>185.91</td>
+<td>265.14</td>
+<td>204.48</td>
+</tr>
+<tr>
+<td>median</td>
+<td>173.65</td>
+<td>184.92</td>
+<td>260.68</td>
+<td>267.05</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>141.42</td>
+<td>174.57</td>
+<td>256.1</td>
+<td>252.16</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>190.57</td>
+<td>197.75</td>
+<td>271.48</td>
+<td>269.25</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>113.21</td>
+<td>174.57</td>
+<td>249.75</td>
+<td>70.06</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>198.95</td>
+<td>199.26</td>
+<td>289.47</td>
+<td>281.39</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>32</td><td>184.92</td><td>185.97</td><td>298.02</td><td>231.25</td></tr>
+<tr><td>32</td><td>125.45</td><td>148.81</td><td>247.86</td><td>202.96</td></tr>
+<tr><td>32</td><td>88.28</td><td>187.3</td><td>105.55</td><td>201.4</td></tr>
+<tr><td>32</td><td>189.19</td><td>146.81</td><td>205.5</td><td>269.8</td></tr>
+<tr><td>32</td><td>142.04</td><td>177.41</td><td>306.38</td><td>201.71</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>145.97</td>
+<td>169.26</td>
+<td>232.66</td>
+<td>221.42</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>42.28</td>
+<td>19.96</td>
+<td>81.9</td>
+<td>29.86</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>105.67</td>
+<td>150.23</td>
+<td>154.58</td>
+<td>192.95</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>186.28</td>
+<td>188.29</td>
+<td>310.75</td>
+<td>249.9</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>140.64</td>
+<td>168.29</td>
+<td>217.87</td>
+<td>219.92</td>
+</tr>
+<tr>
+<td>median</td>
+<td>142.04</td>
+<td>177.41</td>
+<td>247.86</td>
+<td>202.96</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>125.45</td>
+<td>148.81</td>
+<td>205.5</td>
+<td>201.71</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>184.92</td>
+<td>185.97</td>
+<td>298.02</td>
+<td>231.25</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>88.28</td>
+<td>146.81</td>
+<td>105.55</td>
+<td>201.4</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>189.19</td>
+<td>187.3</td>
+<td>306.38</td>
+<td>269.8</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-10.75 % </td>
+<td>-9.11 % </td>
+<td>-12.37 % </td>
+<td>-2.88 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.4977</td>
+<td>0.1421</td>
+<td>0.4042</td>
+<td>0.8796</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="64"></a> 
+<img src="64.png" alt="64" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="5">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>64</td><td>307.75</td><td>303.48</td><td>90.84</td><td>411.01</td><td>402.8</td></tr>
+<tr><td>64</td><td>265.92</td><td>238.57</td><td>320.54</td><td>170.24</td><td>351.02</td></tr>
+<tr><td>64</td><td>304.89</td><td>302.08</td><td>247.12</td><td>414.26</td><td>378.38</td></tr>
+<tr><td>64</td><td>265.92</td><td>165.31</td><td>204.99</td><td>353.39</td><td>124.01</td></tr>
+<tr><td>64</td><td>265.92</td><td>168.49</td><td>317.06</td><td>349.15</td><td>278.93</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>282.08</td>
+<td>235.58</td>
+<td>236.11</td>
+<td>339.61</td>
+<td>307.03</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>22.15</td>
+<td>67.97</td>
+<td>94.7</td>
+<td>99.54</td>
+<td>112.34</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>260.96</td>
+<td>170.78</td>
+<td>145.82</td>
+<td>244.71</td>
+<td>199.92</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>303.2</td>
+<td>300.39</td>
+<td>326.4</td>
+<td>434.51</td>
+<td>414.13</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>281.39</td>
+<td>227.48</td>
+<td>215.77</td>
+<td>324.11</td>
+<td>284.1</td>
+</tr>
+<tr>
+<td>median</td>
+<td>265.92</td>
+<td>238.57</td>
+<td>247.12</td>
+<td>353.39</td>
+<td>351.02</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>265.92</td>
+<td>168.49</td>
+<td>204.99</td>
+<td>349.15</td>
+<td>278.93</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>304.89</td>
+<td>302.08</td>
+<td>317.06</td>
+<td>411.01</td>
+<td>378.38</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>265.92</td>
+<td>165.31</td>
+<td>90.84</td>
+<td>170.24</td>
+<td>124.01</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>307.75</td>
+<td>303.48</td>
+<td>320.54</td>
+<td>414.26</td>
+<td>402.8</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>64</td><td>306.31</td><td>177.63</td><td>171.25</td><td>355.3</td><td>337.9</td></tr>
+<tr><td>64</td><td>307.75</td><td>225.63</td><td>165.31</td><td>192.78</td><td>381.13</td></tr>
+<tr><td>64</td><td>172.14</td><td>241.21</td><td>245.96</td><td>367.25</td><td>318.99</td></tr>
+<tr><td>64</td><td>238.57</td><td>150.93</td><td>251.14</td><td>277.75</td><td>280.13</td></tr>
+<tr><td>64</td><td>198.92</td><td>245.27</td><td>248.05</td><td>230.6</td><td>325.72</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>244.74</td>
+<td>208.13</td>
+<td>216.34</td>
+<td>284.74</td>
+<td>328.77</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>61.58</td>
+<td>41.78</td>
+<td>43.97</td>
+<td>76.2</td>
+<td>36.39</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>186.03</td>
+<td>168.3</td>
+<td>174.42</td>
+<td>212.09</td>
+<td>294.08</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>303.45</td>
+<td>247.96</td>
+<td>258.26</td>
+<td>357.38</td>
+<td>363.46</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>238.4</td>
+<td>204.52</td>
+<td>212.54</td>
+<td>276.33</td>
+<td>327.16</td>
+</tr>
+<tr>
+<td>median</td>
+<td>238.57</td>
+<td>225.63</td>
+<td>245.96</td>
+<td>277.75</td>
+<td>325.72</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>198.92</td>
+<td>177.63</td>
+<td>171.25</td>
+<td>230.6</td>
+<td>318.99</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>306.31</td>
+<td>241.21</td>
+<td>248.05</td>
+<td>355.3</td>
+<td>337.9</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>172.14</td>
+<td>150.93</td>
+<td>165.31</td>
+<td>192.78</td>
+<td>280.13</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>307.75</td>
+<td>245.27</td>
+<td>251.14</td>
+<td>367.25</td>
+<td>381.13</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-13.24 % </td>
+<td>-11.65 % </td>
+<td>-8.37 % </td>
+<td>-16.16 % </td>
+<td>7.08 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.2378</td>
+<td>0.4638</td>
+<td>0.6832</td>
+<td>0.3563</td>
+<td>0.6913</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="128"></a> 
+<img src="128.png" alt="128" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="6">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>128</td><td>358.17</td><td>280.4</td><td>463.23</td><td>440.28</td><td>548.53</td><td>514.11</td></tr>
+<tr><td>128</td><td>369.79</td><td>253.06</td><td>400.58</td><td>310.26</td><td>282.21</td><td>438.44</td></tr>
+<tr><td>128</td><td>308.62</td><td>370.83</td><td>368.75</td><td>267.11</td><td>543.41</td><td>502.28</td></tr>
+<tr><td>128</td><td>302.57</td><td>296.91</td><td>404.6</td><td>394.26</td><td>548.53</td><td>432.29</td></tr>
+<tr><td>128</td><td>262.04</td><td>394.26</td><td>288.58</td><td>266.57</td><td>422.54</td><td>316.44</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>320.24</td>
+<td>319.09</td>
+<td>385.15</td>
+<td>335.7</td>
+<td>469.04</td>
+<td>440.71</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>43.96</td>
+<td>60.57</td>
+<td>63.85</td>
+<td>78.26</td>
+<td>117.51</td>
+<td>78.58</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>278.33</td>
+<td>261.34</td>
+<td>324.27</td>
+<td>261.09</td>
+<td>357.01</td>
+<td>365.8</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>362.14</td>
+<td>376.84</td>
+<td>446.03</td>
+<td>410.31</td>
+<td>581.08</td>
+<td>515.63</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>317.78</td>
+<td>314.57</td>
+<td>380.63</td>
+<td>328.66</td>
+<td>454.98</td>
+<td>434.51</td>
+</tr>
+<tr>
+<td>median</td>
+<td>308.62</td>
+<td>296.91</td>
+<td>400.58</td>
+<td>310.26</td>
+<td>543.41</td>
+<td>438.44</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>302.57</td>
+<td>280.4</td>
+<td>368.75</td>
+<td>267.11</td>
+<td>422.54</td>
+<td>432.29</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>358.17</td>
+<td>370.83</td>
+<td>404.6</td>
+<td>394.26</td>
+<td>548.53</td>
+<td>502.28</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>262.04</td>
+<td>253.06</td>
+<td>288.58</td>
+<td>266.57</td>
+<td>282.21</td>
+<td>316.44</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>369.79</td>
+<td>394.26</td>
+<td>463.23</td>
+<td>440.28</td>
+<td>548.53</td>
+<td>514.11</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>128</td><td>419.5</td><td>492.38</td><td>404.6</td><td>486.44</td><td>414.19</td><td>484.64</td></tr>
+<tr><td>128</td><td>277.14</td><td>383.31</td><td>262.56</td><td>274.81</td><td>477.14</td><td>488.25</td></tr>
+<tr><td>128</td><td>299.11</td><td>296.07</td><td>444.76</td><td>419.16</td><td>478.89</td><td>474.98</td></tr>
+<tr><td>128</td><td>300.48</td><td>249.92</td><td>348.18</td><td>393.08</td><td>514.11</td><td>317.98</td></tr>
+<tr><td>128</td><td>312.48</td><td>263.22</td><td>381.08</td><td>279.05</td><td>545.67</td><td>480.64</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>321.74</td>
+<td>336.98</td>
+<td>368.24</td>
+<td>370.51</td>
+<td>486.0</td>
+<td>449.3</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>56.11</td>
+<td>101.23</td>
+<td>68.76</td>
+<td>91.98</td>
+<td>49.08</td>
+<td>73.58</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>268.24</td>
+<td>240.47</td>
+<td>302.68</td>
+<td>282.82</td>
+<td>439.21</td>
+<td>379.15</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>375.24</td>
+<td>433.49</td>
+<td>433.79</td>
+<td>458.2</td>
+<td>532.8</td>
+<td>519.45</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>318.26</td>
+<td>325.89</td>
+<td>362.61</td>
+<td>361.18</td>
+<td>483.96</td>
+<td>443.6</td>
+</tr>
+<tr>
+<td>median</td>
+<td>300.48</td>
+<td>296.07</td>
+<td>381.08</td>
+<td>393.08</td>
+<td>478.89</td>
+<td>480.64</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>299.11</td>
+<td>263.22</td>
+<td>348.18</td>
+<td>279.05</td>
+<td>477.14</td>
+<td>474.98</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>312.48</td>
+<td>383.31</td>
+<td>404.6</td>
+<td>419.16</td>
+<td>514.11</td>
+<td>484.64</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>277.14</td>
+<td>249.92</td>
+<td>262.56</td>
+<td>274.81</td>
+<td>414.19</td>
+<td>317.98</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>419.5</td>
+<td>492.38</td>
+<td>444.76</td>
+<td>486.44</td>
+<td>545.67</td>
+<td>488.25</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>0.47 % </td>
+<td>5.61 % </td>
+<td>-4.39 % </td>
+<td>10.37 % </td>
+<td>3.62 % </td>
+<td>1.95 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.9635</td>
+<td>0.7433</td>
+<td>0.6975</td>
+<td>0.5372</td>
+<td>0.7735</td>
+<td>0.8629</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="256"></a> 
+<img src="256.png" alt="256" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="7">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>256</td><td>411.88</td><td>492.1</td><td>483.48</td><td>512.3</td><td>614.35</td><td>597.89</td><td>536.41</td></tr>
+<tr><td>256</td><td>362.85</td><td>357.66</td><td>420.81</td><td>393.64</td><td>403.33</td><td>514.31</td><td>445.67</td></tr>
+<tr><td>256</td><td>459.54</td><td>372.52</td><td>423.7</td><td>545.9</td><td>478.84</td><td>452.21</td><td>518.63</td></tr>
+<tr><td>256</td><td>325.06</td><td>357.17</td><td>345.29</td><td>502.96</td><td>374.25</td><td>446.43</td><td>380.5</td></tr>
+<tr><td>256</td><td>363.99</td><td>452.79</td><td>379.95</td><td>509.07</td><td>516.59</td><td>527.24</td><td>407.72</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>384.66</td>
+<td>406.45</td>
+<td>410.64</td>
+<td>492.77</td>
+<td>477.47</td>
+<td>507.61</td>
+<td>457.79</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>51.97</td>
+<td>62.14</td>
+<td>51.94</td>
+<td>57.88</td>
+<td>95.42</td>
+<td>62.03</td>
+<td>68.03</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>335.12</td>
+<td>347.21</td>
+<td>361.12</td>
+<td>437.59</td>
+<td>386.5</td>
+<td>448.47</td>
+<td>392.93</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>434.21</td>
+<td>465.69</td>
+<td>460.17</td>
+<td>547.96</td>
+<td>568.44</td>
+<td>566.76</td>
+<td>522.64</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>381.92</td>
+<td>402.8</td>
+<td>408.02</td>
+<td>489.79</td>
+<td>470.02</td>
+<td>504.65</td>
+<td>453.75</td>
+</tr>
+<tr>
+<td>median</td>
+<td>363.99</td>
+<td>372.52</td>
+<td>420.81</td>
+<td>509.07</td>
+<td>478.84</td>
+<td>514.31</td>
+<td>445.67</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>362.85</td>
+<td>357.66</td>
+<td>379.95</td>
+<td>502.96</td>
+<td>403.33</td>
+<td>452.21</td>
+<td>407.72</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>411.88</td>
+<td>452.79</td>
+<td>423.7</td>
+<td>512.3</td>
+<td>516.59</td>
+<td>527.24</td>
+<td>518.63</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>325.06</td>
+<td>357.17</td>
+<td>345.29</td>
+<td>393.64</td>
+<td>374.25</td>
+<td>446.43</td>
+<td>380.5</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>459.54</td>
+<td>492.1</td>
+<td>483.48</td>
+<td>545.9</td>
+<td>614.35</td>
+<td>597.89</td>
+<td>536.41</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>256</td><td>495.12</td><td>483.48</td><td>617.24</td><td>573.37</td><td>514.56</td><td>570.56</td><td>525.13</td></tr>
+<tr><td>256</td><td>367.69</td><td>381.74</td><td>331.11</td><td>464.63</td><td>467.11</td><td>598.23</td><td>393.05</td></tr>
+<tr><td>256</td><td>313.21</td><td>469.83</td><td>410.59</td><td>448.91</td><td>414.49</td><td>370.94</td><td>523.03</td></tr>
+<tr><td>256</td><td>371.99</td><td>456.93</td><td>447.19</td><td>367.69</td><td>574.94</td><td>590.81</td><td>359.13</td></tr>
+<tr><td>256</td><td>407.72</td><td>362.35</td><td>407.24</td><td>377.08</td><td>564.42</td><td>407.09</td><td>383.42</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>391.15</td>
+<td>430.87</td>
+<td>442.68</td>
+<td>446.33</td>
+<td>507.1</td>
+<td>507.52</td>
+<td>436.75</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>67.22</td>
+<td>54.94</td>
+<td>106.33</td>
+<td>82.86</td>
+<td>67.3</td>
+<td>109.41</td>
+<td>80.68</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>327.06</td>
+<td>378.49</td>
+<td>341.3</td>
+<td>367.34</td>
+<td>442.94</td>
+<td>403.22</td>
+<td>359.83</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>455.24</td>
+<td>483.25</td>
+<td>544.05</td>
+<td>525.33</td>
+<td>571.27</td>
+<td>611.83</td>
+<td>513.67</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>386.71</td>
+<td>427.97</td>
+<td>433.35</td>
+<td>440.48</td>
+<td>503.41</td>
+<td>497.42</td>
+<td>430.95</td>
+</tr>
+<tr>
+<td>median</td>
+<td>371.99</td>
+<td>456.93</td>
+<td>410.59</td>
+<td>448.91</td>
+<td>514.56</td>
+<td>570.56</td>
+<td>393.05</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>367.69</td>
+<td>381.74</td>
+<td>407.24</td>
+<td>377.08</td>
+<td>467.11</td>
+<td>407.09</td>
+<td>383.42</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>407.72</td>
+<td>469.83</td>
+<td>447.19</td>
+<td>464.63</td>
+<td>564.42</td>
+<td>590.81</td>
+<td>523.03</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>313.21</td>
+<td>362.35</td>
+<td>331.11</td>
+<td>367.69</td>
+<td>414.49</td>
+<td>370.94</td>
+<td>359.13</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>495.12</td>
+<td>483.48</td>
+<td>617.24</td>
+<td>573.37</td>
+<td>574.94</td>
+<td>598.23</td>
+<td>525.13</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>1.69 % </td>
+<td>6.01 % </td>
+<td>7.8 % </td>
+<td>-9.42 % </td>
+<td>6.21 % </td>
+<td>-0.02 % </td>
+<td>-4.6 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.8688</td>
+<td>0.5288</td>
+<td>0.5618</td>
+<td>0.3343</td>
+<td>0.586</td>
+<td>0.9988</td>
+<td>0.6676</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="512"></a> 
+<img src="512.png" alt="512" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="8">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>512</td><td>466.36</td><td>510.28</td><td>495.45</td><td>537.07</td><td>628.3</td><td>541.79</td><td>591.78</td><td>496.63</td></tr>
+<tr><td>512</td><td>439.4</td><td>423.34</td><td>545.88</td><td>492.2</td><td>372.57</td><td>562.42</td><td>517.71</td><td>396.23</td></tr>
+<tr><td>512</td><td>426.96</td><td>498.99</td><td>480.36</td><td>547.59</td><td>518.1</td><td>599.39</td><td>588.29</td><td>523.01</td></tr>
+<tr><td>512</td><td>464.61</td><td>448.89</td><td>444.9</td><td>519.76</td><td>495.57</td><td>479.37</td><td>471.61</td><td>378.49</td></tr>
+<tr><td>512</td><td>416.03</td><td>458.71</td><td>519.76</td><td>541.79</td><td>497.45</td><td>520.28</td><td>515.42</td><td>490.7</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>442.67</td>
+<td>468.04</td>
+<td>497.27</td>
+<td>527.68</td>
+<td>502.4</td>
+<td>540.65</td>
+<td>536.96</td>
+<td>457.01</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>22.41</td>
+<td>36.03</td>
+<td>38.41</td>
+<td>22.39</td>
+<td>90.86</td>
+<td>44.99</td>
+<td>51.83</td>
+<td>65.04</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>421.3</td>
+<td>433.69</td>
+<td>460.65</td>
+<td>506.33</td>
+<td>415.77</td>
+<td>497.76</td>
+<td>487.55</td>
+<td>395.0</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>464.04</td>
+<td>502.4</td>
+<td>533.89</td>
+<td>549.03</td>
+<td>589.02</td>
+<td>583.54</td>
+<td>586.38</td>
+<td>519.02</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>442.22</td>
+<td>466.93</td>
+<td>496.07</td>
+<td>527.29</td>
+<td>495.6</td>
+<td>539.14</td>
+<td>534.95</td>
+<td>453.18</td>
+</tr>
+<tr>
+<td>median</td>
+<td>439.4</td>
+<td>458.71</td>
+<td>495.45</td>
+<td>537.07</td>
+<td>497.45</td>
+<td>541.79</td>
+<td>517.71</td>
+<td>490.7</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>426.96</td>
+<td>448.89</td>
+<td>480.36</td>
+<td>519.76</td>
+<td>495.57</td>
+<td>520.28</td>
+<td>515.42</td>
+<td>396.23</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>464.61</td>
+<td>498.99</td>
+<td>519.76</td>
+<td>541.79</td>
+<td>518.1</td>
+<td>562.42</td>
+<td>588.29</td>
+<td>496.63</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>416.03</td>
+<td>423.34</td>
+<td>444.9</td>
+<td>492.2</td>
+<td>372.57</td>
+<td>479.37</td>
+<td>471.61</td>
+<td>378.49</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>466.36</td>
+<td>510.28</td>
+<td>545.88</td>
+<td>547.59</td>
+<td>628.3</td>
+<td>599.39</td>
+<td>591.78</td>
+<td>523.01</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>512</td><td>632.85</td><td>654.38</td><td>725.71</td><td>725.71</td><td>625.86</td><td>708.3</td><td>585.5</td><td>567.44</td></tr>
+<tr><td>512</td><td>459.12</td><td>497.57</td><td>465.54</td><td>515.42</td><td>511.77</td><td>503.54</td><td>551.76</td><td>444.05</td></tr>
+<tr><td>512</td><td>404.87</td><td>507.19</td><td>498.04</td><td>484.58</td><td>590.28</td><td>595.98</td><td>513.4</td><td>405.81</td></tr>
+<tr><td>512</td><td>475.24</td><td>482.13</td><td>468.13</td><td>512.27</td><td>493.59</td><td>491.62</td><td>490.13</td><td>493.59</td></tr>
+<tr><td>512</td><td>460.83</td><td>507.56</td><td>478.5</td><td>487.84</td><td>499.94</td><td>474.92</td><td>475.35</td><td>498.99</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>486.58</td>
+<td>529.77</td>
+<td>527.18</td>
+<td>545.16</td>
+<td>544.29</td>
+<td>554.87</td>
+<td>523.23</td>
+<td>481.97</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>86.05</td>
+<td>70.42</td>
+<td>111.71</td>
+<td>101.88</td>
+<td>59.93</td>
+<td>97.8</td>
+<td>45.21</td>
+<td>61.17</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>404.54</td>
+<td>462.63</td>
+<td>420.68</td>
+<td>448.03</td>
+<td>487.16</td>
+<td>461.63</td>
+<td>480.12</td>
+<td>423.65</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>568.62</td>
+<td>596.9</td>
+<td>633.69</td>
+<td>642.3</td>
+<td>601.42</td>
+<td>648.12</td>
+<td>566.33</td>
+<td>540.3</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>481.06</td>
+<td>526.38</td>
+<td>519.09</td>
+<td>538.54</td>
+<td>541.73</td>
+<td>548.46</td>
+<td>521.69</td>
+<td>478.88</td>
+</tr>
+<tr>
+<td>median</td>
+<td>460.83</td>
+<td>507.19</td>
+<td>478.5</td>
+<td>512.27</td>
+<td>511.77</td>
+<td>503.54</td>
+<td>513.4</td>
+<td>493.59</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>459.12</td>
+<td>497.57</td>
+<td>468.13</td>
+<td>487.84</td>
+<td>499.94</td>
+<td>491.62</td>
+<td>490.13</td>
+<td>444.05</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>475.24</td>
+<td>507.56</td>
+<td>498.04</td>
+<td>515.42</td>
+<td>590.28</td>
+<td>595.98</td>
+<td>551.76</td>
+<td>498.99</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>404.87</td>
+<td>482.13</td>
+<td>465.54</td>
+<td>484.58</td>
+<td>493.59</td>
+<td>474.92</td>
+<td>475.35</td>
+<td>405.81</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>632.85</td>
+<td>654.38</td>
+<td>725.71</td>
+<td>725.71</td>
+<td>625.86</td>
+<td>708.3</td>
+<td>585.5</td>
+<td>567.44</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>9.92 % </td>
+<td>13.19 % </td>
+<td>6.02 % </td>
+<td>3.31 % </td>
+<td>8.34 % </td>
+<td>2.63 % </td>
+<td>-2.56 % </td>
+<td>5.46 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.3016</td>
+<td>0.1192</td>
+<td>0.5868</td>
+<td>0.7176</td>
+<td>0.4145</td>
+<td>0.7752</td>
+<td>0.6671</td>
+<td>0.5492</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="1024"></a> 
+<img src="1024.png" alt="1024" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>1024</td><td>493.34</td><td>556.51</td><td>610.9</td><td>596.73</td><td>569.82</td><td>601.26</td><td>537.4</td><td>531.07</td><td>499.21</td></tr>
+<tr><td>1024</td><td>486.14</td><td>550.95</td><td>485.69</td><td>541.7</td><td>538.5</td><td>522.8</td><td>537.61</td><td>442.31</td><td>462.96</td></tr>
+<tr><td>1024</td><td>492.88</td><td>543.18</td><td>529.66</td><td>600.66</td><td>619.19</td><td>585.16</td><td>518.72</td><td>550.38</td><td>505.04</td></tr>
+<tr><td>1024</td><td>436.28</td><td>474.59</td><td>507.86</td><td>542.61</td><td>543.81</td><td>557.4</td><td>531.34</td><td>558.36</td><td>477.07</td></tr>
+<tr><td>1024</td><td>429.4</td><td>478.7</td><td>512.26</td><td>504.32</td><td>536.44</td><td>535.0</td><td>462.5</td><td>489.26</td><td>433.66</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>467.61</td>
+<td>520.79</td>
+<td>529.27</td>
+<td>557.21</td>
+<td>561.55</td>
+<td>560.32</td>
+<td>517.51</td>
+<td>514.27</td>
+<td>475.59</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>31.96</td>
+<td>40.6</td>
+<td>48.25</td>
+<td>40.93</td>
+<td>34.88</td>
+<td>32.98</td>
+<td>31.7</td>
+<td>48.31</td>
+<td>28.92</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>437.14</td>
+<td>482.08</td>
+<td>483.28</td>
+<td>518.18</td>
+<td>528.29</td>
+<td>528.88</td>
+<td>487.29</td>
+<td>468.22</td>
+<td>448.02</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>498.08</td>
+<td>559.49</td>
+<td>575.27</td>
+<td>596.23</td>
+<td>594.81</td>
+<td>591.77</td>
+<td>547.73</td>
+<td>560.33</td>
+<td>503.16</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>466.72</td>
+<td>519.5</td>
+<td>527.61</td>
+<td>556.0</td>
+<td>560.72</td>
+<td>559.55</td>
+<td>516.7</td>
+<td>512.39</td>
+<td>474.87</td>
+</tr>
+<tr>
+<td>median</td>
+<td>486.14</td>
+<td>543.18</td>
+<td>512.26</td>
+<td>542.61</td>
+<td>543.81</td>
+<td>557.4</td>
+<td>531.34</td>
+<td>531.07</td>
+<td>477.07</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>436.28</td>
+<td>478.7</td>
+<td>507.86</td>
+<td>541.7</td>
+<td>538.5</td>
+<td>535.0</td>
+<td>518.72</td>
+<td>489.26</td>
+<td>462.96</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>492.88</td>
+<td>550.95</td>
+<td>529.66</td>
+<td>596.73</td>
+<td>569.82</td>
+<td>585.16</td>
+<td>537.4</td>
+<td>550.38</td>
+<td>499.21</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>429.4</td>
+<td>474.59</td>
+<td>485.69</td>
+<td>504.32</td>
+<td>536.44</td>
+<td>522.8</td>
+<td>462.5</td>
+<td>442.31</td>
+<td>433.66</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>493.34</td>
+<td>556.51</td>
+<td>610.9</td>
+<td>600.66</td>
+<td>619.19</td>
+<td>601.26</td>
+<td>537.61</td>
+<td>558.36</td>
+<td>505.04</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>1024</td><td>790.51</td><td>825.84</td><td>892.06</td><td>836.05</td><td>832.07</td><td>839.56</td><td>883.42</td><td>798.18</td><td>755.35</td></tr>
+<tr><td>1024</td><td>495.03</td><td>494.1</td><td>530.53</td><td>552.48</td><td>554.67</td><td>582.4</td><td>499.51</td><td>508.17</td><td>486.59</td></tr>
+<tr><td>1024</td><td>495.32</td><td>527.66</td><td>501.54</td><td>528.26</td><td>556.14</td><td>573.79</td><td>558.66</td><td>543.18</td><td>490.17</td></tr>
+<tr><td>1024</td><td>454.53</td><td>512.58</td><td>538.16</td><td>529.06</td><td>553.72</td><td>576.31</td><td>498.5</td><td>527.13</td><td>512.76</td></tr>
+<tr><td>1024</td><td>468.59</td><td>512.83</td><td>560.53</td><td>528.0</td><td>554.6</td><td>578.38</td><td>560.23</td><td>527.13</td><td>430.5</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>540.8</td>
+<td>574.6</td>
+<td>604.56</td>
+<td>594.77</td>
+<td>610.24</td>
+<td>630.09</td>
+<td>600.06</td>
+<td>580.76</td>
+<td>535.07</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>140.69</td>
+<td>140.95</td>
+<td>162.09</td>
+<td>135.28</td>
+<td>124.01</td>
+<td>117.14</td>
+<td>161.26</td>
+<td>122.18</td>
+<td>126.81</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>406.66</td>
+<td>440.22</td>
+<td>450.03</td>
+<td>465.79</td>
+<td>492.01</td>
+<td>518.41</td>
+<td>446.32</td>
+<td>464.28</td>
+<td>414.18</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>674.93</td>
+<td>708.98</td>
+<td>759.1</td>
+<td>723.75</td>
+<td>728.47</td>
+<td>741.77</td>
+<td>753.81</td>
+<td>697.24</td>
+<td>655.97</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>528.64</td>
+<td>563.07</td>
+<td>590.18</td>
+<td>584.4</td>
+<td>601.63</td>
+<td>622.56</td>
+<td>585.57</td>
+<td>571.98</td>
+<td>524.7</td>
+</tr>
+<tr>
+<td>median</td>
+<td>495.03</td>
+<td>512.83</td>
+<td>538.16</td>
+<td>529.06</td>
+<td>554.67</td>
+<td>578.38</td>
+<td>558.66</td>
+<td>527.13</td>
+<td>490.17</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>468.59</td>
+<td>512.58</td>
+<td>530.53</td>
+<td>528.26</td>
+<td>554.6</td>
+<td>576.31</td>
+<td>499.51</td>
+<td>527.13</td>
+<td>486.59</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>495.32</td>
+<td>527.66</td>
+<td>560.53</td>
+<td>552.48</td>
+<td>556.14</td>
+<td>582.4</td>
+<td>560.23</td>
+<td>543.18</td>
+<td>512.76</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>454.53</td>
+<td>494.1</td>
+<td>501.54</td>
+<td>528.0</td>
+<td>553.72</td>
+<td>573.79</td>
+<td>498.5</td>
+<td>508.17</td>
+<td>430.5</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>790.51</td>
+<td>825.84</td>
+<td>892.06</td>
+<td>836.05</td>
+<td>832.07</td>
+<td>839.56</td>
+<td>883.42</td>
+<td>798.18</td>
+<td>755.35</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>15.65 % </td>
+<td>10.33 % </td>
+<td>14.23 % </td>
+<td>6.74 % </td>
+<td>8.67 % </td>
+<td>12.45 % </td>
+<td>15.95 % </td>
+<td>12.93 % </td>
+<td>12.51 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.2895</td>
+<td>0.4358</td>
+<td>0.3487</td>
+<td>0.5687</td>
+<td>0.4226</td>
+<td>0.2358</td>
+<td>0.2939</td>
+<td>0.2906</td>
+<td>0.3364</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="2048"></a> 
+<img src="2048.png" alt="2048" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="10">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>2048</td><td>551.42</td><td>618.41</td><td>606.25</td><td>576.5</td><td>637.34</td><td>601.51</td><td>598.98</td><td>601.69</td><td>608.85</td><td>523.41</td></tr>
+<tr><td>2048</td><td>518.4</td><td>528.12</td><td>541.84</td><td>553.38</td><td>568.8</td><td>557.13</td><td>546.6</td><td>522.6</td><td>557.28</td><td>482.61</td></tr>
+<tr><td>2048</td><td>520.81</td><td>601.86</td><td>585.31</td><td>608.85</td><td>609.96</td><td>495.41</td><td>617.45</td><td>579.37</td><td>538.53</td><td>508.01</td></tr>
+<tr><td>2048</td><td>513.89</td><td>580.86</td><td>589.09</td><td>544.97</td><td>579.73</td><td>565.28</td><td>558.35</td><td>545.25</td><td>554.77</td><td>480.64</td></tr>
+<tr><td>2048</td><td>542.43</td><td>466.09</td><td>570.12</td><td>576.35</td><td>556.02</td><td>573.9</td><td>577.7</td><td>536.64</td><td>543.94</td><td>493.83</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>529.39</td>
+<td>559.07</td>
+<td>578.52</td>
+<td>572.01</td>
+<td>590.37</td>
+<td>558.65</td>
+<td>579.82</td>
+<td>557.11</td>
+<td>560.67</td>
+<td>497.7</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>16.51</td>
+<td>62.11</td>
+<td>24.2</td>
+<td>24.87</td>
+<td>32.97</td>
+<td>39.1</td>
+<td>28.95</td>
+<td>32.53</td>
+<td>28.01</td>
+<td>18.03</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>513.65</td>
+<td>499.85</td>
+<td>555.45</td>
+<td>548.3</td>
+<td>558.94</td>
+<td>521.37</td>
+<td>552.22</td>
+<td>526.09</td>
+<td>533.97</td>
+<td>480.51</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>545.13</td>
+<td>618.28</td>
+<td>601.6</td>
+<td>595.72</td>
+<td>621.81</td>
+<td>595.93</td>
+<td>607.42</td>
+<td>588.13</td>
+<td>587.38</td>
+<td>514.89</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>529.18</td>
+<td>556.17</td>
+<td>578.11</td>
+<td>571.58</td>
+<td>589.65</td>
+<td>557.51</td>
+<td>579.24</td>
+<td>556.36</td>
+<td>560.13</td>
+<td>497.44</td>
+</tr>
+<tr>
+<td>median</td>
+<td>520.81</td>
+<td>580.86</td>
+<td>585.31</td>
+<td>576.35</td>
+<td>579.73</td>
+<td>565.28</td>
+<td>577.7</td>
+<td>545.25</td>
+<td>554.77</td>
+<td>493.83</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>518.4</td>
+<td>528.12</td>
+<td>570.12</td>
+<td>553.38</td>
+<td>568.8</td>
+<td>557.13</td>
+<td>558.35</td>
+<td>536.64</td>
+<td>543.94</td>
+<td>482.61</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>542.43</td>
+<td>601.86</td>
+<td>589.09</td>
+<td>576.5</td>
+<td>609.96</td>
+<td>573.9</td>
+<td>598.98</td>
+<td>579.37</td>
+<td>557.28</td>
+<td>508.01</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>513.89</td>
+<td>466.09</td>
+<td>541.84</td>
+<td>544.97</td>
+<td>556.02</td>
+<td>495.41</td>
+<td>546.6</td>
+<td>522.6</td>
+<td>538.53</td>
+<td>480.64</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>551.42</td>
+<td>618.41</td>
+<td>606.25</td>
+<td>608.85</td>
+<td>637.34</td>
+<td>601.51</td>
+<td>617.45</td>
+<td>601.69</td>
+<td>608.85</td>
+<td>523.41</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>2048</td><td>863.58</td><td>925.91</td><td>963.9</td><td>1002.49</td><td>989.13</td><td>883.77</td><td>964.23</td><td>949.17</td><td>887.7</td><td>827.13</td></tr>
+<tr><td>2048</td><td>745.67</td><td>843.52</td><td>765.68</td><td>727.05</td><td>710.49</td><td>531.91</td><td>561.49</td><td>585.68</td><td>535.61</td><td>511.91</td></tr>
+<tr><td>2048</td><td>709.23</td><td>793.64</td><td>876.84</td><td>700.29</td><td>816.66</td><td>629.12</td><td>622.86</td><td>628.37</td><td>492.99</td><td>472.26</td></tr>
+<tr><td>2048</td><td>830.9</td><td>839.3</td><td>752.76</td><td>727.56</td><td>704.94</td><td>591.17</td><td>509.02</td><td>541.73</td><td>519.88</td><td>500.88</td></tr>
+<tr><td>2048</td><td>779.41</td><td>850.7</td><td>778.18</td><td>782.17</td><td>698.3</td><td>575.04</td><td>590.5</td><td>530.76</td><td>544.23</td><td>478.02</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>785.75</td>
+<td>850.61</td>
+<td>827.47</td>
+<td>787.91</td>
+<td>783.9</td>
+<td>642.2</td>
+<td>649.62</td>
+<td>647.14</td>
+<td>596.08</td>
+<td>558.04</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>62.45</td>
+<td>47.68</td>
+<td>90.66</td>
+<td>123.59</td>
+<td>124.64</td>
+<td>139.47</td>
+<td>180.78</td>
+<td>173.21</td>
+<td>164.18</td>
+<td>151.3</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>726.22</td>
+<td>805.15</td>
+<td>741.03</td>
+<td>670.08</td>
+<td>665.07</td>
+<td>509.23</td>
+<td>477.27</td>
+<td>482.01</td>
+<td>439.55</td>
+<td>413.79</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>845.29</td>
+<td>896.07</td>
+<td>913.91</td>
+<td>905.74</td>
+<td>902.74</td>
+<td>775.17</td>
+<td>821.97</td>
+<td>812.28</td>
+<td>752.61</td>
+<td>702.29</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>783.77</td>
+<td>849.56</td>
+<td>823.66</td>
+<td>780.94</td>
+<td>776.62</td>
+<td>631.63</td>
+<td>632.67</td>
+<td>631.51</td>
+<td>581.2</td>
+<td>544.53</td>
+</tr>
+<tr>
+<td>median</td>
+<td>779.41</td>
+<td>843.52</td>
+<td>778.18</td>
+<td>727.56</td>
+<td>710.49</td>
+<td>591.17</td>
+<td>590.5</td>
+<td>585.68</td>
+<td>535.61</td>
+<td>500.88</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>745.67</td>
+<td>839.3</td>
+<td>765.68</td>
+<td>727.05</td>
+<td>704.94</td>
+<td>575.04</td>
+<td>561.49</td>
+<td>541.73</td>
+<td>519.88</td>
+<td>478.02</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>830.9</td>
+<td>850.7</td>
+<td>876.84</td>
+<td>782.17</td>
+<td>816.66</td>
+<td>629.12</td>
+<td>622.86</td>
+<td>628.37</td>
+<td>544.23</td>
+<td>511.91</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>709.23</td>
+<td>793.64</td>
+<td>752.76</td>
+<td>700.29</td>
+<td>698.3</td>
+<td>531.91</td>
+<td>509.02</td>
+<td>530.76</td>
+<td>492.99</td>
+<td>472.26</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>863.58</td>
+<td>925.91</td>
+<td>963.9</td>
+<td>1002.49</td>
+<td>989.13</td>
+<td>883.77</td>
+<td>964.23</td>
+<td>949.17</td>
+<td>887.7</td>
+<td>827.13</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>48.43 % </td>
+<td>52.15 % </td>
+<td>43.03 % </td>
+<td>37.74 % </td>
+<td>32.78 % </td>
+<td>14.96 % </td>
+<td>12.04 % </td>
+<td>16.16 % </td>
+<td>6.31 % </td>
+<td>12.12 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0003</td>
+<td>0.005</td>
+<td>0.01</td>
+<td>0.2331</td>
+<td>0.4187</td>
+<td>0.2863</td>
+<td>0.6473</td>
+<td>0.4017</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="4096"></a> 
+<img src="4096.png" alt="4096" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="11">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>4096</td><td>630.61</td><td>663.45</td><td>687.29</td><td>668.34</td><td>709.46</td><td>619.39</td><td>666.53</td><td>626.46</td><td>635.22</td><td>600.41</td><td>512.36</td></tr>
+<tr><td>4096</td><td>580.55</td><td>615.66</td><td>661.59</td><td>645.9</td><td>603.5</td><td>599.06</td><td>611.8</td><td>588.51</td><td>575.61</td><td>522.93</td><td>500.81</td></tr>
+<tr><td>4096</td><td>561.47</td><td>634.4</td><td>639.6</td><td>616.52</td><td>624.62</td><td>606.05</td><td>583.17</td><td>589.28</td><td>556.63</td><td>576.54</td><td>519.02</td></tr>
+<tr><td>4096</td><td>536.19</td><td>603.61</td><td>616.61</td><td>640.72</td><td>628.72</td><td>633.9</td><td>556.65</td><td>582.77</td><td>574.23</td><td>560.78</td><td>529.59</td></tr>
+<tr><td>4096</td><td>577.63</td><td>626.86</td><td>655.75</td><td>621.13</td><td>622.37</td><td>613.32</td><td>615.66</td><td>582.42</td><td>548.83</td><td>524.67</td><td>491.87</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>577.29</td>
+<td>628.8</td>
+<td>652.17</td>
+<td>638.52</td>
+<td>637.73</td>
+<td>614.34</td>
+<td>606.76</td>
+<td>593.89</td>
+<td>578.1</td>
+<td>557.07</td>
+<td>510.73</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>34.62</td>
+<td>22.6</td>
+<td>26.26</td>
+<td>20.83</td>
+<td>41.25</td>
+<td>13.33</td>
+<td>41.06</td>
+<td>18.48</td>
+<td>33.92</td>
+<td>33.49</td>
+<td>14.84</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>544.29</td>
+<td>607.25</td>
+<td>627.14</td>
+<td>618.67</td>
+<td>598.41</td>
+<td>601.63</td>
+<td>567.61</td>
+<td>576.27</td>
+<td>545.77</td>
+<td>525.14</td>
+<td>496.58</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>610.29</td>
+<td>650.34</td>
+<td>677.2</td>
+<td>658.38</td>
+<td>677.06</td>
+<td>627.05</td>
+<td>645.91</td>
+<td>611.51</td>
+<td>610.44</td>
+<td>589.0</td>
+<td>524.88</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>576.47</td>
+<td>628.47</td>
+<td>651.74</td>
+<td>638.25</td>
+<td>636.72</td>
+<td>614.23</td>
+<td>605.66</td>
+<td>593.67</td>
+<td>577.34</td>
+<td>556.26</td>
+<td>510.56</td>
+</tr>
+<tr>
+<td>median</td>
+<td>577.63</td>
+<td>626.86</td>
+<td>655.75</td>
+<td>640.72</td>
+<td>624.62</td>
+<td>613.32</td>
+<td>611.8</td>
+<td>588.51</td>
+<td>574.23</td>
+<td>560.78</td>
+<td>512.36</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>561.47</td>
+<td>615.66</td>
+<td>639.6</td>
+<td>621.13</td>
+<td>622.37</td>
+<td>606.05</td>
+<td>583.17</td>
+<td>582.77</td>
+<td>556.63</td>
+<td>524.67</td>
+<td>500.81</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>580.55</td>
+<td>634.4</td>
+<td>661.59</td>
+<td>645.9</td>
+<td>628.72</td>
+<td>619.39</td>
+<td>615.66</td>
+<td>589.28</td>
+<td>575.61</td>
+<td>576.54</td>
+<td>519.02</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>536.19</td>
+<td>603.61</td>
+<td>616.61</td>
+<td>616.52</td>
+<td>603.5</td>
+<td>599.06</td>
+<td>556.65</td>
+<td>582.42</td>
+<td>548.83</td>
+<td>522.93</td>
+<td>491.87</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>630.61</td>
+<td>663.45</td>
+<td>687.29</td>
+<td>668.34</td>
+<td>709.46</td>
+<td>633.9</td>
+<td>666.53</td>
+<td>626.46</td>
+<td>635.22</td>
+<td>600.41</td>
+<td>529.59</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>4096</td><td>957.61</td><td>985.46</td><td>923.56</td><td>990.34</td><td>1021.46</td><td>933.48</td><td>879.92</td><td>849.44</td><td>913.25</td><td>935.25</td><td>823.39</td></tr>
+<tr><td>4096</td><td>854.85</td><td>953.97</td><td>1001.22</td><td>1035.2</td><td>1010.87</td><td>979.19</td><td>871.28</td><td>903.32</td><td>912.61</td><td>930.89</td><td>835.78</td></tr>
+<tr><td>4096</td><td>911.81</td><td>947.45</td><td>940.75</td><td>1034.37</td><td>917.05</td><td>1049.31</td><td>1031.69</td><td>989.12</td><td>929.8</td><td>918.91</td><td>834.4</td></tr>
+<tr><td>4096</td><td>920.17</td><td>972.32</td><td>986.21</td><td>1001.76</td><td>991.04</td><td>975.37</td><td>891.28</td><td>871.1</td><td>932.39</td><td>898.63</td><td>825.94</td></tr>
+<tr><td>4096</td><td>890.66</td><td>942.07</td><td>971.81</td><td>1028.03</td><td>950.34</td><td>949.22</td><td>894.46</td><td>861.88</td><td>888.49</td><td>906.64</td><td>831.26</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>907.02</td>
+<td>960.25</td>
+<td>964.71</td>
+<td>1017.94</td>
+<td>978.15</td>
+<td>977.31</td>
+<td>913.73</td>
+<td>894.97</td>
+<td>915.31</td>
+<td>918.06</td>
+<td>830.15</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>37.9</td>
+<td>18.13</td>
+<td>32.07</td>
+<td>20.57</td>
+<td>43.64</td>
+<td>44.45</td>
+<td>66.59</td>
+<td>56.28</td>
+<td>17.55</td>
+<td>15.56</td>
+<td>5.35</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>870.89</td>
+<td>942.97</td>
+<td>934.14</td>
+<td>998.32</td>
+<td>936.54</td>
+<td>934.94</td>
+<td>850.24</td>
+<td>841.31</td>
+<td>898.57</td>
+<td>903.23</td>
+<td>825.06</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>943.15</td>
+<td>977.54</td>
+<td>995.28</td>
+<td>1037.55</td>
+<td>1019.76</td>
+<td>1019.69</td>
+<td>977.21</td>
+<td>948.63</td>
+<td>932.04</td>
+<td>932.9</td>
+<td>835.25</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>906.39</td>
+<td>960.12</td>
+<td>964.28</td>
+<td>1017.77</td>
+<td>977.36</td>
+<td>976.52</td>
+<td>911.89</td>
+<td>893.61</td>
+<td>915.17</td>
+<td>917.96</td>
+<td>830.14</td>
+</tr>
+<tr>
+<td>median</td>
+<td>911.81</td>
+<td>953.97</td>
+<td>971.81</td>
+<td>1028.03</td>
+<td>991.04</td>
+<td>975.37</td>
+<td>891.28</td>
+<td>871.1</td>
+<td>913.25</td>
+<td>918.91</td>
+<td>831.26</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>890.66</td>
+<td>947.45</td>
+<td>940.75</td>
+<td>1001.76</td>
+<td>950.34</td>
+<td>949.22</td>
+<td>879.92</td>
+<td>861.88</td>
+<td>912.61</td>
+<td>906.64</td>
+<td>825.94</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>920.17</td>
+<td>972.32</td>
+<td>986.21</td>
+<td>1034.37</td>
+<td>1010.87</td>
+<td>979.19</td>
+<td>894.46</td>
+<td>903.32</td>
+<td>929.8</td>
+<td>930.89</td>
+<td>834.4</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>854.85</td>
+<td>942.07</td>
+<td>923.56</td>
+<td>990.34</td>
+<td>917.05</td>
+<td>933.48</td>
+<td>871.28</td>
+<td>849.44</td>
+<td>888.49</td>
+<td>898.63</td>
+<td>823.39</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>957.61</td>
+<td>985.46</td>
+<td>1001.22</td>
+<td>1035.2</td>
+<td>1021.46</td>
+<td>1049.31</td>
+<td>1031.69</td>
+<td>989.12</td>
+<td>932.39</td>
+<td>935.25</td>
+<td>835.78</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>57.12 % </td>
+<td>52.71 % </td>
+<td>47.92 % </td>
+<td>59.42 % </td>
+<td>53.38 % </td>
+<td>59.08 % </td>
+<td>50.59 % </td>
+<td>50.7 % </td>
+<td>58.33 % </td>
+<td>64.8 % </td>
+<td>62.54 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="8192"></a> 
+<img src="8192.png" alt="8192" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="12">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>8192</td><td>777.16</td><td>802.64</td><td>821.61</td><td>862.43</td><td>818.5</td><td>827.04</td><td>804.11</td><td>816.33</td><td>783.16</td><td>784.08</td><td>704.47</td><td>661.42</td></tr>
+<tr><td>8192</td><td>717.04</td><td>759.51</td><td>798.73</td><td>790.43</td><td>776.92</td><td>764.31</td><td>788.96</td><td>776.17</td><td>769.02</td><td>761.17</td><td>695.34</td><td>639.23</td></tr>
+<tr><td>8192</td><td>705.03</td><td>776.71</td><td>794.98</td><td>795.79</td><td>794.06</td><td>777.16</td><td>760.89</td><td>773.4</td><td>753.8</td><td>759.81</td><td>701.76</td><td>640.92</td></tr>
+<tr><td>8192</td><td>725.75</td><td>779.05</td><td>815.5</td><td>805.4</td><td>755.36</td><td>800.63</td><td>782.08</td><td>798.01</td><td>724.56</td><td>690.25</td><td>679.64</td><td>633.01</td></tr>
+<tr><td>8192</td><td>740.39</td><td>764.08</td><td>756.07</td><td>774.36</td><td>785.54</td><td>748.5</td><td>750.54</td><td>756.64</td><td>741.85</td><td>721.23</td><td>668.23</td><td>634.97</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>733.08</td>
+<td>776.4</td>
+<td>797.38</td>
+<td>805.68</td>
+<td>786.08</td>
+<td>783.53</td>
+<td>777.32</td>
+<td>784.11</td>
+<td>754.48</td>
+<td>743.31</td>
+<td>689.89</td>
+<td>641.91</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>27.81</td>
+<td>16.83</td>
+<td>25.64</td>
+<td>33.66</td>
+<td>23.15</td>
+<td>30.91</td>
+<td>21.58</td>
+<td>23.26</td>
+<td>22.85</td>
+<td>37.27</td>
+<td>15.47</td>
+<td>11.36</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>706.56</td>
+<td>760.36</td>
+<td>772.94</td>
+<td>773.59</td>
+<td>764.01</td>
+<td>754.05</td>
+<td>756.74</td>
+<td>761.93</td>
+<td>732.69</td>
+<td>707.78</td>
+<td>675.14</td>
+<td>631.08</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>759.59</td>
+<td>792.44</td>
+<td>821.82</td>
+<td>837.77</td>
+<td>808.15</td>
+<td>813.0</td>
+<td>797.89</td>
+<td>806.28</td>
+<td>776.27</td>
+<td>778.84</td>
+<td>704.64</td>
+<td>652.74</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>732.66</td>
+<td>776.26</td>
+<td>797.04</td>
+<td>805.13</td>
+<td>785.81</td>
+<td>783.04</td>
+<td>777.08</td>
+<td>783.83</td>
+<td>754.2</td>
+<td>742.55</td>
+<td>689.75</td>
+<td>641.83</td>
+</tr>
+<tr>
+<td>median</td>
+<td>725.75</td>
+<td>776.71</td>
+<td>798.73</td>
+<td>795.79</td>
+<td>785.54</td>
+<td>777.16</td>
+<td>782.08</td>
+<td>776.17</td>
+<td>753.8</td>
+<td>759.81</td>
+<td>695.34</td>
+<td>639.23</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>717.04</td>
+<td>764.08</td>
+<td>794.98</td>
+<td>790.43</td>
+<td>776.92</td>
+<td>764.31</td>
+<td>760.89</td>
+<td>773.4</td>
+<td>741.85</td>
+<td>721.23</td>
+<td>679.64</td>
+<td>634.97</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>740.39</td>
+<td>779.05</td>
+<td>815.5</td>
+<td>805.4</td>
+<td>794.06</td>
+<td>800.63</td>
+<td>788.96</td>
+<td>798.01</td>
+<td>769.02</td>
+<td>761.17</td>
+<td>701.76</td>
+<td>640.92</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>705.03</td>
+<td>759.51</td>
+<td>756.07</td>
+<td>774.36</td>
+<td>755.36</td>
+<td>748.5</td>
+<td>750.54</td>
+<td>756.64</td>
+<td>724.56</td>
+<td>690.25</td>
+<td>668.23</td>
+<td>633.01</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>777.16</td>
+<td>802.64</td>
+<td>821.61</td>
+<td>862.43</td>
+<td>818.5</td>
+<td>827.04</td>
+<td>804.11</td>
+<td>816.33</td>
+<td>783.16</td>
+<td>784.08</td>
+<td>704.47</td>
+<td>661.42</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>8192</td><td>958.43</td><td>1011.11</td><td>1034.65</td><td>1043.95</td><td>1063.81</td><td>1008.31</td><td>1023.91</td><td>1061.42</td><td>1024.6</td><td>1008.31</td><td>928.62</td><td>849.81</td></tr>
+<tr><td>8192</td><td>956.03</td><td>1014.99</td><td>1026.29</td><td>1020.55</td><td>1029.98</td><td>1007.83</td><td>1036.15</td><td>1040.87</td><td>1020.55</td><td>1012.79</td><td>915.67</td><td>841.33</td></tr>
+<tr><td>8192</td><td>939.19</td><td>1009.83</td><td>1042.88</td><td>1055.11</td><td>1062.29</td><td>1033.09</td><td>1023.69</td><td>1025.63</td><td>1007.95</td><td>1003.28</td><td>924.01</td><td>847.27</td></tr>
+<tr><td>8192</td><td>928.74</td><td>1006.92</td><td>1046.16</td><td>1022.63</td><td>1060.01</td><td>1014.44</td><td>1019.9</td><td>1029.85</td><td>1029.47</td><td>992.56</td><td>916.49</td><td>833.51</td></tr>
+<tr><td>8192</td><td>957.39</td><td>1005.05</td><td>1055.28</td><td>1013.03</td><td>1042.2</td><td>1035.48</td><td>1000.76</td><td>1023.94</td><td>1021.08</td><td>985.1</td><td>931.63</td><td>848.0</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>947.96</td>
+<td>1009.58</td>
+<td>1041.05</td>
+<td>1031.05</td>
+<td>1051.66</td>
+<td>1019.83</td>
+<td>1020.88</td>
+<td>1036.34</td>
+<td>1020.73</td>
+<td>1000.41</td>
+<td>923.28</td>
+<td>843.98</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>13.32</td>
+<td>3.85</td>
+<td>11.08</td>
+<td>17.69</td>
+<td>14.92</td>
+<td>13.48</td>
+<td>12.8</td>
+<td>15.49</td>
+<td>7.98</td>
+<td>11.4</td>
+<td>7.12</td>
+<td>6.66</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>935.26</td>
+<td>1005.91</td>
+<td>1030.49</td>
+<td>1014.19</td>
+<td>1037.44</td>
+<td>1006.98</td>
+<td>1008.67</td>
+<td>1021.57</td>
+<td>1013.12</td>
+<td>989.54</td>
+<td>916.49</td>
+<td>837.63</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>960.66</td>
+<td>1013.25</td>
+<td>1051.61</td>
+<td>1047.92</td>
+<td>1065.88</td>
+<td>1032.68</td>
+<td>1033.09</td>
+<td>1051.11</td>
+<td>1028.34</td>
+<td>1011.28</td>
+<td>930.07</td>
+<td>850.34</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>947.88</td>
+<td>1009.57</td>
+<td>1041.0</td>
+<td>1030.93</td>
+<td>1051.57</td>
+<td>1019.76</td>
+<td>1020.82</td>
+<td>1036.25</td>
+<td>1020.7</td>
+<td>1000.36</td>
+<td>923.26</td>
+<td>843.96</td>
+</tr>
+<tr>
+<td>median</td>
+<td>956.03</td>
+<td>1009.83</td>
+<td>1042.88</td>
+<td>1022.63</td>
+<td>1060.01</td>
+<td>1014.44</td>
+<td>1023.69</td>
+<td>1029.85</td>
+<td>1021.08</td>
+<td>1003.28</td>
+<td>924.01</td>
+<td>847.27</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>939.19</td>
+<td>1006.92</td>
+<td>1034.65</td>
+<td>1020.55</td>
+<td>1042.2</td>
+<td>1008.31</td>
+<td>1019.9</td>
+<td>1025.63</td>
+<td>1020.55</td>
+<td>992.56</td>
+<td>916.49</td>
+<td>841.33</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>957.39</td>
+<td>1011.11</td>
+<td>1046.16</td>
+<td>1043.95</td>
+<td>1062.29</td>
+<td>1033.09</td>
+<td>1023.91</td>
+<td>1040.87</td>
+<td>1024.6</td>
+<td>1008.31</td>
+<td>928.62</td>
+<td>848.0</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>928.74</td>
+<td>1005.05</td>
+<td>1026.29</td>
+<td>1013.03</td>
+<td>1029.98</td>
+<td>1007.83</td>
+<td>1000.76</td>
+<td>1023.94</td>
+<td>1007.95</td>
+<td>985.1</td>
+<td>915.67</td>
+<td>833.51</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>958.43</td>
+<td>1014.99</td>
+<td>1055.28</td>
+<td>1055.11</td>
+<td>1063.81</td>
+<td>1035.48</td>
+<td>1036.15</td>
+<td>1061.42</td>
+<td>1029.47</td>
+<td>1012.79</td>
+<td>931.63</td>
+<td>849.81</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>29.31 % </td>
+<td>30.03 % </td>
+<td>30.56 % </td>
+<td>27.97 % </td>
+<td>33.79 % </td>
+<td>30.16 % </td>
+<td>31.33 % </td>
+<td>32.17 % </td>
+<td>35.29 % </td>
+<td>34.59 % </td>
+<td>33.83 % </td>
+<td>31.48 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="16384"></a> 
+<img src="16384.png" alt="16384" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="13">Block size [kB]</td>
+</tr>
+<tr><td>4</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>16384</td><td>879.51</td><td>916.01</td><td>952.14</td><td>956.42</td><td>952.5</td><td>889.93</td><td>920.07</td><td>888.93</td><td>928.95</td><td>887.08</td><td>847.19</td><td>802.82</td><td>775.58</td></tr>
+<tr><td>16384</td><td>822.92</td><td>864.68</td><td>897.77</td><td>920.44</td><td>925.17</td><td>915.11</td><td>910.85</td><td>905.64</td><td>884.95</td><td>893.51</td><td>857.08</td><td>797.33</td><td>753.08</td></tr>
+<tr><td>16384</td><td>840.12</td><td>898.98</td><td>927.91</td><td>917.69</td><td>899.33</td><td>890.91</td><td>908.63</td><td>902.17</td><td>904.06</td><td>864.87</td><td>840.03</td><td>788.77</td><td>753.36</td></tr>
+<tr><td>16384</td><td>826.02</td><td>860.49</td><td>900.65</td><td>922.83</td><td>878.21</td><td>879.99</td><td>876.85</td><td>911.52</td><td>888.93</td><td>848.27</td><td>835.29</td><td>798.79</td><td>744.37</td></tr>
+<tr><td>16384</td><td>821.02</td><td>884.36</td><td>901.11</td><td>902.38</td><td>916.13</td><td>900.9</td><td>859.11</td><td>911.83</td><td>902.48</td><td>861.28</td><td>844.86</td><td>798.29</td><td>732.87</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>837.92</td>
+<td>884.91</td>
+<td>915.91</td>
+<td>923.95</td>
+<td>914.27</td>
+<td>895.37</td>
+<td>895.1</td>
+<td>904.02</td>
+<td>901.87</td>
+<td>871.0</td>
+<td>844.89</td>
+<td>797.2</td>
+<td>751.85</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>24.43</td>
+<td>23.3</td>
+<td>23.65</td>
+<td>19.83</td>
+<td>27.87</td>
+<td>13.29</td>
+<td>25.9</td>
+<td>9.37</td>
+<td>17.26</td>
+<td>18.8</td>
+<td>8.21</td>
+<td>5.16</td>
+<td>15.68</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>814.63</td>
+<td>862.7</td>
+<td>893.36</td>
+<td>905.05</td>
+<td>887.69</td>
+<td>882.7</td>
+<td>870.41</td>
+<td>895.09</td>
+<td>885.41</td>
+<td>853.08</td>
+<td>837.06</td>
+<td>792.28</td>
+<td>736.91</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>861.2</td>
+<td>907.12</td>
+<td>938.47</td>
+<td>942.85</td>
+<td>940.84</td>
+<td>908.04</td>
+<td>919.8</td>
+<td>912.95</td>
+<td>918.33</td>
+<td>888.93</td>
+<td>852.71</td>
+<td>802.12</td>
+<td>766.8</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>837.64</td>
+<td>884.66</td>
+<td>915.67</td>
+<td>923.78</td>
+<td>913.93</td>
+<td>895.29</td>
+<td>894.8</td>
+<td>903.98</td>
+<td>901.74</td>
+<td>870.84</td>
+<td>844.86</td>
+<td>797.19</td>
+<td>751.72</td>
+</tr>
+<tr>
+<td>median</td>
+<td>826.02</td>
+<td>884.36</td>
+<td>901.11</td>
+<td>920.44</td>
+<td>916.13</td>
+<td>890.91</td>
+<td>908.63</td>
+<td>905.64</td>
+<td>902.48</td>
+<td>864.87</td>
+<td>844.86</td>
+<td>798.29</td>
+<td>753.08</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>822.92</td>
+<td>864.68</td>
+<td>900.65</td>
+<td>917.69</td>
+<td>899.33</td>
+<td>889.93</td>
+<td>876.85</td>
+<td>902.17</td>
+<td>888.93</td>
+<td>861.28</td>
+<td>840.03</td>
+<td>797.33</td>
+<td>744.37</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>840.12</td>
+<td>898.98</td>
+<td>927.91</td>
+<td>922.83</td>
+<td>925.17</td>
+<td>900.9</td>
+<td>910.85</td>
+<td>911.52</td>
+<td>904.06</td>
+<td>887.08</td>
+<td>847.19</td>
+<td>798.79</td>
+<td>753.36</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>821.02</td>
+<td>860.49</td>
+<td>897.77</td>
+<td>902.38</td>
+<td>878.21</td>
+<td>879.99</td>
+<td>859.11</td>
+<td>888.93</td>
+<td>884.95</td>
+<td>848.27</td>
+<td>835.29</td>
+<td>788.77</td>
+<td>732.87</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>879.51</td>
+<td>916.01</td>
+<td>952.14</td>
+<td>956.42</td>
+<td>952.5</td>
+<td>915.11</td>
+<td>920.07</td>
+<td>911.83</td>
+<td>928.95</td>
+<td>893.51</td>
+<td>857.08</td>
+<td>802.82</td>
+<td>775.58</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>16384</td><td>977.82</td><td>1025.65</td><td>1068.22</td><td>1099.27</td><td>1074.69</td><td>1067.09</td><td>1050.83</td><td>1066.87</td><td>1064.26</td><td>1044.3</td><td>990.47</td><td>919.64</td><td>858.56</td></tr>
+<tr><td>16384</td><td>975.14</td><td>1025.85</td><td>1061.42</td><td>1080.94</td><td>1076.72</td><td>1079.77</td><td>1059.04</td><td>1061.7</td><td>1059.12</td><td>1046.84</td><td>985.69</td><td>928.23</td><td>852.65</td></tr>
+<tr><td>16384</td><td>981.77</td><td>1044.38</td><td>1076.34</td><td>1081.08</td><td>1083.94</td><td>1072.39</td><td>1063.26</td><td>1070.23</td><td>1066.81</td><td>1030.2</td><td>1000.87</td><td>939.19</td><td>873.21</td></tr>
+<tr><td>16384</td><td>974.12</td><td>1039.97</td><td>1057.63</td><td>1078.61</td><td>1084.01</td><td>1054.91</td><td>1056.32</td><td>1059.74</td><td>1056.1</td><td>1043.91</td><td>970.58</td><td>927.86</td><td>854.71</td></tr>
+<tr><td>16384</td><td>971.17</td><td>1030.2</td><td>1037.55</td><td>1070.37</td><td>1082.61</td><td>1062.84</td><td>1064.61</td><td>1063.05</td><td>1056.67</td><td>1045.07</td><td>997.81</td><td>923.31</td><td>863.66</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>976.01</td>
+<td>1033.21</td>
+<td>1060.23</td>
+<td>1082.05</td>
+<td>1080.4</td>
+<td>1067.4</td>
+<td>1058.81</td>
+<td>1064.32</td>
+<td>1060.59</td>
+<td>1042.07</td>
+<td>989.08</td>
+<td>927.65</td>
+<td>860.56</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>4.01</td>
+<td>8.53</td>
+<td>14.54</td>
+<td>10.57</td>
+<td>4.38</td>
+<td>9.42</td>
+<td>5.56</td>
+<td>4.21</td>
+<td>4.74</td>
+<td>6.73</td>
+<td>11.94</td>
+<td>7.36</td>
+<td>8.22</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>972.19</td>
+<td>1025.08</td>
+<td>1046.37</td>
+<td>1071.98</td>
+<td>1076.22</td>
+<td>1058.42</td>
+<td>1053.52</td>
+<td>1060.3</td>
+<td>1056.07</td>
+<td>1035.65</td>
+<td>977.7</td>
+<td>920.63</td>
+<td>852.72</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>979.83</td>
+<td>1041.34</td>
+<td>1074.1</td>
+<td>1092.13</td>
+<td>1084.57</td>
+<td>1076.38</td>
+<td>1064.11</td>
+<td>1068.33</td>
+<td>1065.11</td>
+<td>1048.48</td>
+<td>1000.47</td>
+<td>934.66</td>
+<td>868.4</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>976.0</td>
+<td>1033.18</td>
+<td>1060.15</td>
+<td>1082.01</td>
+<td>1080.39</td>
+<td>1067.37</td>
+<td>1058.8</td>
+<td>1064.31</td>
+<td>1060.58</td>
+<td>1042.05</td>
+<td>989.03</td>
+<td>927.62</td>
+<td>860.53</td>
+</tr>
+<tr>
+<td>median</td>
+<td>975.14</td>
+<td>1030.2</td>
+<td>1061.42</td>
+<td>1080.94</td>
+<td>1082.61</td>
+<td>1067.09</td>
+<td>1059.04</td>
+<td>1063.05</td>
+<td>1059.12</td>
+<td>1044.3</td>
+<td>990.47</td>
+<td>927.86</td>
+<td>858.56</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>974.12</td>
+<td>1025.85</td>
+<td>1057.63</td>
+<td>1078.61</td>
+<td>1076.72</td>
+<td>1062.84</td>
+<td>1056.32</td>
+<td>1061.7</td>
+<td>1056.67</td>
+<td>1043.91</td>
+<td>985.69</td>
+<td>923.31</td>
+<td>854.71</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>977.82</td>
+<td>1039.97</td>
+<td>1068.22</td>
+<td>1081.08</td>
+<td>1083.94</td>
+<td>1072.39</td>
+<td>1063.26</td>
+<td>1066.87</td>
+<td>1064.26</td>
+<td>1045.07</td>
+<td>997.81</td>
+<td>928.23</td>
+<td>863.66</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>971.17</td>
+<td>1025.65</td>
+<td>1037.55</td>
+<td>1070.37</td>
+<td>1074.69</td>
+<td>1054.91</td>
+<td>1050.83</td>
+<td>1059.74</td>
+<td>1056.1</td>
+<td>1030.2</td>
+<td>970.58</td>
+<td>919.64</td>
+<td>852.65</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>981.77</td>
+<td>1044.38</td>
+<td>1076.34</td>
+<td>1099.27</td>
+<td>1084.01</td>
+<td>1079.77</td>
+<td>1064.61</td>
+<td>1070.23</td>
+<td>1066.81</td>
+<td>1046.84</td>
+<td>1000.87</td>
+<td>939.19</td>
+<td>873.21</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>16.48 % </td>
+<td>16.76 % </td>
+<td>15.76 % </td>
+<td>17.11 % </td>
+<td>18.17 % </td>
+<td>19.21 % </td>
+<td>18.29 % </td>
+<td>17.73 % </td>
+<td>17.6 % </td>
+<td>19.64 % </td>
+<td>17.07 % </td>
+<td>16.36 % </td>
+<td>14.46 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="32768"></a> 
+<img src="32768.png" alt="32768" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>32768</td><td>1050.46</td><td>1025.87</td><td>1021.88</td><td>1015.75</td><td>1014.08</td><td>997.07</td><td>953.35</td><td>938.86</td><td>899.68</td></tr>
+<tr><td>32768</td><td>1020.18</td><td>997.6</td><td>985.59</td><td>1016.84</td><td>1007.43</td><td>996.41</td><td>953.77</td><td>915.25</td><td>878.2</td></tr>
+<tr><td>32768</td><td>1000.87</td><td>1000.34</td><td>1000.28</td><td>993.21</td><td>1001.41</td><td>989.67</td><td>945.38</td><td>919.6</td><td>877.17</td></tr>
+<tr><td>32768</td><td>1001.57</td><td>997.98</td><td>1000.04</td><td>994.07</td><td>991.91</td><td>964.78</td><td>943.84</td><td>901.2</td><td>859.2</td></tr>
+<tr><td>32768</td><td>997.84</td><td>999.84</td><td>992.16</td><td>976.53</td><td>985.58</td><td>974.72</td><td>938.88</td><td>914.5</td><td>873.69</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1014.18</td>
+<td>1004.33</td>
+<td>999.99</td>
+<td>999.28</td>
+<td>1000.08</td>
+<td>984.53</td>
+<td>947.04</td>
+<td>917.88</td>
+<td>877.59</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>22.11</td>
+<td>12.1</td>
+<td>13.67</td>
+<td>17.04</td>
+<td>11.49</td>
+<td>14.24</td>
+<td>6.42</td>
+<td>13.6</td>
+<td>14.51</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>993.11</td>
+<td>992.79</td>
+<td>986.95</td>
+<td>983.04</td>
+<td>989.12</td>
+<td>970.96</td>
+<td>940.93</td>
+<td>904.92</td>
+<td>863.76</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1035.26</td>
+<td>1015.86</td>
+<td>1013.03</td>
+<td>1015.52</td>
+<td>1011.04</td>
+<td>998.11</td>
+<td>953.16</td>
+<td>930.84</td>
+<td>891.42</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1013.99</td>
+<td>1004.27</td>
+<td>999.92</td>
+<td>999.16</td>
+<td>1000.03</td>
+<td>984.45</td>
+<td>947.03</td>
+<td>917.8</td>
+<td>877.49</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1001.57</td>
+<td>999.84</td>
+<td>1000.04</td>
+<td>994.07</td>
+<td>1001.41</td>
+<td>989.67</td>
+<td>945.38</td>
+<td>915.25</td>
+<td>877.17</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1000.87</td>
+<td>997.98</td>
+<td>992.16</td>
+<td>993.21</td>
+<td>991.91</td>
+<td>974.72</td>
+<td>943.84</td>
+<td>914.5</td>
+<td>873.69</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1020.18</td>
+<td>1000.34</td>
+<td>1000.28</td>
+<td>1015.75</td>
+<td>1007.43</td>
+<td>996.41</td>
+<td>953.35</td>
+<td>919.6</td>
+<td>878.2</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>997.84</td>
+<td>997.6</td>
+<td>985.59</td>
+<td>976.53</td>
+<td>985.58</td>
+<td>964.78</td>
+<td>938.88</td>
+<td>901.2</td>
+<td>859.2</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1050.46</td>
+<td>1025.87</td>
+<td>1021.88</td>
+<td>1016.84</td>
+<td>1014.08</td>
+<td>997.07</td>
+<td>953.77</td>
+<td>938.86</td>
+<td>899.68</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>32768</td><td>1085.3</td><td>1070.59</td><td>1081.52</td><td>1080.24</td><td>1069.44</td><td>1066.63</td><td>1014.88</td><td>962.64</td><td>938.3</td></tr>
+<tr><td>32768</td><td>1073.79</td><td>1062.2</td><td>1068.12</td><td>1060.09</td><td>1069.92</td><td>1052.88</td><td>1014.72</td><td>969.08</td><td>930.29</td></tr>
+<tr><td>32768</td><td>1090.07</td><td>1078.1</td><td>1069.16</td><td>1083.09</td><td>1073.43</td><td>1070.13</td><td>1034.23</td><td>981.38</td><td>940.26</td></tr>
+<tr><td>32768</td><td>1074.11</td><td>1072.35</td><td>1045.27</td><td>1076.25</td><td>1069.06</td><td>1062.73</td><td>1011.92</td><td>966.97</td><td>922.7</td></tr>
+<tr><td>32768</td><td>1081.44</td><td>1065.99</td><td>1068.8</td><td>1066.56</td><td>1072.24</td><td>1066.49</td><td>1006.67</td><td>967.73</td><td>935.43</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1080.94</td>
+<td>1069.85</td>
+<td>1066.57</td>
+<td>1073.25</td>
+<td>1070.82</td>
+<td>1063.77</td>
+<td>1016.48</td>
+<td>969.56</td>
+<td>933.4</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>7.08</td>
+<td>6.09</td>
+<td>13.15</td>
+<td>9.65</td>
+<td>1.92</td>
+<td>6.63</td>
+<td>10.46</td>
+<td>7.04</td>
+<td>7.06</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1074.2</td>
+<td>1064.04</td>
+<td>1054.04</td>
+<td>1064.04</td>
+<td>1068.99</td>
+<td>1057.45</td>
+<td>1006.51</td>
+<td>962.85</td>
+<td>926.67</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1087.69</td>
+<td>1075.65</td>
+<td>1079.11</td>
+<td>1082.45</td>
+<td>1072.64</td>
+<td>1070.09</td>
+<td>1026.46</td>
+<td>976.27</td>
+<td>940.13</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1080.93</td>
+<td>1069.83</td>
+<td>1066.51</td>
+<td>1073.21</td>
+<td>1070.82</td>
+<td>1063.76</td>
+<td>1016.44</td>
+<td>969.54</td>
+<td>933.38</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1081.44</td>
+<td>1070.59</td>
+<td>1068.8</td>
+<td>1076.25</td>
+<td>1069.92</td>
+<td>1066.49</td>
+<td>1014.72</td>
+<td>967.73</td>
+<td>935.43</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1074.11</td>
+<td>1065.99</td>
+<td>1068.12</td>
+<td>1066.56</td>
+<td>1069.44</td>
+<td>1062.73</td>
+<td>1011.92</td>
+<td>966.97</td>
+<td>930.29</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1085.3</td>
+<td>1072.35</td>
+<td>1069.16</td>
+<td>1080.24</td>
+<td>1072.24</td>
+<td>1066.63</td>
+<td>1014.88</td>
+<td>969.08</td>
+<td>938.3</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1073.79</td>
+<td>1062.2</td>
+<td>1045.27</td>
+<td>1060.09</td>
+<td>1069.06</td>
+<td>1052.88</td>
+<td>1006.67</td>
+<td>962.64</td>
+<td>922.7</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1090.07</td>
+<td>1078.1</td>
+<td>1081.52</td>
+<td>1083.09</td>
+<td>1073.43</td>
+<td>1070.13</td>
+<td>1034.23</td>
+<td>981.38</td>
+<td>940.26</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>6.58 % </td>
+<td>6.52 % </td>
+<td>6.66 % </td>
+<td>7.4 % </td>
+<td>7.07 % </td>
+<td>8.05 % </td>
+<td>7.33 % </td>
+<td>5.63 % </td>
+<td>6.36 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0002</td>
+<td>0.0</td>
+<td>0.0001</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0001</td>
+<td>0.0001</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="65536"></a> 
+<img src="65536.png" alt="65536" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>65536</td><td>1072.19</td><td>1043.12</td><td>1040.02</td><td>1063.26</td><td>1062.86</td><td>1037.11</td><td>1032.44</td><td>989.18</td><td>969.53</td></tr>
+<tr><td>65536</td><td>1064.54</td><td>1051.32</td><td>1049.97</td><td>1058.12</td><td>1053.25</td><td>1052.46</td><td>1022.74</td><td>995.94</td><td>945.05</td></tr>
+<tr><td>65536</td><td>1056.8</td><td>1053.05</td><td>1050.54</td><td>1057.68</td><td>1050.66</td><td>1047.05</td><td>1012.95</td><td>993.45</td><td>977.86</td></tr>
+<tr><td>65536</td><td>1041.09</td><td>1019.93</td><td>1036.63</td><td>1028.74</td><td>1041.36</td><td>1028.08</td><td>1004.33</td><td>982.69</td><td>954.08</td></tr>
+<tr><td>65536</td><td>1064.25</td><td>1047.82</td><td>1029.06</td><td>1046.16</td><td>1047.03</td><td>1038.54</td><td>1020.08</td><td>976.73</td><td>968.7</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1059.78</td>
+<td>1043.05</td>
+<td>1041.24</td>
+<td>1050.79</td>
+<td>1051.03</td>
+<td>1040.65</td>
+<td>1018.51</td>
+<td>987.6</td>
+<td>963.05</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>11.78</td>
+<td>13.47</td>
+<td>9.14</td>
+<td>13.82</td>
+<td>7.97</td>
+<td>9.43</td>
+<td>10.56</td>
+<td>7.88</td>
+<td>13.21</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1048.55</td>
+<td>1030.21</td>
+<td>1032.54</td>
+<td>1037.61</td>
+<td>1043.43</td>
+<td>1031.66</td>
+<td>1008.44</td>
+<td>980.08</td>
+<td>950.46</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1071.0</td>
+<td>1055.89</td>
+<td>1049.95</td>
+<td>1063.97</td>
+<td>1058.64</td>
+<td>1049.63</td>
+<td>1028.58</td>
+<td>995.11</td>
+<td>975.64</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1059.72</td>
+<td>1042.98</td>
+<td>1041.21</td>
+<td>1050.72</td>
+<td>1051.01</td>
+<td>1040.61</td>
+<td>1018.46</td>
+<td>987.57</td>
+<td>962.97</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1064.25</td>
+<td>1047.82</td>
+<td>1040.02</td>
+<td>1057.68</td>
+<td>1050.66</td>
+<td>1038.54</td>
+<td>1020.08</td>
+<td>989.18</td>
+<td>968.7</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1056.8</td>
+<td>1043.12</td>
+<td>1036.63</td>
+<td>1046.16</td>
+<td>1047.03</td>
+<td>1037.11</td>
+<td>1012.95</td>
+<td>982.69</td>
+<td>954.08</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1064.54</td>
+<td>1051.32</td>
+<td>1049.97</td>
+<td>1058.12</td>
+<td>1053.25</td>
+<td>1047.05</td>
+<td>1022.74</td>
+<td>993.45</td>
+<td>969.53</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1041.09</td>
+<td>1019.93</td>
+<td>1029.06</td>
+<td>1028.74</td>
+<td>1041.36</td>
+<td>1028.08</td>
+<td>1004.33</td>
+<td>976.73</td>
+<td>945.05</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1072.19</td>
+<td>1053.05</td>
+<td>1050.54</td>
+<td>1063.26</td>
+<td>1062.86</td>
+<td>1052.46</td>
+<td>1032.44</td>
+<td>995.94</td>
+<td>977.86</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>65536</td><td>1075.67</td><td>1070.74</td><td>1068.86</td><td>1072.44</td><td>1066.26</td><td>1066.54</td><td>1039.53</td><td>981.0</td><td>965.25</td></tr>
+<tr><td>65536</td><td>1081.04</td><td>1064.63</td><td>1062.01</td><td>1075.6</td><td>1068.38</td><td>1070.89</td><td>1030.45</td><td>980.27</td><td>966.93</td></tr>
+<tr><td>65536</td><td>1080.28</td><td>1068.98</td><td>1067.47</td><td>1060.09</td><td>1067.8</td><td>1066.85</td><td>1040.16</td><td>1004.62</td><td>977.29</td></tr>
+<tr><td>65536</td><td>1084.78</td><td>1060.15</td><td>1063.21</td><td>1047.43</td><td>1072.21</td><td>1072.91</td><td>1028.58</td><td>994.71</td><td>965.32</td></tr>
+<tr><td>65536</td><td>1071.29</td><td>1055.3</td><td>1055.2</td><td>1059.32</td><td>1059.24</td><td>1051.27</td><td>1020.8</td><td>989.96</td><td>964.94</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1078.61</td>
+<td>1063.96</td>
+<td>1063.35</td>
+<td>1062.98</td>
+<td>1066.78</td>
+<td>1065.69</td>
+<td>1031.9</td>
+<td>990.11</td>
+<td>967.95</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>5.22</td>
+<td>6.35</td>
+<td>5.37</td>
+<td>11.32</td>
+<td>4.75</td>
+<td>8.5</td>
+<td>8.11</td>
+<td>10.14</td>
+<td>5.28</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1073.63</td>
+<td>1057.91</td>
+<td>1058.22</td>
+<td>1052.19</td>
+<td>1062.25</td>
+<td>1057.58</td>
+<td>1024.17</td>
+<td>980.44</td>
+<td>962.91</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1083.59</td>
+<td>1070.01</td>
+<td>1068.47</td>
+<td>1073.76</td>
+<td>1071.3</td>
+<td>1073.8</td>
+<td>1039.63</td>
+<td>999.78</td>
+<td>972.98</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1078.6</td>
+<td>1063.94</td>
+<td>1063.34</td>
+<td>1062.93</td>
+<td>1066.77</td>
+<td>1065.66</td>
+<td>1031.88</td>
+<td>990.07</td>
+<td>967.94</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1080.28</td>
+<td>1064.63</td>
+<td>1063.21</td>
+<td>1060.09</td>
+<td>1067.8</td>
+<td>1066.85</td>
+<td>1030.45</td>
+<td>989.96</td>
+<td>965.32</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1075.67</td>
+<td>1060.15</td>
+<td>1062.01</td>
+<td>1059.32</td>
+<td>1066.26</td>
+<td>1066.54</td>
+<td>1028.58</td>
+<td>981.0</td>
+<td>965.25</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1081.04</td>
+<td>1068.98</td>
+<td>1067.47</td>
+<td>1072.44</td>
+<td>1068.38</td>
+<td>1070.89</td>
+<td>1039.53</td>
+<td>994.71</td>
+<td>966.93</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1071.29</td>
+<td>1055.3</td>
+<td>1055.2</td>
+<td>1047.43</td>
+<td>1059.24</td>
+<td>1051.27</td>
+<td>1020.8</td>
+<td>980.27</td>
+<td>964.94</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1084.78</td>
+<td>1070.74</td>
+<td>1068.86</td>
+<td>1075.6</td>
+<td>1072.21</td>
+<td>1072.91</td>
+<td>1040.16</td>
+<td>1004.62</td>
+<td>977.29</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>1.78 % </td>
+<td>2.0 % </td>
+<td>2.12 % </td>
+<td>1.16 % </td>
+<td>1.5 % </td>
+<td>2.41 % </td>
+<td>1.32 % </td>
+<td>0.25 % </td>
+<td>0.51 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0114</td>
+<td>0.0138</td>
+<td>0.0016</td>
+<td>0.1657</td>
+<td>0.0053</td>
+<td>0.0023</td>
+<td>0.0546</td>
+<td>0.6732</td>
+<td>0.463</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="131072"></a> 
+<img src="131072.png" alt="131072" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>131072</td><td>1076.66</td><td>1066.71</td><td>1062.07</td><td>1073.17</td><td>1067.48</td><td>1064.28</td><td>1049.3</td><td>1027.53</td><td>1013.59</td></tr>
+<tr><td>131072</td><td>1091.27</td><td>1057.68</td><td>1055.59</td><td>1066.2</td><td>1065.25</td><td>1055.81</td><td>1034.31</td><td>1032.6</td><td>1003.72</td></tr>
+<tr><td>131072</td><td>1089.24</td><td>1076.32</td><td>1065.96</td><td>1077.28</td><td>1064.2</td><td>1058.44</td><td>1046.8</td><td>1009.5</td><td>1003.13</td></tr>
+<tr><td>131072</td><td>1075.8</td><td>1052.79</td><td>1061.95</td><td>1055.44</td><td>1064.32</td><td>1057.16</td><td>1036.32</td><td>1009.43</td><td>1000.8</td></tr>
+<tr><td>131072</td><td>1084.78</td><td>1069.36</td><td>1074.67</td><td>1054.04</td><td>1080.28</td><td>1074.72</td><td>1047.31</td><td>1021.1</td><td>1018.77</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1083.55</td>
+<td>1064.57</td>
+<td>1064.05</td>
+<td>1065.23</td>
+<td>1068.3</td>
+<td>1062.08</td>
+<td>1042.81</td>
+<td>1020.03</td>
+<td>1008.0</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>7.09</td>
+<td>9.38</td>
+<td>7.01</td>
+<td>10.37</td>
+<td>6.82</td>
+<td>7.77</td>
+<td>6.94</td>
+<td>10.47</td>
+<td>7.76</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1076.79</td>
+<td>1055.63</td>
+<td>1057.37</td>
+<td>1055.34</td>
+<td>1061.8</td>
+<td>1054.67</td>
+<td>1036.19</td>
+<td>1010.05</td>
+<td>1000.6</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1090.31</td>
+<td>1073.51</td>
+<td>1070.73</td>
+<td>1075.12</td>
+<td>1074.81</td>
+<td>1069.49</td>
+<td>1049.43</td>
+<td>1030.01</td>
+<td>1015.41</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1083.53</td>
+<td>1064.54</td>
+<td>1064.03</td>
+<td>1065.19</td>
+<td>1068.29</td>
+<td>1062.06</td>
+<td>1042.79</td>
+<td>1019.99</td>
+<td>1007.98</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1084.78</td>
+<td>1066.71</td>
+<td>1062.07</td>
+<td>1066.2</td>
+<td>1065.25</td>
+<td>1058.44</td>
+<td>1046.8</td>
+<td>1021.1</td>
+<td>1003.72</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1076.66</td>
+<td>1057.68</td>
+<td>1061.95</td>
+<td>1055.44</td>
+<td>1064.32</td>
+<td>1057.16</td>
+<td>1036.32</td>
+<td>1009.5</td>
+<td>1003.13</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1089.24</td>
+<td>1069.36</td>
+<td>1065.96</td>
+<td>1073.17</td>
+<td>1067.48</td>
+<td>1064.28</td>
+<td>1047.31</td>
+<td>1027.53</td>
+<td>1013.59</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1075.8</td>
+<td>1052.79</td>
+<td>1055.59</td>
+<td>1054.04</td>
+<td>1064.2</td>
+<td>1055.81</td>
+<td>1034.31</td>
+<td>1009.43</td>
+<td>1000.8</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1091.27</td>
+<td>1076.32</td>
+<td>1074.67</td>
+<td>1077.28</td>
+<td>1080.28</td>
+<td>1074.72</td>
+<td>1049.3</td>
+<td>1032.6</td>
+<td>1018.77</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>131072</td><td>1095.45</td><td>1077.11</td><td>1075.74</td><td>1088.31</td><td>1089.2</td><td>1088.16</td><td>1056.33</td><td>1008.18</td><td>1015.63</td></tr>
+<tr><td>131072</td><td>1091.7</td><td>1075.79</td><td>1075.89</td><td>1080.85</td><td>1086.88</td><td>1081.71</td><td>1048.44</td><td>1017.49</td><td>1001.25</td></tr>
+<tr><td>131072</td><td>1083.62</td><td>1079.45</td><td>1071.21</td><td>1088.88</td><td>1090.06</td><td>1082.82</td><td>1050.78</td><td>1023.75</td><td>1014.96</td></tr>
+<tr><td>131072</td><td>1078.75</td><td>1076.18</td><td>1075.0</td><td>1081.18</td><td>1089.95</td><td>1081.15</td><td>1056.16</td><td>1022.26</td><td>1000.84</td></tr>
+<tr><td>131072</td><td>1067.46</td><td>1077.08</td><td>1069.2</td><td>1078.55</td><td>1080.93</td><td>1087.03</td><td>1047.71</td><td>1015.02</td><td>1002.02</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1083.39</td>
+<td>1077.12</td>
+<td>1073.41</td>
+<td>1083.55</td>
+<td>1087.41</td>
+<td>1084.17</td>
+<td>1051.88</td>
+<td>1017.34</td>
+<td>1006.94</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>11.07</td>
+<td>1.42</td>
+<td>3.03</td>
+<td>4.71</td>
+<td>3.84</td>
+<td>3.2</td>
+<td>4.14</td>
+<td>6.22</td>
+<td>7.64</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1072.84</td>
+<td>1075.77</td>
+<td>1070.52</td>
+<td>1079.06</td>
+<td>1083.75</td>
+<td>1081.12</td>
+<td>1047.94</td>
+<td>1011.41</td>
+<td>999.66</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1093.95</td>
+<td>1078.48</td>
+<td>1076.29</td>
+<td>1088.05</td>
+<td>1091.06</td>
+<td>1087.23</td>
+<td>1055.83</td>
+<td>1023.27</td>
+<td>1014.23</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1083.35</td>
+<td>1077.12</td>
+<td>1073.4</td>
+<td>1083.55</td>
+<td>1087.4</td>
+<td>1084.17</td>
+<td>1051.88</td>
+<td>1017.32</td>
+<td>1006.92</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1083.62</td>
+<td>1077.08</td>
+<td>1075.0</td>
+<td>1081.18</td>
+<td>1089.2</td>
+<td>1082.82</td>
+<td>1050.78</td>
+<td>1017.49</td>
+<td>1002.02</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1078.75</td>
+<td>1076.18</td>
+<td>1071.21</td>
+<td>1080.85</td>
+<td>1086.88</td>
+<td>1081.71</td>
+<td>1048.44</td>
+<td>1015.02</td>
+<td>1001.25</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1091.7</td>
+<td>1077.11</td>
+<td>1075.74</td>
+<td>1088.31</td>
+<td>1089.95</td>
+<td>1087.03</td>
+<td>1056.16</td>
+<td>1022.26</td>
+<td>1014.96</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1067.46</td>
+<td>1075.79</td>
+<td>1069.2</td>
+<td>1078.55</td>
+<td>1080.93</td>
+<td>1081.15</td>
+<td>1047.71</td>
+<td>1008.18</td>
+<td>1000.84</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1095.45</td>
+<td>1079.45</td>
+<td>1075.89</td>
+<td>1088.88</td>
+<td>1090.06</td>
+<td>1088.16</td>
+<td>1056.33</td>
+<td>1023.75</td>
+<td>1015.63</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-0.01 % </td>
+<td>1.18 % </td>
+<td>0.88 % </td>
+<td>1.72 % </td>
+<td>1.79 % </td>
+<td>2.08 % </td>
+<td>0.87 % </td>
+<td>-0.26 % </td>
+<td>-0.11 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.9796</td>
+<td>0.0182</td>
+<td>0.0254</td>
+<td>0.007</td>
+<td>0.0006</td>
+<td>0.0004</td>
+<td>0.0363</td>
+<td>0.6344</td>
+<td>0.8329</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="262144"></a> 
+<img src="262144.png" alt="262144" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>262144</td><td>1086.35</td><td>1083.71</td><td>1073.57</td><td>1084.49</td><td>1082.32</td><td>1089.76</td><td>1063.33</td><td>1048.96</td><td>1043.05</td></tr>
+<tr><td>262144</td><td>1084.78</td><td>1072.33</td><td>1072.68</td><td>1081.65</td><td>1081.89</td><td>1075.21</td><td>1058.65</td><td>1036.87</td><td>1030.4</td></tr>
+<tr><td>262144</td><td>1078.29</td><td>1068.58</td><td>1067.11</td><td>1074.28</td><td>1074.75</td><td>1076.09</td><td>1055.31</td><td>1038.34</td><td>1031.56</td></tr>
+<tr><td>262144</td><td>1070.34</td><td>1065.47</td><td>1063.47</td><td>1072.44</td><td>1075.59</td><td>1069.01</td><td>1047.62</td><td>1027.76</td><td>1024.47</td></tr>
+<tr><td>262144</td><td>1075.44</td><td>1069.34</td><td>1068.92</td><td>1076.25</td><td>1074.28</td><td>1071.91</td><td>1056.17</td><td>1038.19</td><td>1025.21</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1079.04</td>
+<td>1071.88</td>
+<td>1069.15</td>
+<td>1077.82</td>
+<td>1077.77</td>
+<td>1076.4</td>
+<td>1056.22</td>
+<td>1038.02</td>
+<td>1030.94</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>6.63</td>
+<td>7.05</td>
+<td>4.14</td>
+<td>5.08</td>
+<td>3.99</td>
+<td>7.98</td>
+<td>5.73</td>
+<td>7.52</td>
+<td>7.45</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1072.72</td>
+<td>1065.17</td>
+<td>1065.2</td>
+<td>1072.98</td>
+<td>1073.96</td>
+<td>1068.79</td>
+<td>1050.76</td>
+<td>1030.85</td>
+<td>1023.84</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1085.36</td>
+<td>1078.6</td>
+<td>1073.09</td>
+<td>1082.66</td>
+<td>1081.57</td>
+<td>1084.0</td>
+<td>1061.68</td>
+<td>1045.2</td>
+<td>1038.04</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1079.03</td>
+<td>1071.87</td>
+<td>1069.14</td>
+<td>1077.81</td>
+<td>1077.76</td>
+<td>1076.37</td>
+<td>1056.21</td>
+<td>1038.0</td>
+<td>1030.92</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1078.29</td>
+<td>1069.34</td>
+<td>1068.92</td>
+<td>1076.25</td>
+<td>1075.59</td>
+<td>1075.21</td>
+<td>1056.17</td>
+<td>1038.19</td>
+<td>1030.4</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1075.44</td>
+<td>1068.58</td>
+<td>1067.11</td>
+<td>1074.28</td>
+<td>1074.75</td>
+<td>1071.91</td>
+<td>1055.31</td>
+<td>1036.87</td>
+<td>1025.21</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1084.78</td>
+<td>1072.33</td>
+<td>1072.68</td>
+<td>1081.65</td>
+<td>1081.89</td>
+<td>1076.09</td>
+<td>1058.65</td>
+<td>1038.34</td>
+<td>1031.56</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1070.34</td>
+<td>1065.47</td>
+<td>1063.47</td>
+<td>1072.44</td>
+<td>1074.28</td>
+<td>1069.01</td>
+<td>1047.62</td>
+<td>1027.76</td>
+<td>1024.47</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1086.35</td>
+<td>1083.71</td>
+<td>1073.57</td>
+<td>1084.49</td>
+<td>1082.32</td>
+<td>1089.76</td>
+<td>1063.33</td>
+<td>1048.96</td>
+<td>1043.05</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>262144</td><td>1099.63</td><td>1088.79</td><td>1081.72</td><td>1089.06</td><td>1094.12</td><td>1096.58</td><td>1064.67</td><td>1022.36</td><td>1022.52</td></tr>
+<tr><td>262144</td><td>1094.97</td><td>1082.67</td><td>1080.94</td><td>1088.53</td><td>1092.43</td><td>1088.74</td><td>1057.67</td><td>1029.46</td><td>1025.03</td></tr>
+<tr><td>262144</td><td>1093.29</td><td>1086.25</td><td>1075.69</td><td>1093.42</td><td>1094.33</td><td>1094.61</td><td>1071.93</td><td>1033.8</td><td>1033.48</td></tr>
+<tr><td>262144</td><td>1092.88</td><td>1075.47</td><td>1077.3</td><td>1088.24</td><td>1091.99</td><td>1088.32</td><td>1028.41</td><td>1028.52</td><td>1023.74</td></tr>
+<tr><td>262144</td><td>1090.73</td><td>1083.62</td><td>1073.97</td><td>1081.91</td><td>1082.81</td><td>1085.34</td><td>1061.13</td><td>1029.46</td><td>1021.05</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>1094.3</td>
+<td>1083.36</td>
+<td>1077.92</td>
+<td>1088.23</td>
+<td>1091.14</td>
+<td>1090.72</td>
+<td>1056.76</td>
+<td>1028.72</td>
+<td>1025.17</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>3.34</td>
+<td>5.02</td>
+<td>3.34</td>
+<td>4.11</td>
+<td>4.76</td>
+<td>4.69</td>
+<td>16.71</td>
+<td>4.1</td>
+<td>4.88</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>1091.12</td>
+<td>1078.58</td>
+<td>1074.74</td>
+<td>1084.31</td>
+<td>1086.59</td>
+<td>1086.24</td>
+<td>1040.84</td>
+<td>1024.81</td>
+<td>1020.52</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>1097.48</td>
+<td>1088.14</td>
+<td>1081.11</td>
+<td>1092.16</td>
+<td>1095.68</td>
+<td>1095.19</td>
+<td>1072.69</td>
+<td>1032.63</td>
+<td>1029.82</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>1094.3</td>
+<td>1083.35</td>
+<td>1077.92</td>
+<td>1088.23</td>
+<td>1091.13</td>
+<td>1090.71</td>
+<td>1056.66</td>
+<td>1028.71</td>
+<td>1025.16</td>
+</tr>
+<tr>
+<td>median</td>
+<td>1093.29</td>
+<td>1083.62</td>
+<td>1077.3</td>
+<td>1088.53</td>
+<td>1092.43</td>
+<td>1088.74</td>
+<td>1061.13</td>
+<td>1029.46</td>
+<td>1023.74</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>1092.88</td>
+<td>1082.67</td>
+<td>1075.69</td>
+<td>1088.24</td>
+<td>1091.99</td>
+<td>1088.32</td>
+<td>1057.67</td>
+<td>1028.52</td>
+<td>1022.52</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>1094.97</td>
+<td>1086.25</td>
+<td>1080.94</td>
+<td>1089.06</td>
+<td>1094.12</td>
+<td>1094.61</td>
+<td>1064.67</td>
+<td>1029.46</td>
+<td>1025.03</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>1090.73</td>
+<td>1075.47</td>
+<td>1073.97</td>
+<td>1081.91</td>
+<td>1082.81</td>
+<td>1085.34</td>
+<td>1028.41</td>
+<td>1022.36</td>
+<td>1021.05</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>1099.63</td>
+<td>1088.79</td>
+<td>1081.72</td>
+<td>1093.42</td>
+<td>1094.33</td>
+<td>1096.58</td>
+<td>1071.93</td>
+<td>1033.8</td>
+<td>1033.48</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>1.41 % </td>
+<td>1.07 % </td>
+<td>0.82 % </td>
+<td>0.97 % </td>
+<td>1.24 % </td>
+<td>1.33 % </td>
+<td>0.05 % </td>
+<td>-0.9 % </td>
+<td>-0.56 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0018</td>
+<td>0.018</td>
+<td>0.0061</td>
+<td>0.0074</td>
+<td>0.0013</td>
+<td>0.0086</td>
+<td>0.9465</td>
+<td>0.0413</td>
+<td>0.1852</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>SAME</td>
+<td>DIFF</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="524288"></a> 
+<img src="524288.png" alt="524288" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>524288</td><td>115.67</td><td>123.54</td><td>115.02</td><td>109.4</td><td>112.23</td><td>113.74</td><td>119.88</td><td>110.22</td><td>109.94</td></tr>
+<tr><td>524288</td><td>152.6</td><td>159.06</td><td>153.82</td><td>160.7</td><td>161.44</td><td>157.6</td><td>159.44</td><td>155.86</td><td>158.88</td></tr>
+<tr><td>524288</td><td>163.52</td><td>190.09</td><td>163.55</td><td>149.91</td><td>160.49</td><td>172.31</td><td>153.53</td><td>185.74</td><td>154.58</td></tr>
+<tr><td>524288</td><td>162.31</td><td>148.71</td><td>144.93</td><td>153.41</td><td>156.61</td><td>168.33</td><td>163.79</td><td>153.95</td><td>151.95</td></tr>
+<tr><td>524288</td><td>140.61</td><td>151.27</td><td>153.48</td><td>156.36</td><td>148.82</td><td>150.55</td><td>145.06</td><td>148.66</td><td>142.3</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>146.94</td>
+<td>154.53</td>
+<td>146.16</td>
+<td>145.96</td>
+<td>147.92</td>
+<td>152.5</td>
+<td>148.34</td>
+<td>150.89</td>
+<td>143.53</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>19.75</td>
+<td>23.93</td>
+<td>18.61</td>
+<td>20.82</td>
+<td>20.56</td>
+<td>23.32</td>
+<td>17.39</td>
+<td>26.96</td>
+<td>19.74</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>128.11</td>
+<td>131.72</td>
+<td>128.41</td>
+<td>126.11</td>
+<td>128.32</td>
+<td>130.27</td>
+<td>131.76</td>
+<td>125.18</td>
+<td>124.71</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>165.78</td>
+<td>177.35</td>
+<td>163.91</td>
+<td>165.8</td>
+<td>167.52</td>
+<td>174.74</td>
+<td>164.92</td>
+<td>176.59</td>
+<td>162.34</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>145.79</td>
+<td>153.07</td>
+<td>145.12</td>
+<td>144.6</td>
+<td>146.62</td>
+<td>150.91</td>
+<td>147.46</td>
+<td>148.83</td>
+<td>142.32</td>
+</tr>
+<tr>
+<td>median</td>
+<td>152.6</td>
+<td>151.27</td>
+<td>153.48</td>
+<td>153.41</td>
+<td>156.61</td>
+<td>157.6</td>
+<td>153.53</td>
+<td>153.95</td>
+<td>151.95</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>140.61</td>
+<td>148.71</td>
+<td>144.93</td>
+<td>149.91</td>
+<td>148.82</td>
+<td>150.55</td>
+<td>145.06</td>
+<td>148.66</td>
+<td>142.3</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>162.31</td>
+<td>159.06</td>
+<td>153.82</td>
+<td>156.36</td>
+<td>160.49</td>
+<td>168.33</td>
+<td>159.44</td>
+<td>155.86</td>
+<td>154.58</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>115.67</td>
+<td>123.54</td>
+<td>115.02</td>
+<td>109.4</td>
+<td>112.23</td>
+<td>113.74</td>
+<td>119.88</td>
+<td>110.22</td>
+<td>109.94</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>163.52</td>
+<td>190.09</td>
+<td>163.55</td>
+<td>160.7</td>
+<td>161.44</td>
+<td>172.31</td>
+<td>163.79</td>
+<td>185.74</td>
+<td>158.88</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>524288</td><td>143.88</td><td>131.18</td><td>140.95</td><td>142.23</td><td>143.31</td><td>139.5</td><td>144.09</td><td>149.92</td><td>148.71</td></tr>
+<tr><td>524288</td><td>152.75</td><td>152.35</td><td>158.7</td><td>153.22</td><td>145.75</td><td>147.93</td><td>151.19</td><td>150.69</td><td>173.95</td></tr>
+<tr><td>524288</td><td>177.09</td><td>149.5</td><td>147.19</td><td>155.35</td><td>153.27</td><td>149.83</td><td>136.47</td><td>159.61</td><td>144.92</td></tr>
+<tr><td>524288</td><td>150.11</td><td>155.11</td><td>155.75</td><td>146.12</td><td>147.32</td><td>144.59</td><td>155.46</td><td>145.81</td><td>147.93</td></tr>
+<tr><td>524288</td><td>136.56</td><td>142.01</td><td>143.33</td><td>142.99</td><td>155.16</td><td>145.88</td><td>137.71</td><td>146.48</td><td>137.05</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>152.08</td>
+<td>146.03</td>
+<td>149.18</td>
+<td>147.98</td>
+<td>148.96</td>
+<td>145.55</td>
+<td>144.98</td>
+<td>150.5</td>
+<td>150.51</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>15.31</td>
+<td>9.63</td>
+<td>7.74</td>
+<td>5.98</td>
+<td>5.05</td>
+<td>3.92</td>
+<td>8.29</td>
+<td>5.51</td>
+<td>13.89</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>137.48</td>
+<td>136.85</td>
+<td>141.8</td>
+<td>142.28</td>
+<td>144.15</td>
+<td>141.8</td>
+<td>137.08</td>
+<td>145.25</td>
+<td>137.27</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>166.68</td>
+<td>155.21</td>
+<td>156.56</td>
+<td>153.69</td>
+<td>153.77</td>
+<td>149.29</td>
+<td>152.88</td>
+<td>155.76</td>
+<td>163.75</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>151.49</td>
+<td>145.77</td>
+<td>149.02</td>
+<td>147.89</td>
+<td>148.89</td>
+<td>145.5</td>
+<td>144.8</td>
+<td>150.42</td>
+<td>150.02</td>
+</tr>
+<tr>
+<td>median</td>
+<td>150.11</td>
+<td>149.5</td>
+<td>147.19</td>
+<td>146.12</td>
+<td>147.32</td>
+<td>145.88</td>
+<td>144.09</td>
+<td>149.92</td>
+<td>147.93</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>143.88</td>
+<td>142.01</td>
+<td>143.33</td>
+<td>142.99</td>
+<td>145.75</td>
+<td>144.59</td>
+<td>137.71</td>
+<td>146.48</td>
+<td>144.92</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>152.75</td>
+<td>152.35</td>
+<td>155.75</td>
+<td>153.22</td>
+<td>153.27</td>
+<td>147.93</td>
+<td>151.19</td>
+<td>150.69</td>
+<td>148.71</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>136.56</td>
+<td>131.18</td>
+<td>140.95</td>
+<td>142.23</td>
+<td>143.31</td>
+<td>139.5</td>
+<td>136.47</td>
+<td>145.81</td>
+<td>137.05</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>177.09</td>
+<td>155.11</td>
+<td>158.7</td>
+<td>155.35</td>
+<td>155.16</td>
+<td>149.83</td>
+<td>155.46</td>
+<td>159.61</td>
+<td>173.95</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>3.49 % </td>
+<td>-5.5 % </td>
+<td>2.07 % </td>
+<td>1.39 % </td>
+<td>0.71 % </td>
+<td>-4.56 % </td>
+<td>-2.26 % </td>
+<td>-0.25 % </td>
+<td>4.86 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.6582</td>
+<td>0.4821</td>
+<td>0.7461</td>
+<td>0.8395</td>
+<td>0.9147</td>
+<td>0.529</td>
+<td>0.7071</td>
+<td>0.9759</td>
+<td>0.5358</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+<td>SAME</td>
+</tr>
+</table>
+<a name="1048576"></a> 
+<img src="1048576.png" alt="1048576" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>1048576</td><td>120.23</td><td>120.9</td><td>118.85</td><td>116.27</td><td>117.87</td><td>120.02</td><td>116.81</td><td>123.26</td><td>116.31</td></tr>
+<tr><td>1048576</td><td>117.7</td><td>118.59</td><td>118.38</td><td>116.47</td><td>121.72</td><td>118.36</td><td>115.72</td><td>123.66</td><td>120.98</td></tr>
+<tr><td>1048576</td><td>121.97</td><td>117.14</td><td>117.08</td><td>120.69</td><td>118.37</td><td>123.49</td><td>116.34</td><td>120.08</td><td>119.69</td></tr>
+<tr><td>1048576</td><td>121.93</td><td>122.06</td><td>121.93</td><td>123.16</td><td>120.76</td><td>121.21</td><td>119.63</td><td>119.53</td><td>118.39</td></tr>
+<tr><td>1048576</td><td>120.62</td><td>117.01</td><td>120.14</td><td>121.34</td><td>118.81</td><td>116.87</td><td>121.62</td><td>116.64</td><td>119.98</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>120.49</td>
+<td>119.14</td>
+<td>119.28</td>
+<td>119.59</td>
+<td>119.51</td>
+<td>119.99</td>
+<td>118.02</td>
+<td>120.63</td>
+<td>119.07</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>1.74</td>
+<td>2.26</td>
+<td>1.84</td>
+<td>3.07</td>
+<td>1.65</td>
+<td>2.55</td>
+<td>2.51</td>
+<td>2.9</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>118.83</td>
+<td>116.98</td>
+<td>117.52</td>
+<td>116.66</td>
+<td>117.93</td>
+<td>117.55</td>
+<td>115.64</td>
+<td>117.87</td>
+<td>117.36</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>122.15</td>
+<td>121.3</td>
+<td>121.04</td>
+<td>122.51</td>
+<td>121.08</td>
+<td>122.43</td>
+<td>120.41</td>
+<td>123.4</td>
+<td>120.78</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>120.48</td>
+<td>119.12</td>
+<td>119.27</td>
+<td>119.55</td>
+<td>119.5</td>
+<td>119.97</td>
+<td>118.0</td>
+<td>120.61</td>
+<td>119.06</td>
+</tr>
+<tr>
+<td>median</td>
+<td>120.62</td>
+<td>118.59</td>
+<td>118.85</td>
+<td>120.69</td>
+<td>118.81</td>
+<td>120.02</td>
+<td>116.81</td>
+<td>120.08</td>
+<td>119.69</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>120.23</td>
+<td>117.14</td>
+<td>118.38</td>
+<td>116.47</td>
+<td>118.37</td>
+<td>118.36</td>
+<td>116.34</td>
+<td>119.53</td>
+<td>118.39</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>121.93</td>
+<td>120.9</td>
+<td>120.14</td>
+<td>121.34</td>
+<td>120.76</td>
+<td>121.21</td>
+<td>119.63</td>
+<td>123.26</td>
+<td>119.98</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>117.7</td>
+<td>117.01</td>
+<td>117.08</td>
+<td>116.27</td>
+<td>117.87</td>
+<td>116.87</td>
+<td>115.72</td>
+<td>116.64</td>
+<td>116.31</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>121.97</td>
+<td>122.06</td>
+<td>121.93</td>
+<td>123.16</td>
+<td>121.72</td>
+<td>123.49</td>
+<td>121.62</td>
+<td>123.66</td>
+<td>120.98</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>1048576</td><td>100.39</td><td>77.52</td><td>95.52</td><td>89.25</td><td>80.35</td><td>80.73</td><td>91.32</td><td>88.79</td><td>92.25</td></tr>
+<tr><td>1048576</td><td>80.43</td><td>89.77</td><td>89.7</td><td>92.36</td><td>105.69</td><td>103.81</td><td>106.08</td><td>88.67</td><td>82.51</td></tr>
+<tr><td>1048576</td><td>97.52</td><td>82.91</td><td>77.11</td><td>97.53</td><td>92.26</td><td>102.5</td><td>85.74</td><td>96.55</td><td>88.0</td></tr>
+<tr><td>1048576</td><td>114.61</td><td>118.23</td><td>116.33</td><td>118.92</td><td>120.05</td><td>119.49</td><td>124.26</td><td>120.33</td><td>119.95</td></tr>
+<tr><td>1048576</td><td>97.96</td><td>84.25</td><td>104.04</td><td>104.28</td><td>103.14</td><td>104.81</td><td>98.71</td><td>102.07</td><td>89.92</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>98.18</td>
+<td>90.54</td>
+<td>96.54</td>
+<td>100.47</td>
+<td>100.3</td>
+<td>102.27</td>
+<td>101.22</td>
+<td>99.28</td>
+<td>94.53</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>12.15</td>
+<td>16.08</td>
+<td>14.77</td>
+<td>11.78</td>
+<td>14.92</td>
+<td>13.87</td>
+<td>14.98</td>
+<td>13.05</td>
+<td>14.66</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>86.6</td>
+<td>75.2</td>
+<td>82.46</td>
+<td>89.24</td>
+<td>86.08</td>
+<td>89.05</td>
+<td>86.94</td>
+<td>86.84</td>
+<td>80.55</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>109.77</td>
+<td>105.87</td>
+<td>110.63</td>
+<td>111.7</td>
+<td>114.52</td>
+<td>115.49</td>
+<td>115.51</td>
+<td>111.72</td>
+<td>108.51</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>97.57</td>
+<td>89.51</td>
+<td>95.63</td>
+<td>99.94</td>
+<td>99.39</td>
+<td>101.47</td>
+<td>100.37</td>
+<td>98.64</td>
+<td>93.71</td>
+</tr>
+<tr>
+<td>median</td>
+<td>97.96</td>
+<td>84.25</td>
+<td>95.52</td>
+<td>97.53</td>
+<td>103.14</td>
+<td>103.81</td>
+<td>98.71</td>
+<td>96.55</td>
+<td>89.92</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>97.52</td>
+<td>82.91</td>
+<td>89.7</td>
+<td>92.36</td>
+<td>92.26</td>
+<td>102.5</td>
+<td>91.32</td>
+<td>88.79</td>
+<td>88.0</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>100.39</td>
+<td>89.77</td>
+<td>104.04</td>
+<td>104.28</td>
+<td>105.69</td>
+<td>104.81</td>
+<td>106.08</td>
+<td>102.07</td>
+<td>92.25</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>80.43</td>
+<td>77.52</td>
+<td>77.11</td>
+<td>89.25</td>
+<td>80.35</td>
+<td>80.73</td>
+<td>85.74</td>
+<td>88.67</td>
+<td>82.51</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>114.61</td>
+<td>118.23</td>
+<td>116.33</td>
+<td>118.92</td>
+<td>120.05</td>
+<td>119.49</td>
+<td>124.26</td>
+<td>120.33</td>
+<td>119.95</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-18.51 % </td>
+<td>-24.01 % </td>
+<td>-19.06 % </td>
+<td>-15.99 % </td>
+<td>-16.07 % </td>
+<td>-14.77 % </td>
+<td>-14.24 % </td>
+<td>-17.7 % </td>
+<td>-20.61 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0036</td>
+<td>0.0043</td>
+<td>0.0092</td>
+<td>0.0079</td>
+<td>0.0211</td>
+<td>0.0228</td>
+<td>0.0385</td>
+<td>0.0073</td>
+<td>0.0059</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="2097152"></a> 
+<img src="2097152.png" alt="2097152" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>2097152</td><td>105.9</td><td>106.91</td><td>105.21</td><td>106.5</td><td>103.9</td><td>104.92</td><td>105.85</td><td>106.31</td><td>104.54</td></tr>
+<tr><td>2097152</td><td>106.4</td><td>106.3</td><td>106.12</td><td>106.43</td><td>106.64</td><td>105.13</td><td>105.49</td><td>106.35</td><td>106.35</td></tr>
+<tr><td>2097152</td><td>105.14</td><td>104.54</td><td>105.57</td><td>105.89</td><td>104.92</td><td>104.65</td><td>105.35</td><td>104.97</td><td>104.53</td></tr>
+<tr><td>2097152</td><td>105.73</td><td>106.66</td><td>106.19</td><td>107.3</td><td>106.22</td><td>106.47</td><td>106.02</td><td>106.18</td><td>105.3</td></tr>
+<tr><td>2097152</td><td>106.73</td><td>107.11</td><td>106.12</td><td>107.83</td><td>105.59</td><td>105.58</td><td>106.77</td><td>105.42</td><td>107.17</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>105.98</td>
+<td>106.3</td>
+<td>105.84</td>
+<td>106.79</td>
+<td>105.46</td>
+<td>105.35</td>
+<td>105.9</td>
+<td>105.84</td>
+<td>105.58</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>0.62</td>
+<td>1.03</td>
+<td>0.43</td>
+<td>0.77</td>
+<td>1.09</td>
+<td>0.71</td>
+<td>0.56</td>
+<td>0.62</td>
+<td>1.16</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>105.39</td>
+<td>105.32</td>
+<td>105.43</td>
+<td>106.06</td>
+<td>104.42</td>
+<td>104.67</td>
+<td>105.37</td>
+<td>105.25</td>
+<td>104.47</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>106.57</td>
+<td>107.29</td>
+<td>106.26</td>
+<td>107.52</td>
+<td>106.49</td>
+<td>106.03</td>
+<td>106.43</td>
+<td>106.44</td>
+<td>106.68</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>105.98</td>
+<td>106.3</td>
+<td>105.84</td>
+<td>106.79</td>
+<td>105.45</td>
+<td>105.35</td>
+<td>105.89</td>
+<td>105.84</td>
+<td>105.57</td>
+</tr>
+<tr>
+<td>median</td>
+<td>105.9</td>
+<td>106.66</td>
+<td>106.12</td>
+<td>106.5</td>
+<td>105.59</td>
+<td>105.13</td>
+<td>105.85</td>
+<td>106.18</td>
+<td>105.3</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>105.73</td>
+<td>106.3</td>
+<td>105.57</td>
+<td>106.43</td>
+<td>104.92</td>
+<td>104.92</td>
+<td>105.49</td>
+<td>105.42</td>
+<td>104.54</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>106.4</td>
+<td>106.91</td>
+<td>106.12</td>
+<td>107.3</td>
+<td>106.22</td>
+<td>105.58</td>
+<td>106.02</td>
+<td>106.31</td>
+<td>106.35</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>105.14</td>
+<td>104.54</td>
+<td>105.21</td>
+<td>105.89</td>
+<td>103.9</td>
+<td>104.65</td>
+<td>105.35</td>
+<td>104.97</td>
+<td>104.53</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>106.73</td>
+<td>107.11</td>
+<td>106.19</td>
+<td>107.83</td>
+<td>106.64</td>
+<td>106.47</td>
+<td>106.77</td>
+<td>106.35</td>
+<td>107.17</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>2097152</td><td>92.94</td><td>92.29</td><td>90.53</td><td>87.39</td><td>94.31</td><td>89.0</td><td>92.0</td><td>97.2</td><td>83.79</td></tr>
+<tr><td>2097152</td><td>106.13</td><td>106.0</td><td>105.14</td><td>107.74</td><td>106.32</td><td>106.36</td><td>106.74</td><td>106.4</td><td>105.48</td></tr>
+<tr><td>2097152</td><td>91.55</td><td>101.97</td><td>94.24</td><td>90.46</td><td>90.65</td><td>90.05</td><td>92.72</td><td>96.0</td><td>96.67</td></tr>
+<tr><td>2097152</td><td>92.83</td><td>92.54</td><td>91.75</td><td>92.77</td><td>97.01</td><td>89.17</td><td>95.75</td><td>89.31</td><td>93.41</td></tr>
+<tr><td>2097152</td><td>94.05</td><td>93.1</td><td>94.78</td><td>96.67</td><td>92.01</td><td>89.74</td><td>92.99</td><td>87.72</td><td>86.25</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>95.5</td>
+<td>97.18</td>
+<td>95.29</td>
+<td>95.01</td>
+<td>96.06</td>
+<td>92.87</td>
+<td>96.04</td>
+<td>95.33</td>
+<td>93.12</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>6.01</td>
+<td>6.38</td>
+<td>5.78</td>
+<td>7.88</td>
+<td>6.22</td>
+<td>7.56</td>
+<td>6.15</td>
+<td>7.43</td>
+<td>8.65</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>89.77</td>
+<td>91.1</td>
+<td>89.78</td>
+<td>87.49</td>
+<td>90.13</td>
+<td>85.66</td>
+<td>90.18</td>
+<td>88.24</td>
+<td>84.87</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>101.23</td>
+<td>103.26</td>
+<td>100.8</td>
+<td>102.52</td>
+<td>101.99</td>
+<td>100.07</td>
+<td>101.9</td>
+<td>102.41</td>
+<td>101.37</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>95.36</td>
+<td>97.02</td>
+<td>95.15</td>
+<td>94.75</td>
+<td>95.9</td>
+<td>92.64</td>
+<td>95.89</td>
+<td>95.1</td>
+<td>92.8</td>
+</tr>
+<tr>
+<td>median</td>
+<td>92.94</td>
+<td>93.1</td>
+<td>94.24</td>
+<td>92.77</td>
+<td>94.31</td>
+<td>89.74</td>
+<td>92.99</td>
+<td>96.0</td>
+<td>93.41</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>92.83</td>
+<td>92.54</td>
+<td>91.75</td>
+<td>90.46</td>
+<td>92.01</td>
+<td>89.17</td>
+<td>92.72</td>
+<td>89.31</td>
+<td>86.25</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>94.05</td>
+<td>101.97</td>
+<td>94.78</td>
+<td>96.67</td>
+<td>97.01</td>
+<td>90.05</td>
+<td>95.75</td>
+<td>97.2</td>
+<td>96.67</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>91.55</td>
+<td>92.29</td>
+<td>90.53</td>
+<td>87.39</td>
+<td>90.65</td>
+<td>89.0</td>
+<td>92.0</td>
+<td>87.72</td>
+<td>83.79</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>106.13</td>
+<td>106.0</td>
+<td>105.14</td>
+<td>107.74</td>
+<td>106.32</td>
+<td>106.36</td>
+<td>106.74</td>
+<td>106.4</td>
+<td>105.48</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-9.89 % </td>
+<td>-8.58 % </td>
+<td>-9.97 % </td>
+<td>-11.03 % </td>
+<td>-8.91 % </td>
+<td>-11.85 % </td>
+<td>-9.31 % </td>
+<td>-9.94 % </td>
+<td>-11.8 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0047</td>
+<td>0.0135</td>
+<td>0.0036</td>
+<td>0.0105</td>
+<td>0.0104</td>
+<td>0.0062</td>
+<td>0.0073</td>
+<td>0.0135</td>
+<td>0.0128</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+<a name="4194304"></a> 
+<img src="4194304.png" alt="4194304" class="plot"  />
+<table>
+<tr class="bottomline"><td rowspan="2"/>
+<td rowspan="2">File size [kB]</td>
+<td colspan="9">Block size [kB]</td>
+</tr>
+<tr><td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+</tr>
+<tr class="topline"><td rowspan="15">baseline</td><td>4194304</td><td>100.55</td><td>99.88</td><td>100.32</td><td>100.67</td><td>100.3</td><td>100.1</td><td>100.17</td><td>100.04</td><td>100.01</td></tr>
+<tr><td>4194304</td><td>100.39</td><td>100.22</td><td>100.01</td><td>100.23</td><td>100.85</td><td>100.68</td><td>100.98</td><td>99.81</td><td>100.37</td></tr>
+<tr><td>4194304</td><td>100.04</td><td>100.35</td><td>100.92</td><td>100.15</td><td>100.53</td><td>100.3</td><td>100.13</td><td>99.97</td><td>100.34</td></tr>
+<tr><td>4194304</td><td>100.4</td><td>100.53</td><td>100.5</td><td>100.03</td><td>100.61</td><td>100.92</td><td>100.4</td><td>100.03</td><td>100.14</td></tr>
+<tr><td>4194304</td><td>100.79</td><td>100.44</td><td>100.46</td><td>100.57</td><td>100.13</td><td>100.03</td><td>100.15</td><td>99.86</td><td>100.74</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>100.44</td>
+<td>100.28</td>
+<td>100.44</td>
+<td>100.33</td>
+<td>100.49</td>
+<td>100.41</td>
+<td>100.37</td>
+<td>99.94</td>
+<td>100.32</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>0.27</td>
+<td>0.25</td>
+<td>0.33</td>
+<td>0.27</td>
+<td>0.28</td>
+<td>0.38</td>
+<td>0.36</td>
+<td>0.1</td>
+<td>0.28</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>100.17</td>
+<td>100.04</td>
+<td>100.13</td>
+<td>100.07</td>
+<td>100.22</td>
+<td>100.04</td>
+<td>100.02</td>
+<td>99.84</td>
+<td>100.06</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>100.7</td>
+<td>100.52</td>
+<td>100.76</td>
+<td>100.59</td>
+<td>100.75</td>
+<td>100.77</td>
+<td>100.71</td>
+<td>100.04</td>
+<td>100.58</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>100.44</td>
+<td>100.28</td>
+<td>100.44</td>
+<td>100.33</td>
+<td>100.49</td>
+<td>100.41</td>
+<td>100.36</td>
+<td>99.94</td>
+<td>100.32</td>
+</tr>
+<tr>
+<td>median</td>
+<td>100.4</td>
+<td>100.35</td>
+<td>100.46</td>
+<td>100.23</td>
+<td>100.53</td>
+<td>100.3</td>
+<td>100.17</td>
+<td>99.97</td>
+<td>100.34</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>100.39</td>
+<td>100.22</td>
+<td>100.32</td>
+<td>100.15</td>
+<td>100.3</td>
+<td>100.1</td>
+<td>100.15</td>
+<td>99.86</td>
+<td>100.14</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>100.55</td>
+<td>100.44</td>
+<td>100.5</td>
+<td>100.57</td>
+<td>100.61</td>
+<td>100.68</td>
+<td>100.4</td>
+<td>100.03</td>
+<td>100.37</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>100.04</td>
+<td>99.88</td>
+<td>100.01</td>
+<td>100.03</td>
+<td>100.13</td>
+<td>100.03</td>
+<td>100.13</td>
+<td>99.81</td>
+<td>100.01</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>100.79</td>
+<td>100.53</td>
+<td>100.92</td>
+<td>100.67</td>
+<td>100.85</td>
+<td>100.92</td>
+<td>100.98</td>
+<td>100.04</td>
+<td>100.74</td>
+</tr>
+<tr class="topline"><td rowspan="15">set1</td><td>4194304</td><td>97.21</td><td>98.68</td><td>97.68</td><td>97.08</td><td>97.98</td><td>98.08</td><td>96.84</td><td>99.11</td><td>96.72</td></tr>
+<tr><td>4194304</td><td>96.27</td><td>97.44</td><td>96.99</td><td>97.76</td><td>96.04</td><td>97.14</td><td>96.63</td><td>97.36</td><td>98.59</td></tr>
+<tr><td>4194304</td><td>96.68</td><td>93.36</td><td>93.72</td><td>96.72</td><td>97.14</td><td>94.97</td><td>98.14</td><td>92.56</td><td>95.53</td></tr>
+<tr><td>4194304</td><td>99.33</td><td>97.27</td><td>98.71</td><td>96.03</td><td>95.38</td><td>99.71</td><td>96.27</td><td>99.88</td><td>96.78</td></tr>
+<tr><td>4194304</td><td>98.54</td><td>99.97</td><td>96.25</td><td>99.13</td><td>99.31</td><td>99.29</td><td>95.06</td><td>96.67</td><td>99.71</td></tr>
+<tr class="topline">
+<td>mean val.</td>
+<td>97.61</td>
+<td>97.34</td>
+<td>96.67</td>
+<td>97.34</td>
+<td>97.17</td>
+<td>97.84</td>
+<td>96.59</td>
+<td>97.11</td>
+<td>97.47</td>
+</tr>
+<tr>
+<td>standard dev.</td>
+<td>1.29</td>
+<td>2.48</td>
+<td>1.88</td>
+<td>1.18</td>
+<td>1.56</td>
+<td>1.9</td>
+<td>1.11</td>
+<td>2.86</td>
+<td>1.66</td>
+</tr>
+<tr>
+<td>ci. min. 90%</td>
+<td>96.38</td>
+<td>94.98</td>
+<td>94.88</td>
+<td>96.22</td>
+<td>95.68</td>
+<td>96.03</td>
+<td>95.53</td>
+<td>94.39</td>
+<td>95.88</td>
+</tr>
+<tr>
+<td>ci. max 90%</td>
+<td>98.84</td>
+<td>99.71</td>
+<td>98.47</td>
+<td>98.46</td>
+<td>98.65</td>
+<td>99.65</td>
+<td>97.65</td>
+<td>99.84</td>
+<td>99.05</td>
+</tr>
+<tr>
+<td>geom. mean</td>
+<td>97.6</td>
+<td>97.32</td>
+<td>96.66</td>
+<td>97.34</td>
+<td>97.16</td>
+<td>97.82</td>
+<td>96.58</td>
+<td>97.08</td>
+<td>97.45</td>
+</tr>
+<tr>
+<td>median</td>
+<td>97.21</td>
+<td>97.44</td>
+<td>96.99</td>
+<td>97.08</td>
+<td>97.14</td>
+<td>98.08</td>
+<td>96.63</td>
+<td>97.36</td>
+<td>96.78</td>
+</tr>
+<tr>
+<td>first quartile</td>
+<td>96.68</td>
+<td>97.27</td>
+<td>96.25</td>
+<td>96.72</td>
+<td>96.04</td>
+<td>97.14</td>
+<td>96.27</td>
+<td>96.67</td>
+<td>96.72</td>
+</tr>
+<tr>
+<td>third quartile</td>
+<td>98.54</td>
+<td>98.68</td>
+<td>97.68</td>
+<td>97.76</td>
+<td>97.98</td>
+<td>99.29</td>
+<td>96.84</td>
+<td>99.11</td>
+<td>98.59</td>
+</tr>
+<tr>
+<td>minimum</td>
+<td>96.27</td>
+<td>93.36</td>
+<td>93.72</td>
+<td>96.03</td>
+<td>95.38</td>
+<td>94.97</td>
+<td>95.06</td>
+<td>92.56</td>
+<td>95.53</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>99.33</td>
+<td>99.97</td>
+<td>98.71</td>
+<td>99.13</td>
+<td>99.31</td>
+<td>99.71</td>
+<td>98.14</td>
+<td>99.88</td>
+<td>99.71</td>
+</tr>
+<tr class="bottomline topline">
+<td colspan="2">baseline set1 difference</td>
+<td>-2.82 % </td>
+<td>-2.93 % </td>
+<td>-3.75 % </td>
+<td>-2.98 % </td>
+<td>-3.3 % </td>
+<td>-2.56 % </td>
+<td>-3.76 % </td>
+<td>-2.83 % </td>
+<td>-2.85 % </td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest p-value</td>
+<td>0.0014</td>
+<td>0.0299</td>
+<td>0.0022</td>
+<td>0.0006</td>
+<td>0.0016</td>
+<td>0.0179</td>
+<td>0.0001</td>
+<td>0.0581</td>
+<td>0.0053</td>
+</tr>
+<tr class="bottomline">
+<td colspan="2">ttest equality</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+<td>DIFF</td>
+</tr>
+</table>
+
+	</div>
+	</div>
+	</body>
+	</html>
+	

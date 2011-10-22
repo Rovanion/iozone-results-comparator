@@ -1,0 +1,13 @@
+Current source code:
+  * sparse iozone results support
+  * 3D contour plots
+
+Rewrite of the source code to be more modular and reusable
+  * implement all functionality of previous src/parse_iozone.py to current version
+  * visual comparision of set data and linear regression
+  * csv output
+  * detail mode
+
+ * Add new features
+  * data sanity check - warn if results in one set differ a lot
+
