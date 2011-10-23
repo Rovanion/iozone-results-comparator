@@ -908,10 +908,10 @@ def write_operation(htmldoc,operation,data,filename):
 		inverseFSBS = '_FS'
 	else:
 		inverseFSBS = '_BS'
-	hrefBaseline = operation + inverseFSBS + '_baseline.csv'
-	hrefSet1 = operation + inverseFSBS + '_set1.csv'
-	htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../tab_delimited/'+hrefBaseline+'\">'+hrefBaseline+'</a>')
-	htmldoc.write(' and <a href=\"../tab_delimited/'+hrefSet1+'\">'+hrefSet1+'</a>.</div>\n')
+	hrefBaseline = operation + inverseFSBS + '_baseline.tsv'
+	hrefSet1 = operation + inverseFSBS + '_set1.tsv'
+	htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../'+tabdDir+'/'+hrefBaseline+'\">'+hrefBaseline+'</a>')
+	htmldoc.write(' and <a href=\"../'+tabdDir+'/'+hrefSet1+'\">'+hrefSet1+'</a>.</div>\n')
 
 	# dataXX[:-1] cuts data[3] where ttest results are stored, make_plot function cannot handle it itself
 	make_plot(operation_name(operation),data[0][0],'Operation speed [MB/s]',data[:-1],filename,semilogx=True,semilogy=False, type='normal')
@@ -997,9 +997,9 @@ def write_overFSBS_summary(resultsForOp, operations, regLines):
 
 	# link tab delimited
 	hrefSorted = 'summary_sorted_by_operation_'
-	htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../tab_delimited/'+hrefSorted+'baseline.csv\">'+hrefSorted+'baseline.csv</a>')
-	htmldoc.write(' and <a href=\"../tab_delimited/'+hrefSorted+'set1.csv\">'+hrefSorted+'set1.csv</a>.<br>')
-	htmldoc.write('All data are aggregated in <a href=\"../tab_delimited/summary_all_baseline.csv\">summary_all_baseline.csv</a>.</div>')
+	htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../'+tabdDir+'/'+hrefSorted+'baseline.tsv\">'+hrefSorted+'baseline.tsv</a>')
+	htmldoc.write(' and <a href=\"../'+tabdDir+'/'+hrefSorted+'set1.tsv\">'+hrefSorted+'set1.tsv</a>.<br>')
+	htmldoc.write('All data are aggregated in <a href=\"../'+tabdDir+'/summary_all_baseline.tsv\">summary_all_baseline.tsv</a>.</div>')
 
 	# create the whiskers summary plot
 	textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
@@ -1105,7 +1105,7 @@ def tab_delimited(data, operation, fsbs):
 			setName = 'baseline'
 		else:
 			setName = 'set1'
-		tabdName = operation + '_' + fsbs + '_' + setName + '.csv'
+		tabdName = operation + '_' + fsbs + '_' + setName + '.tsv'
 		tabd = open(tabdDir+'/'+tabdName, 'w')
 
 		tabd.write('# ' + operation + ' throughput for any ' + fsbs + '. Open it with: LC_ALL=en_US.UTF-8\n')
@@ -1163,8 +1163,8 @@ def tab_delimited_summary(data, order):
 			setName = 'baseline'
 		else:
 			setName = 'set1'
-		tabdOperationName = 'summary_sorted_by_operation' + '_' + setName + '.csv'
-		tabdAllName = 'summary_all' + '_' + setName + '.csv'
+		tabdOperationName = 'summary_sorted_by_operation' + '_' + setName + '.tsv'
+		tabdAllName = 'summary_all' + '_' + setName + '.tsv'
 		tabdOperation = open(tabdDir+'/'+tabdOperationName, 'w')
 		tabdAll = open(tabdDir+'/'+tabdAllName, 'w')
 
@@ -1262,7 +1262,7 @@ def tab_delimited_summary(data, order):
 # data - both sets data in  [[(FS, BSdata)],[(FS, BSdata)]] # [0] = base, [1] = set1 format
 # operations - operations order for tab delimited
 def xy_fsbs_avg(data, operations):
-	tabd = open(tabdDir+'/comparison_of_averages.csv', 'w')
+	tabd = open(tabdDir+'/comparison_of_averages.tsv', 'w')
 	tabd.write('# comparison of averages for iozone measured throughput[MB/s] for any FS and any BS. Open it with: LC_ALL=en_US.UTF-8\n')
 	tabd.write('# Read this file into Open Office  with command oocalc <filename>\n')
 	tabd.write('# Read this file into language R with command data <- read.delim("<filename>",comment.char = "#")\n')
@@ -1531,7 +1531,7 @@ if __name__ == '__main__':
 		htmldoc.write('<img src=\"'+operation+'_compare.png\" alt=\"'+operation+'\_compare" class="plot"/>\n')
 		(slope, std_err, ci_min, ci_max) = regLines[opNr]
 
-		htmldoc.write('<div class=\"rawdata abovetable\">See <a href=\"../tab_delimited/comparison_of_averages.csv\">comparison_of_averages.csv</a>.</div>\n')
+		htmldoc.write('<div class=\"rawdata abovetable\">See <a href=\"../'+tabdDir+'/comparison_of_averages.tsv\">comparison_of_averages.tsv</a>.</div>\n')
 		htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
 		htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
 		htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
