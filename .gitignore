@@ -1,4 +1,6 @@
 *.swp
 examples/Compare*
 examples/Tab_delimited
+examples/html_out
+*.pyc
 
