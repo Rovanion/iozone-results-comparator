@@ -123,6 +123,7 @@ a {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
+            margin-bottom : 10px;
 			}
 
 .rest{
@@ -144,4 +145,9 @@ a {
 			margin-top:-10px;
 			margin-bottom:10px;
 			}
+
+.normplot {
+    width : 60%;
+    height : 600px;
+}
 
