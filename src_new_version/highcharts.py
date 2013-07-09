@@ -18,7 +18,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import numpy
+import json
 from jinja2 import Template
 
 class Highcharts:
@@ -38,16 +38,26 @@ class Highcharts:
 		            	zoomType: 'xy'
 		            },
                     title: {
-                        text: '{{ title }}'
+                        text: '{{ title }}',
+                        style : {
+                            color : 'black'
+                        }
                     },
                     xAxis: {
                         title: {
-                            text: '{{ xlabel }}'
-                        }
+                            text: '{{ xlabel }}',
+                            style : {
+                                color : 'black'
+                            }
+                        },
+                        categories : {{ categories }}
                     },
                     yAxis: {
                         title: {
-                            text: 'Operation speed [MB/s]'
+                            text: 'Operation speed [MB/s]',
+                            style : {
+                                color : 'black'
+                            }
                         }
                     },
                     tooltip: {
@@ -57,30 +67,30 @@ class Highcharts:
                         name: 'baseline',
 			            type: 'spline',
                         color : 'black',
-			            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+			            data: {{ baselineData }},
                         tooltip: {
                             pointFormat: '<b>{series.name}:</b> median <b>{point.y:.1f} MB/s</b>, '
                         }
 		            }, {
 			            type: 'errorbar',
-			            data: [[6, 8], [5.9, 7.6], [9.4, 10.4], [14.1, 15.9], [18.0, 20.1], [21.0, 24.0], [23.2, 25.3], [26.1, 27.8], [23.2, 23.9], [18.0, 21.1], [12.9, 14.0], [7.6, 10.0]],
+			            data: {{ baselineErrBars }},
 			            tooltip: {
-                            pointFormat: 'first quartile <b>{point.low} MB/s</b>, third quartile <b>{point.high} MB/s</b><br/>'
+                            pointFormat: 'first quartile <b>{point.low:.1f} MB/s</b>, third quartile <b>{point.high:.1f} MB/s</b><br/>'
 			            }
 		            }, {
                         name: 'set1',
 			            type: 'spline',
                         color : 'red',
-                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                        data: {{ set1Data }},
                         tooltip: {
                             pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}:</span> median <span style="font-weight: bold; color: {series.color}">{point.y:.1f} MB/s</span>, '
                         }
 		            }, {
 			            type: 'errorbar',
                         color : 'red',
-                        data: [[48, 51], [68, 73], [92, 110], [128, 136], [140, 150], [171, 179], [135, 143], [142, 149], [204, 220], [189, 199], [95, 110], [52, 56]],
+                        data: {{ set1ErrBars }},
 			            tooltip: {
-                            pointFormat: 'first quartile <span style="font-weight: bold; color: {series.color}">{point.low} MB/s</span>,third quartile <span style="font-weight: bold; color: {series.color}">{point.high} MB/s</span><br/>'
+                            pointFormat: 'first quartile <span style="font-weight: bold; color: {series.color}">{point.low:.1f} MB/s</span>,third quartile <span style="font-weight: bold; color: {series.color}">{point.high:.1f} MB/s</span><br/>'
 			            }
                     }]
                 });
@@ -89,50 +99,28 @@ class Highcharts:
         ''')
         
     def norm_plot(self, Op, Source):
-        datalines = [Source.base[Op].medians, Source.set1[Op].medians]
-        errorbars_mins = [numpy.array(Source.base[Op].medians)
-            - numpy.array(Source.base[Op].first_qrts), 
-            numpy.array(Source.set1[Op].medians)
-            - numpy.array(Source.set1[Op].first_qrts)] 
-        errorbars_maxes = [numpy.array(Source.base[Op].third_qrts)
-            - numpy.array(Source.base[Op].medians), 
-            numpy.array(Source.set1[Op].third_qrts)
-            - numpy.array(Source.set1[Op].medians)] 
+        baselineErrBars = []
+        for i in range(0, len(Source.base[Op].first_qrts)):
+            baselineErrBars.append([Source.base[Op].first_qrts[i], Source.base[Op].third_qrts[i]])
 
-        textstr = 'Plotted values are\n - first quartile\n - median\n - third quartile\nfor each datapoint.'
-        colnames = Source.op_common_cols[Op]
+        set1ErrBars = []
+        for i in range(0, len(Source.set1[Op].first_qrts)):
+            set1ErrBars.append([Source.set1[Op].first_qrts[i], Source.set1[Op].third_qrts[i]])
+
+        categories = []
+        x = 4
+        for i in range(0, len(Source.base[Op].medians)):
+            categories.append(x)
+            x = x*2
+
 
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
-                title = self.opnames[Op], xlabel = Source.base[Op].xlabel)
-            
-#        plt.clf()
-#        # create plot lines for both sets
-#        p=plt.plot(colnames,datalines[0],'o-',color='black',label='baseline')
-#        plt.errorbar(colnames,datalines[0], yerr=[errorbars_mins[0], errorbars_maxes[0]] ,color='black', fmt='o-',)
-#        p=plt.plot(colnames,datalines[1],'o-',color='red',label='set1')
-#        plt.errorbar(colnames,datalines[1], yerr=[errorbars_mins[1], errorbars_maxes[1]] ,color='red', fmt='o-',)
-#        
-#        plt.grid(True)
-#        plt.semilogx()
-#        #plt.semilogy()
-#        plt.xlabel(Source.base[Op].xlabel)
-#        plt.ylabel('Operation speed [MB/s]')
-#        plt.title(self.opnames[Op])
-#        # add legend details
-#        font = FontProperties(size='small');
-#        a = plt.legend(loc=0, prop=font);
-#        txt = matplotlib.offsetbox.TextArea(textstr, textprops=dict(size=7))
-#        box = a._legend_box
-#        box.get_children().append(txt)
-#        box.set_figure(box.figure)
-#
-#        # Fedora 14 bug 562421 workaround
-#        with warnings.catch_warnings():
-#            warnings.filterwarnings("ignore",category=UserWarning)
-#            plt.savefig(self.outdir + '/' + Op + '_' + Source.base[Op].datatype)
-#
-#        plt.clf()
-
+                title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 
+                baselineData = json.dumps(Source.base[Op].medians),
+                baselineErrBars = json.dumps(baselineErrBars),
+                set1Data = json.dumps(Source.set1[Op].medians),
+                set1ErrBars = json.dumps(set1ErrBars), 
+                categories = categories)
 
 #    def summary(self, Base, Set1):
 #        # create the whiskers summary plot

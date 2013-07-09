@@ -112,17 +112,13 @@ class Html:
     def norm_operation(self, Op):
         self.htmldoc.write('<hr>\n')
         self.htmldoc.write('<h3 id="' + Op + '">' + self.plotter.opnames[Op] + '</h3>\n')
-        self.htmldoc.write('<img src=\"' + Op + '_fs.png\" alt=\"' + Op + '_fs\" class="plot"/>\n')
         self.htmldoc.write('<div id="'+ Op + '_fs" class="normplot plot"></div>\n')
         self.htmldoc.write(self.highcharts.norm_plot(Op, self.fs))
         self.norm_table(Op, self.fs)
-        #FIXME self.plotter.norm_plot(Op, self.fs)
-        self.htmldoc.write('<img src=\"' + Op + '_bs.png\" alt=\"' + Op + '_bs\" class="plot"/>\n')
         self.htmldoc.write('<div id="'+ Op + '_bs" class="normplot plot"></div>\n')
         self.htmldoc.write(self.highcharts.norm_plot(Op, self.bs))
         self.norm_table(Op, self.bs)
         self.htmldoc.write('<a href="#top">Back on top</a>\n')
-        #FIXME self.plotter.norm_plot(Op, self.bs)
         
 
     def norm_table(self, Op, Source):
