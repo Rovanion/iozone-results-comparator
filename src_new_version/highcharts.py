@@ -97,6 +97,61 @@ class Highcharts:
             });
         </script>
         ''')
+        self.summaryTemplate = Template('''<script type='text/javascript'>
+            $(function () {
+                $('#summary').highcharts({
+            
+            	    chart: {
+            	        type: 'boxplot'
+            	    },
+            	    
+            	    title: {
+            	        text: 'Summary sorted by operation',
+                        style : {
+                            color : 'black'
+                        }
+            	    },
+            	    
+            
+            	    xAxis: {
+            	        categories: {{ categories }},
+            	        title: {
+            	            text: 'Operation',
+                            style : {
+                                color : 'black'
+                            }
+            	        }
+            	    },
+            	    
+            	    yAxis: {
+            	        title: {
+            	            text: 'Operation speed [MB/s]',
+                            style : {
+                                color : 'black'
+                            }
+            	        }
+            	    },
+            	
+            	    series: [{
+            	        name: 'baseline',
+            	        data: {{ baseline }},
+                        color : 'black',
+            	        tooltip: {
+                            headerFormat: '{point.key}<br/>'
+            	        }
+                    }, {
+                        name: 'set1',
+            	        data: {{ set1 }},
+                        color : 'red',
+            	        tooltip: {
+            	            headerFormat: '{point.key}<br/>'
+            	        }
+                    }]
+            	
+            	});
+            });
+        </script>
+        ''')
         
     def norm_plot(self, Op, Source):
         baselineErrBars = []
@@ -122,64 +177,26 @@ class Highcharts:
                 set1ErrBars = json.dumps(set1ErrBars), 
                 categories = categories)
 
-#    def summary(self, Base, Set1):
-#        # create the whiskers summary plot
-#        textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
-#        plt.clf()
-#        width=0.35
-#        x=numpy.arange(len(Base))
-#
-#        # baseline set1 bars one next another
-#        x1=x+width/2
-#        x2=x+1.5*width
-#
-#        fig = plt.figure()
-#        DefaultSize = fig.get_size_inches()
-#        fig.set_size_inches( (DefaultSize[0]*1.5, DefaultSize[1]))
-#        ax = fig.add_subplot(111)
-#
-#        # whiskers
-#        # Base[5] - meds
-#        # Base[8] - mins
-#        # Base[9] - maxes
-#        ax.errorbar(x1,Base[5],yerr=[numpy.array(Base[5]) - numpy.array(Base[8]),numpy.array(Base[9]) - numpy.array(Base[5])],color='red',linestyle='None',marker='None')
-#        ax.errorbar(x2,Set1[5],yerr=[numpy.array(Set1[5]) - numpy.array(Set1[8]),numpy.array(Set1[9]) - numpy.array(Set1[5])],color='black',linestyle='None',marker='None')
-#
-#        # baseline bars
-#        # Base[6] - first quartiles
-#        # Base[7] - third quartiles
-#        rects1 = ax.bar(x,numpy.array(Base[5]) - numpy.array(Base[6]),width,bottom=Base[6],color='red')
-#        ax.bar(x,numpy.array(Base[7]) - numpy.array(Base[5]),width,bottom=Base[5],color='red')
-#
-#        # set1 bars
-#        rects2 = ax.bar(x+width,numpy.array(Set1[5]) - numpy.array(Set1[6]),width,bottom=Set1[6],color='white')
-#        ax.bar(x+width,numpy.array(Set1[7]) - numpy.array(Set1[5]),width,bottom=Set1[5],color='white')
-#
-#        ax.set_ylabel('Operation speed [MB/s]')
-#        ax.set_title('Summary sorted by operation')
-#        ax.set_xticks(x+width)
-#        opNames = []
-#        # operations names on X axis
-#        # TODO operations missing?
-#        for op in self.order:
-#            opNames.append(self.opnames[op])
-#        ax.set_xticklabels(tuple(opNames), size=9)
-#
-#        # legend
-#        font = FontProperties(size='small');
-#        a = plt.legend((rects1[0], rects2[0]), ('Baseline', 'Set1'), loc=0, prop=font);
-#        txt = matplotlib.offsetbox.TextArea(textstr, textprops=dict(size=7))
-#        box = a._legend_box
-#        box.get_children().append(txt)
-#        box.set_figure(box.figure)
-#
-#        # Fedora 14 bug 562421 workaround
-#        with warnings.catch_warnings():
-#            warnings.filterwarnings("ignore",category=UserWarning)
-#            plt.savefig(self.outdir+'/'+'summary')
-#
-#        fig.set_size_inches( (DefaultSize[0]/1.5, DefaultSize[1]))
-#        plt.clf()
+
+    # TODO the ALL pseudooperation
+    def summary(self, Base, Set1):
+        # whiskers
+        # Base[5] - meds
+        # Base[8] - mins
+        # Base[9] - maxes
+        # baseline bars
+        # Base[6] - first quartiles
+        # Base[7] - third quartiles
+        categories = []
+        baseline = []
+        set1 = []
+        for i in range(0, len(self.order)):
+            categories.append(self.opnames[self.order[i]])
+            baseline.append([Base[8][i], Base[6][i], Base[5][i], Base[7][i], Base[9][i]])
+            set1.append([Set1[8][i], Set1[6][i], Set1[5][i], Set1[7][i], Set1[9][i]])
+
+        return self.summaryTemplate.render(categories = json.dumps(categories),
+                baseline = json.dumps(baseline), set1 = json.dumps(set1))
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

@@ -21,7 +21,6 @@
 import os
 import shutil
 
-import plotter
 import highcharts
 
 class Html:
@@ -36,7 +35,6 @@ class Html:
         shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
         self.htmldoc=open(OutDir+'/index.html','w')
 
-        self.plotter = plotter.Plotter(self.outdir)
         self.highcharts = highcharts.Highcharts()
 
     def write_header(self):
@@ -100,9 +98,8 @@ class Html:
     def normal_mode(self):
         self.write_header()
         self.norm_summary()
-        self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
 
-        for op in self.plotter.order:
+        for op in self.highcharts.order:
             if op not in self.fs.common_ops:
                 break
             self.norm_operation(op)            
@@ -111,7 +108,7 @@ class Html:
         
     def norm_operation(self, Op):
         self.htmldoc.write('<hr>\n')
-        self.htmldoc.write('<h3 id="' + Op + '">' + self.plotter.opnames[Op] + '</h3>\n')
+        self.htmldoc.write('<h3 id="' + Op + '">' + self.highcharts.opnames[Op] + '</h3>\n')
         self.htmldoc.write('<div id="'+ Op + '_fs" class="normplot plot"></div>\n')
         self.htmldoc.write(self.highcharts.norm_plot(Op, self.fs))
         self.norm_table(Op, self.fs)
@@ -125,7 +122,7 @@ class Html:
         self.htmldoc.write('<table>\n')
         # table header
         self.htmldoc.write('<tr>')
-        self.htmldoc.write('<th class=\"bottomline\">'+self.plotter.opnames[Op]+'</th>\n')
+        self.htmldoc.write('<th class=\"bottomline\">'+self.highcharts.opnames[Op]+'</th>\n')
         self.htmldoc.write('<th class=\"bottomline\">'+Source.base[Op].xlabel+'</th>\n')
         for colname in Source.base[Op].colnames:
             self.htmldoc.write('<th>'+str(int(colname))+'</th>\n')
@@ -187,15 +184,16 @@ class Html:
             'median', 'first quartile', 'third quartile', 'minimum', 'maximum')
 
         self.htmldoc.write('<h3 id="summary top">Overall summary</h3>')
+        self.htmldoc.write('<div id="summary" class="normplot plot"></div>\n')
+        self.htmldoc.write(self.highcharts.summary(self.fs.summary_base, self.fs.summary_set1))
 
-        self.htmldoc.write('<img src=\"summary.png\" alt=\"summary\" class="plot"/>\n')
         self.htmldoc.write('<table>\n')
         self.htmldoc.write('<tr>')
         self.htmldoc.write('<td/><td>Operation</td>\n')
-        for op in self.plotter.order:
+        for op in self.highcharts.order:
             if op not in self.fs.common_ops:
                 break
-            self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.plotter.opnames[op]+'</a></td>\n')
+            self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.highcharts.opnames[op]+'</a></td>\n')
         self.htmldoc.write('</tr>\n')
 
         # summary data is stored in fs instance, no need for counting this redundantly in bs
