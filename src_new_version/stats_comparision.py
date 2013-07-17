@@ -20,6 +20,8 @@
 
 from scipy import stats
 
+from regression_line import RegressionLine
+
 class StatsComparision:
     def __init__(self):
         # dict key = operation name
@@ -37,6 +39,8 @@ class StatsComparision:
         self.summary_diffs = []
         self.summary_pvals = []
         self.summary_res = []
+        
+        self.regressionLines = {} # operation name -> RegressionLine object
 
         self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
         "striderd", "fwrite", "frewrite", "fread", "freread"]
@@ -81,6 +85,7 @@ class StatsComparision:
                 else:
                     self.ttest_res[op].append('DIFF')
 
+# FIXME make this separate method
         # summary data is stored in fs only, no need for counting this redundantly in bs
         if (self.base[self.base.keys()[0]].datatype == 'fs'):
             for i in range(len(self.order)):
@@ -130,6 +135,13 @@ class StatsComparision:
                 for i in range(len(vals)):
                     dest[i].append(vals[i])
 
+    def computeRegressionLines(self):
+        for op in self.common_ops:
+            regLine = RegressionLine()
+            for (row, col) in self.base[op].indexedMeans.keys():
+                regLine.addPoint(self.base[op].indexedMeans[(row, col)], self.set1[op].indexedMeans[(row, col)])
+            regLine.computeSlope()
+            self.regressionLines[op] = regLine
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

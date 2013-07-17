@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011, 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -223,16 +223,17 @@ class Html:
 
     def norm_regression(self, Op):
         self.htmldoc.write(self.highcharts.regression(Op, None, None))
-### FIXME 
-        #(slope, std_err, ci_min, ci_max) = regLines[opNr]
 
-        # self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
-        # self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
-        # self.htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
-        # self.htmldoc.write('<tr class=\"topline bottomline\"><td> ci. max 90% </td><td>' + str(round(ci_min,5)) + '</td></tr>\n')
-        # self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
-        # opNr += 1
+        slope = self.fs.regressionLines[Op].slope
+        std_err = self.fs.regressionLines[Op].stdError
+        ci_min = self.fs.regressionLines[Op].confIntMin
+        ci_max = self.fs.regressionLines[Op].confIntMax
 
+        self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
+        self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
+        self.htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
+        self.htmldoc.write('<tr class=\"topline bottomline\"><td> ci. max 90% </td><td>' + str(round(ci_min,5)) + '</td></tr>\n')
+        self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

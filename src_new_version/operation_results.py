@@ -28,6 +28,7 @@ class OperationResults:
         self.data = {} # row_name -> [[values file 1], [values file 2], ...]
         self.lindata = [] # data in linear from, zeros excluded
                   # [ [values col 1], [values col 2], ...]
+        self.indexedData = {} # (row name, col name) -> [values from all files]
         self.alldata = []
         self.datatype = Type
 
@@ -43,6 +44,7 @@ class OperationResults:
         self.third_qrts = []
         self.mins = []
         self.maxes = []
+        self.indexedMeans = {} # (row name, col name) -> mean of all files values
 
         if (Type == 'fs'):
             self.xlabel = 'File size [kB]'
@@ -62,9 +64,15 @@ class OperationResults:
     def add_row(self, rowname, values):
         self.data[rowname].append(values)
         for valnr in range(len(values)):
-            if (values[valnr] != float(0)):
-                self.lindata[valnr].append(values[valnr])
-                self.alldata.append(values[valnr])
+            if (values[valnr] == float(0)):
+                continue
+            self.lindata[valnr].append(values[valnr])
+            self.alldata.append(values[valnr])
+
+            colname = self.colnames[valnr]
+            if (rowname, colname) not in self.indexedData.keys():
+                self.indexedData[(rowname, colname)] = []
+            self.indexedData[(rowname, colname)].append(values[valnr])
     
     # confidence = confidence interval probability rate in percent
     def compute_all_stats(self, confidence=0.90):
@@ -91,6 +99,10 @@ class OperationResults:
         (self.mean, self.dev, self.ci_min, self.ci_max,
             self.gmean, self.median, self.first_qrt, self.third_qrt,
             self.minimum, self.maximum) = self.stats(self.alldata)
+
+        # compute row and col indexed data averages (for linear regression)
+        for (row, col) in self.indexedData.keys():
+            self.indexedMeans[(row, col)] = numpy.mean(self.indexedData[(row, col)])
 
     def stats(self, data, confidence=0.90):
         n = len(data)

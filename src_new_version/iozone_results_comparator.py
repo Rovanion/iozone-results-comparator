@@ -74,6 +74,7 @@ class IozoneResultsComparator:
     def compare(self):
         self.fs.compare()
         self.bs.compare()
+        self.fs.computeRegressionLines()
         if (self.args.html):
             self.html = html.Html(self.args.html_dir, self.fs, self.bs, self.args.baseline, self.args.set1)
             self.html.normal_mode()
