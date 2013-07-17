@@ -35,8 +35,8 @@ class Highcharts:
             $(function () { 
                 $('#{{ id }}').highcharts({
                     chart: {
-		            	zoomType: 'xy'
-		            },
+                        zoomType: 'xy'
+                    },
                     title: {
                         text: '{{ title }}',
                         style : {
@@ -61,37 +61,37 @@ class Highcharts:
                         }
                     },
                     tooltip: {
-			            shared: true
-		            },
+                        shared: true
+                    },
                     series: [{
                         name: 'baseline',
-			            type: 'spline',
+                        type: 'spline',
                         color : 'black',
-			            data: {{ baselineData }},
+                        data: {{ baselineData }},
                         tooltip: {
                             pointFormat: '<b>{series.name}:</b> median <b>{point.y:.1f} MB/s</b>, '
                         }
-		            }, {
-			            type: 'errorbar',
-			            data: {{ baselineErrBars }},
-			            tooltip: {
+                    }, {
+                        type: 'errorbar',
+                        data: {{ baselineErrBars }},
+                        tooltip: {
                             pointFormat: 'first quartile <b>{point.low:.1f} MB/s</b>, third quartile <b>{point.high:.1f} MB/s</b><br/>'
-			            }
-		            }, {
+                        }
+                    }, {
                         name: 'set1',
-			            type: 'spline',
+                        type: 'spline',
                         color : 'red',
                         data: {{ set1Data }},
                         tooltip: {
                             pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}:</span> median <span style="font-weight: bold; color: {series.color}">{point.y:.1f} MB/s</span>, '
                         }
-		            }, {
-			            type: 'errorbar',
+                    }, {
+                        type: 'errorbar',
                         color : 'red',
                         data: {{ set1ErrBars }},
-			            tooltip: {
+                        tooltip: {
                             pointFormat: 'first quartile <span style="font-weight: bold; color: {series.color}">{point.low:.1f} MB/s</span>,third quartile <span style="font-weight: bold; color: {series.color}">{point.high:.1f} MB/s</span><br/>'
-			            }
+                        }
                     }]
                 });
             });
@@ -101,54 +101,54 @@ class Highcharts:
             $(function () {
                 $('#summary').highcharts({
             
-            	    chart: {
-            	        type: 'boxplot'
-            	    },
-            	    
-            	    title: {
-            	        text: 'Summary sorted by operation',
+                    chart: {
+                        type: 'boxplot'
+                    },
+                    
+                    title: {
+                        text: 'Summary sorted by operation',
                         style : {
                             color : 'black'
                         }
-            	    },
-            	    
+                    },
+                    
             
-            	    xAxis: {
-            	        categories: {{ categories }},
-            	        title: {
-            	            text: 'Operation',
+                    xAxis: {
+                        categories: {{ categories }},
+                        title: {
+                            text: 'Operation',
                             style : {
                                 color : 'black'
                             }
-            	        }
-            	    },
-            	    
-            	    yAxis: {
-            	        title: {
-            	            text: 'Operation speed [MB/s]',
+                        }
+                    },
+                    
+                    yAxis: {
+                        title: {
+                            text: 'Operation speed [MB/s]',
                             style : {
                                 color : 'black'
                             }
-            	        }
-            	    },
-            	
-            	    series: [{
-            	        name: 'baseline',
-            	        data: {{ baseline }},
+                        }
+                    },
+                
+                    series: [{
+                        name: 'baseline',
+                        data: {{ baseline }},
                         color : 'black',
-            	        tooltip: {
+                        tooltip: {
                             headerFormat: '{point.key}<br/>'
-            	        }
+                        }
                     }, {
                         name: 'set1',
-            	        data: {{ set1 }},
+                        data: {{ set1 }},
                         color : 'red',
-            	        tooltip: {
-            	            headerFormat: '{point.key}<br/>'
-            	        }
+                        tooltip: {
+                            headerFormat: '{point.key}<br/>'
+                        }
                     }]
-            	
-            	});
+                
+                });
             });
         </script>
         ''')
@@ -166,7 +166,7 @@ class Highcharts:
                     },
                     xAxis: {
                         title: {
-                    	    text: 'baseline throughput [MB/s]',
+                            text: 'baseline throughput [MB/s]',
                             style : {
                                 color : 'black'
                             }
@@ -174,46 +174,46 @@ class Highcharts:
                     },    
                     yAxis: {
                         title: {
-                    	    text: 'set1 throughput [MB/s]',
+                            text: 'set1 throughput [MB/s]',
                             style : {
                                 color : 'black'
                             }
                         }
                     },            
                     series: [{
-                    	name: 'faster in baseline',
+                        name: 'faster in baseline',
                         type: 'scatter',
-                    	data: [[1,1],[4,3]],
-                    	zIndex: 1,
-                    	marker: {
-                    		fillColor: 'red',
-                    	}
+                        data: [[1,1],[4,3]],
+                        zIndex: 1,
+                        marker: {
+                            fillColor: 'red',
+                        }
                     }, {
-                    	name: 'faster in set1',
+                        name: 'faster in set1',
                         type: 'scatter',
-                    	data: [[1,2],[3,5]],
-                    	zIndex: 1,
-                    	marker: {
-                    		fillColor: 'black',
+                        data: [[1,2],[3,5]],
+                        zIndex: 1,
+                        marker: {
+                            fillColor: 'black',
                         }
                     }, {
                         name: 'reg. line 90% conf. int.',
                         data: [[0,0], [19,23]],
                         type: 'arearange',
-                    	color: 'pink',
-                    	fillOpacity: 0.3,
-                    	zIndex: 0,
+                        color: 'pink',
+                        fillOpacity: 0.3,
+                        zIndex: 0,
                         pointInterval : 20
                     }, {
                         name: 'y=x line',
                         data: [[0,0], [20, 20]],
                         type: 'line',
-                    	color: 'black',
-                    	zIndex: 0,
+                        color: 'black',
+                        zIndex: 0,
                         marker: {
                             enabled: false
                         }
-                    }]	
+                    }]    
                 });    
             });
         </script>
@@ -234,7 +234,6 @@ class Highcharts:
             categories.append(x)
             x = x*2
 
-
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
                 title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 
                 baselineData = json.dumps(Source.base[Op].medians),
@@ -242,7 +241,6 @@ class Highcharts:
                 set1Data = json.dumps(Source.set1[Op].medians),
                 set1ErrBars = json.dumps(set1ErrBars), 
                 categories = categories)
-
 
     # TODO the ALL pseudooperation
     def summary(self, Base, Set1):
