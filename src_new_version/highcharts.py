@@ -152,6 +152,72 @@ class Highcharts:
             });
         </script>
         ''')
+        self.regressionTemplate = Template('''<script type='text/javascript'>
+            $(function () {
+                $('#{{ id }}_regression').highcharts({
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        text: 'Linear regression of all {{ operation }} values',
+                        style : {
+                            color : 'black'
+                        }
+                    },
+                    xAxis: {
+                        title: {
+                    	    text: 'baseline throughput [MB/s]',
+                            style : {
+                                color : 'black'
+                            }
+                        }
+                    },    
+                    yAxis: {
+                        title: {
+                    	    text: 'set1 throughput [MB/s]',
+                            style : {
+                                color : 'black'
+                            }
+                        }
+                    },            
+                    series: [{
+                    	name: 'faster in baseline',
+                        type: 'scatter',
+                    	data: [[1,1],[4,3]],
+                    	zIndex: 1,
+                    	marker: {
+                    		fillColor: 'red',
+                    	}
+                    }, {
+                    	name: 'faster in set1',
+                        type: 'scatter',
+                    	data: [[1,2],[3,5]],
+                    	zIndex: 1,
+                    	marker: {
+                    		fillColor: 'black',
+                        }
+                    }, {
+                        name: 'reg. line 90% conf. int.',
+                        data: [[0,0], [19,23]],
+                        type: 'arearange',
+                    	color: 'pink',
+                    	fillOpacity: 0.3,
+                    	zIndex: 0,
+                        pointInterval : 20
+                    }, {
+                        name: 'y=x line',
+                        data: [[0,0], [20, 20]],
+                        type: 'line',
+                    	color: 'black',
+                    	zIndex: 0,
+                        marker: {
+                            enabled: false
+                        }
+                    }]	
+                });    
+            });
+        </script>
+        ''')
         
     def norm_plot(self, Op, Source):
         baselineErrBars = []
@@ -197,6 +263,9 @@ class Highcharts:
 
         return self.summaryTemplate.render(categories = json.dumps(categories),
                 baseline = json.dumps(baseline), set1 = json.dumps(set1))
+
+    def regression(self, Op, Base, Set1):
+        return self.regressionTemplate.render(id = Op, operation = self.opnames[Op])
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

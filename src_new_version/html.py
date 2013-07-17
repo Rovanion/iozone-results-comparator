@@ -115,6 +115,8 @@ class Html:
         self.htmldoc.write('<div id="'+ Op + '_bs" class="normplot plot"></div>\n')
         self.htmldoc.write(self.highcharts.norm_plot(Op, self.bs))
         self.norm_table(Op, self.bs)
+        self.htmldoc.write('<div id="'+ Op + '_regression" class="normplot plot"></div>\n')
+        self.norm_regression(Op)
         self.htmldoc.write('<a href="#top">Back on top</a>\n')
         
 
@@ -218,6 +220,18 @@ class Html:
 
         self.write_diff_ttest(self.fs.summary_diffs, self.fs.summary_pvals, self.fs.summary_res)
         self.htmldoc.write('</table>\n')
+
+    def norm_regression(self, Op):
+        self.htmldoc.write(self.highcharts.regression(Op, None, None))
+### FIXME 
+		#(slope, std_err, ci_min, ci_max) = regLines[opNr]
+
+		# self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
+		# self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
+		# self.htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
+		# self.htmldoc.write('<tr class=\"topline bottomline\"><td> ci. max 90% </td><td>' + str(round(ci_min,5)) + '</td></tr>\n')
+		# self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
+		# opNr += 1
 
 
 if __name__ == '__main__':
