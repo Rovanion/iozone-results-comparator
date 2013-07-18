@@ -38,24 +38,12 @@ class IozoneResultsComparator:
             help='Set of iozone result files to form the baseline.')
         self.argparser.add_argument('--set1', nargs='+', required=True,
             help='Set of iozone results files to compared against baseline.')
-        self.argparser.add_argument('--html', required=False, action='store_true',
-            help='Whether to produce HTML output.')
-        self.argparser.add_argument('--csv', required=False, action='store_true',
-            help='Whether to produce CSV output.')
-        # TODO jmena operaci z tridy parse iozone
-        self.argparser.add_argument('--html_detail', nargs=1, required=False, action='store',
-            help='Name of operation to have a closer look at.', choices=['iwrite',
-            'rewrite', 'iread', 'reread', 'randrd', 'randwr', 'bkwdrd', 'recrewr', 
-            'striderd', 'fwrite', 'frewrite', 'fread', 'freread', 'ALL'])
+        self.argparser.add_argument('--multiset', required=False, action='store_true',
+            help='Enables the multiset visual comparision mode.')
         self.argparser.add_argument('--html_dir', nargs=1, required=False, action='store', 
             default='html_out', help='Where to output HTML.')
-        self.argparser.add_argument('--csv_dir', nargs=1, required=False, action='store',
-            default='csv_out', help='Where to output CSV.')
         self.args = self.argparser.parse_args()
     
-        if not (self.args.html or self.args.csv or self.args.html_detail):
-            print 'Try to use --html, --csv or --html_detail option to get any output.'
-            sys.exit(0)
 
     # get results from files, store them in iozone result objects inside of stats_comparision objects
     def get_data(self):
@@ -95,9 +83,10 @@ class IozoneResultsComparator:
         self.fs.compare()
         self.bs.compare()
         self.fs.computeRegressionLines()
-        if (self.args.html):
-            self.html = html.Html(self.args.html_dir, self.fs, self.bs, self.args.baseline, self.args.set1)
-            self.html.normal_mode()
+
+        self.html = html.Html(self.args.html_dir, self.fs, self.bs, self.args.baseline, self.args.set1)
+        self.html.normal_mode()
+        #if (self.args.html):
 
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()

@@ -88,7 +88,7 @@ class Html:
         self.htmldoc.write('third quartile => cuts off highest 25% of data, or lowest 75% = 75th percentile <br>')
         self.htmldoc.write('minimum => Lowest value of data set <br>')
         self.htmldoc.write('maximum => Hightest value of data set <br>')
-        self.htmldoc.write('baseline set1 difference => Difference of medians of both sets in percennt. Arithmetic means are used in detail mode instead.<br>')
+        self.htmldoc.write('baseline set1 difference => Difference of medians of both sets in percennt.<br>')
         self.htmldoc.write('ttest p-value => Student\'s t-test p-value = probability the both data sets are equal <br>')
         self.htmldoc.write('ttest equality => If p-value is higher than 0.1, data sets are considered being equal with 90% probability. Otherwise the data sets are considered being different.<br>')
         self.htmldoc.write('Linear regression of all results regression line is in y = ax form, b coeficient is zero. </p>')

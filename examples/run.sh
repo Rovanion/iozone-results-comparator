@@ -27,7 +27,7 @@ SET1=$(find ./xfs -name "*.iozone" | sort)
 cp ../src_new_version/stylesheet.css .
 
 #../src/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1} --detail ALL
-../src_new_version/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1} --html
+../src_new_version/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1}
 
 rm -f stylesheet.css
 
