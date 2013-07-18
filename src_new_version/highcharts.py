@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -183,7 +183,7 @@ class Highcharts:
                     series: [{
                         name: 'faster in baseline',
                         type: 'scatter',
-                        data: [[1,1],[4,3]],
+                        data: {{ baselineFaster }},
                         zIndex: 1,
                         marker: {
                             fillColor: 'red',
@@ -191,22 +191,22 @@ class Highcharts:
                     }, {
                         name: 'faster in set1',
                         type: 'scatter',
-                        data: [[1,2],[3,5]],
+                        data: {{ set1Faster }},
                         zIndex: 1,
                         marker: {
                             fillColor: 'black',
                         }
                     }, {
                         name: 'reg. line 90% conf. int.',
-                        data: [[0,0], [19,23]],
+                        data: [[0,0], [{{ ciMin }}, {{ ciMax }}]],
                         type: 'arearange',
                         color: 'pink',
                         fillOpacity: 0.3,
                         zIndex: 0,
-                        pointInterval : 20
+                        pointInterval : {{ maxX }}
                     }, {
                         name: 'y=x line',
-                        data: [[0,0], [20, 20]],
+                        data: [[0,0], [{{ maxX }}, {{ maxX }}]],
                         type: 'line',
                         color: 'black',
                         zIndex: 0,
@@ -262,8 +262,22 @@ class Highcharts:
         return self.summaryTemplate.render(categories = json.dumps(categories),
                 baseline = json.dumps(baseline), set1 = json.dumps(set1))
 
-    def regression(self, Op, Base, Set1):
-        return self.regressionTemplate.render(id = Op, operation = self.opnames[Op])
+    def regression(self, Op, RegLine):
+        baselineFaster = []
+        set1Faster = []
+        maxX = 0
+        for (x, y) in RegLine.points:
+            if (x > maxX):
+                maxX = x
+            if (x < y):
+                baselineFaster.append([x, y])
+            else:
+                set1Faster.append([x, y])
+
+        return self.regressionTemplate.render(id = Op, operation = self.opnames[Op],
+                baselineFaster = json.dumps(baselineFaster), 
+                set1Faster = json.dumps(set1Faster), maxX = maxX,
+                ciMin = RegLine.confIntMin * maxX, ciMax = RegLine.confIntMax * maxX)
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

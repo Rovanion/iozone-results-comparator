@@ -222,12 +222,12 @@ class Html:
         self.htmldoc.write('</table>\n')
 
     def norm_regression(self, Op):
-        self.htmldoc.write(self.highcharts.regression(Op, None, None))
-
         slope = self.fs.regressionLines[Op].slope
         std_err = self.fs.regressionLines[Op].stdError
         ci_min = self.fs.regressionLines[Op].confIntMin
         ci_max = self.fs.regressionLines[Op].confIntMax
+
+        self.htmldoc.write(self.highcharts.regression(Op, self.fs.regressionLines[Op]))
 
         self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
         self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
