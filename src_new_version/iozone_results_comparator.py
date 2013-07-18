@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011, 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -24,6 +24,7 @@ import argparse
 import parse_iozone
 import stats_comparision
 import html
+import operation_results
 
 # the main class
 class IozoneResultsComparator:
@@ -71,6 +72,25 @@ class IozoneResultsComparator:
             self.fs.add_operation_results('set1', op, self.parsed_set1.get_FS_list_for_any_BS(op))
             self.bs.add_operation_results('set1', op, self.parsed_set1.get_BS_list_for_any_FS(op))
 
+        self.agregate_all(self.fs, self.parsed_base.operations, 'fs', 'baseline')
+        self.agregate_all(self.bs, self.parsed_base.operations, 'bs', 'baseline')
+        self.agregate_all(self.fs, self.parsed_set1.operations, 'fs', 'set1')
+        self.agregate_all(self.bs, self.parsed_set1.operations, 'bs', 'set1')
+
+    # aggregate all the data to the ALL pseudooperation
+    def agregate_all(self, dest, operations, dataType, setName):
+        if (setName == 'baseline'):
+            source = dest.base
+        else:
+            source = dest.set1
+        res = operation_results.OperationResults(Type=dataType)
+        res.set_colnames(source[operations[0]].colnames)
+        for op in operations:
+            for rowName in source[op].data.keys():
+                for fileValues in source[op].data[rowName]:
+                    res.add_row(rowName, fileValues)
+        dest.add_operation_results(setName, 'ALL', res)
+
     def compare(self):
         self.fs.compare()
         self.bs.compare()
@@ -79,18 +99,7 @@ class IozoneResultsComparator:
             self.html = html.Html(self.args.html_dir, self.fs, self.bs, self.args.baseline, self.args.set1)
             self.html.normal_mode()
 
-
-    def debug(self):
-        #print self.fs.base['iwrite'].data
-        #print self.fs.base['iwrite'].colnames
-        #print self.bs.base['bkwdrd'].lindata[0]
-        #print self.bs.set1['bkwdrd'].lindata[0]
-        #print self.fs.differences['iwrite']
-        #print self.fs.ttest_res
-        pass
-
-
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()
     comparator.compare()
-    comparator.debug()
+

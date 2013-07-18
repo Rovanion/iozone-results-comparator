@@ -137,8 +137,6 @@ class Html:
         self.write_diff_ttest(Source.differences[Op], Source.ttest_pvals[Op], Source.ttest_res[Op])
 
         self.htmldoc.write('</table>\n')
-        # TODO csv links
-        
 
     def write_diff_ttest(self, Diffs, Pvals, Results):
         # write differences
@@ -180,7 +178,6 @@ class Html:
                 self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
             self.htmldoc.write('</tr>\n')
 
-    # TODO ALL pseudooperation
     def norm_summary(self):
         rownames = ('standard dev.', 'ci. min. 90%', 'ci. max. 90%', 'geom. mean',
             'median', 'first quartile', 'third quartile', 'minimum', 'maximum')
@@ -214,8 +211,10 @@ class Html:
 
         self.htmldoc.write('<tr class=\"bottomline topline\">\n')
         self.htmldoc.write('<td colspan="2">linear regression slope 90%</td>\n')
-        for m in self.fs.common_ops:
-            self.htmldoc.write('<td>'+'TODO'+'</td>\n')
+        for op in self.highcharts.order:
+            if op not in self.fs.common_ops:
+                break
+            self.htmldoc.write('<td>'+str(round(self.fs.regressionLines[op].confIntMin,2))+' - '+str(round(self.fs.regressionLines[op].confIntMax,2))+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
         self.write_diff_ttest(self.fs.summary_diffs, self.fs.summary_pvals, self.fs.summary_res)

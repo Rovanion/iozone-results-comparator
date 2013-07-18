@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011, 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -62,6 +62,8 @@ class OperationResults:
             self.lindata.append([])
 
     def add_row(self, rowname, values):
+        if not rowname in self.data.keys():
+            self.data[rowname] = []
         self.data[rowname].append(values)
         for valnr in range(len(values)):
             if (values[valnr] == float(0)):

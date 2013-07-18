@@ -29,7 +29,7 @@ class Highcharts:
         "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
         self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
-        "striderd", "fwrite", "frewrite", "fread", "freread"]
+        "striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
 
         self.normTemplate = Template('''<script type='text/javascript'>
             $(function () { 
@@ -242,7 +242,6 @@ class Highcharts:
                 set1ErrBars = json.dumps(set1ErrBars), 
                 categories = categories)
 
-    # TODO the ALL pseudooperation
     def summary(self, Base, Set1):
         # whiskers
         # Base[5] - meds

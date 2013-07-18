@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011, 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -43,7 +43,7 @@ class StatsComparision:
         self.regressionLines = {} # operation name -> RegressionLine object
 
         self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
-        "striderd", "fwrite", "frewrite", "fread", "freread"]
+        "striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
 
     def add_operation_results(self, setName, operation, results):
         if (setName == 'baseline'):
@@ -65,6 +65,9 @@ class StatsComparision:
             self.summary()
 
         self.ttest_diff()
+        # summary data is stored in fs only, no need for counting this redundantly in bs
+        if (self.base[self.base.keys()[0]].datatype == 'fs'):
+            self.summary_ttest()
 
     def ttest_diff(self):
         for op in self.common_ops:
@@ -85,25 +88,23 @@ class StatsComparision:
                 else:
                     self.ttest_res[op].append('DIFF')
 
-# FIXME make this separate method
-        # summary data is stored in fs only, no need for counting this redundantly in bs
-        if (self.base[self.base.keys()[0]].datatype == 'fs'):
-            for i in range(len(self.order)):
-                op = self.order[i]
-                if op not in self.common_ops:
-                    break
-                # summary_base[5] - medians
-                diff = (self.summary_set1[5][i] / self.summary_base[5][i] -1)*100
-                self.summary_diffs.append(diff)
+    def summary_ttest(self):
+        for i in range(len(self.order)):
+            op = self.order[i]
+            if op not in self.common_ops:
+                break
+            # summary_base[5] - medians
+            diff = (self.summary_set1[5][i] / self.summary_base[5][i] -1)*100
+            self.summary_diffs.append(diff)
 
-                (tstat, pval) = stats.ttest_ind(self.base[op].alldata, self.set1[op].alldata)
-                self.summary_pvals.append(pval)
+            (tstat, pval) = stats.ttest_ind(self.base[op].alldata, self.set1[op].alldata)
+            self.summary_pvals.append(pval)
 
-                # 90% probability
-                if (pval > 0.1):
-                    self.summary_res.append('SAME')
-                else:
-                    self.summary_res.append('DIFF')
+            # 90% probability
+            if (pval > 0.1):
+                self.summary_res.append('SAME')
+            else:
+                self.summary_res.append('DIFF')
 
                 
     def get_common(self):
