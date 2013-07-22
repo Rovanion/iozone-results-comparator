@@ -21,7 +21,7 @@
 import os
 import shutil
 
-import highcharts
+import googlecharts
 
 class Html:
     def __init__(self, OutDir, Fs, Bs, BaseFiles, Set1Files):
@@ -35,18 +35,22 @@ class Html:
         shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
         self.htmldoc=open(OutDir+'/index.html','w')
 
-        self.highcharts = highcharts.Highcharts()
+        self.googlecharts = googlecharts.GoogleCharts()
 
     def write_header(self):
+#FIXME
         html_header='''
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
         <html>
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
         <title>Iozone results</title>
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/highcharts-more.js"></script>
+
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         </head>
         <body>
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -79,7 +83,8 @@ class Html:
             self.htmldoc.write('<LI>'+file_name)
         self.htmldoc.write('</UL>')
         self.htmldoc.write('</DL>')
-        self.htmldoc.write('<p>mean => Arithmetic mean<br>')
+        self.htmldoc.write('<p>Plotted values are median with first and third quartile errorbars.<br>')
+        self.htmldoc.write('mean => Arithmetic mean<br>')
         self.htmldoc.write('standar dev. => Sample standard deviation<br>')
         self.htmldoc.write('ci. max 90%, ci.min => confidence interval at confidence level 90% => it means that mean value of the distribution lies with 90% propability in interval ci_min-ci_max<br>')
         self.htmldoc.write('geom. mean => Geometric mean<br>')
@@ -99,7 +104,7 @@ class Html:
         self.write_header()
         self.norm_summary()
 
-        for op in self.highcharts.order:
+        for op in self.googlecharts.order:
             if op not in self.fs.common_ops:
                 break
             self.norm_operation(op)            
@@ -108,12 +113,12 @@ class Html:
         
     def norm_operation(self, Op):
         self.htmldoc.write('<hr>\n')
-        self.htmldoc.write('<h3 id="' + Op + '">' + self.highcharts.opnames[Op] + '</h3>\n')
+        self.htmldoc.write('<h3 id="' + Op + '">' + self.googlecharts.opnames[Op] + '</h3>\n')
         self.htmldoc.write('<div id="'+ Op + '_fs" class="normplot plot"></div>\n')
-        self.htmldoc.write(self.highcharts.norm_plot(Op, self.fs))
+        self.htmldoc.write(self.googlecharts.norm_plot(Op, self.fs))
         self.norm_table(Op, self.fs)
         self.htmldoc.write('<div id="'+ Op + '_bs" class="normplot plot"></div>\n')
-        self.htmldoc.write(self.highcharts.norm_plot(Op, self.bs))
+        self.htmldoc.write(self.googlecharts.norm_plot(Op, self.bs))
         self.norm_table(Op, self.bs)
         self.htmldoc.write('<div id="'+ Op + '_regression" class="normplot plot"></div>\n')
         self.norm_regression(Op)
@@ -124,7 +129,7 @@ class Html:
         self.htmldoc.write('<table>\n')
         # table header
         self.htmldoc.write('<tr>')
-        self.htmldoc.write('<th class=\"bottomline\">'+self.highcharts.opnames[Op]+'</th>\n')
+        self.htmldoc.write('<th class=\"bottomline\">'+self.googlecharts.opnames[Op]+'</th>\n')
         self.htmldoc.write('<th class=\"bottomline\">'+Source.base[Op].xlabel+'</th>\n')
         for colname in Source.base[Op].colnames:
             self.htmldoc.write('<th>'+str(int(colname))+'</th>\n')
@@ -169,8 +174,8 @@ class Html:
 
         rows = (('standard dev.', Source.base[Op].devs), ('ci. min. 90%', Source.base[Op].ci_mins),
             ('ci. max. 90%', Source.base[Op].ci_maxes), ('geom. mean', Source.base[Op].gmeans),
-            ('median', Source.base[Op].medians), ('first quartile', Source.base[Op].first_qrts),
-            ('third quartile', Source.base[Op].third_qrts), ('minimum', Source.base[Op].mins),
+            ('<b>median</b>', Source.base[Op].medians), ('<b>first quartile</b>', Source.base[Op].first_qrts),
+            ('<b>third quartile</b>', Source.base[Op].third_qrts), ('minimum', Source.base[Op].mins),
             ('maximum', Source.base[Op].maxes))
         for (name, data) in rows:
             self.htmldoc.write('<td>' + name + '</td>\n')
@@ -184,15 +189,15 @@ class Html:
 
         self.htmldoc.write('<h3 id="summary top">Overall summary</h3>')
         self.htmldoc.write('<div id="summary" class="normplot plot"></div>\n')
-        self.htmldoc.write(self.highcharts.summary(self.fs.summary_base, self.fs.summary_set1))
+        self.htmldoc.write(self.googlecharts.summary(self.fs.summary_base, self.fs.summary_set1))
 
         self.htmldoc.write('<table>\n')
         self.htmldoc.write('<tr>')
         self.htmldoc.write('<td/><td>Operation</td>\n')
-        for op in self.highcharts.order:
+        for op in self.googlecharts.order:
             if op not in self.fs.common_ops:
                 break
-            self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.highcharts.opnames[op]+'</a></td>\n')
+            self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.googlecharts.opnames[op]+'</a></td>\n')
         self.htmldoc.write('</tr>\n')
 
         # summary data is stored in fs instance, no need for counting this redundantly in bs
@@ -211,7 +216,7 @@ class Html:
 
         self.htmldoc.write('<tr class=\"bottomline topline\">\n')
         self.htmldoc.write('<td colspan="2">linear regression slope 90%</td>\n')
-        for op in self.highcharts.order:
+        for op in self.googlecharts.order:
             if op not in self.fs.common_ops:
                 break
             self.htmldoc.write('<td>'+str(round(self.fs.regressionLines[op].confIntMin,2))+' - '+str(round(self.fs.regressionLines[op].confIntMax,2))+'</td>\n')
@@ -226,7 +231,7 @@ class Html:
         ci_min = self.fs.regressionLines[Op].confIntMin
         ci_max = self.fs.regressionLines[Op].confIntMax
 
-        self.htmldoc.write(self.highcharts.regression(Op, self.fs.regressionLines[Op]))
+        self.htmldoc.write(self.googlecharts.regression(Op, self.fs.regressionLines[Op]))
 
         self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
         self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')
