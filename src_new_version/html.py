@@ -21,6 +21,7 @@
 import os
 import shutil
 
+import plotter
 import googlecharts
 
 class Html:
@@ -35,6 +36,7 @@ class Html:
         shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
         self.htmldoc=open(OutDir+'/index.html','w')
 
+        self.plotter = plotter.Plotter(self.outdir)
         self.googlecharts = googlecharts.GoogleCharts()
 
     def write_header(self):
@@ -103,8 +105,9 @@ class Html:
     def normal_mode(self):
         self.write_header()
         self.norm_summary()
+        self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
 
-        for op in self.googlecharts.order:
+        for op in self.plotter.order:
             if op not in self.fs.common_ops:
                 break
             self.norm_operation(op)            
@@ -188,13 +191,11 @@ class Html:
             'median', 'first quartile', 'third quartile', 'minimum', 'maximum')
 
         self.htmldoc.write('<h3 id="summary top">Overall summary</h3>')
-        self.htmldoc.write('<div id="summary" class="normplot plot"></div>\n')
-        self.htmldoc.write(self.googlecharts.summary(self.fs.summary_base, self.fs.summary_set1))
-
+        self.htmldoc.write('<img src=\"summary.png\" alt=\"summary\" class="plot"/>\n')
         self.htmldoc.write('<table>\n')
         self.htmldoc.write('<tr>')
         self.htmldoc.write('<td/><td>Operation</td>\n')
-        for op in self.googlecharts.order:
+        for op in self.plotter.order:
             if op not in self.fs.common_ops:
                 break
             self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.googlecharts.opnames[op]+'</a></td>\n')
@@ -216,7 +217,7 @@ class Html:
 
         self.htmldoc.write('<tr class=\"bottomline topline\">\n')
         self.htmldoc.write('<td colspan="2">linear regression slope 90%</td>\n')
-        for op in self.googlecharts.order:
+        for op in self.plotter.order:
             if op not in self.fs.common_ops:
                 break
             self.htmldoc.write('<td>'+str(round(self.fs.regressionLines[op].confIntMin,2))+' - '+str(round(self.fs.regressionLines[op].confIntMax,2))+'</td>\n')

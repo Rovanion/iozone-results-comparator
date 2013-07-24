@@ -28,9 +28,6 @@ class GoogleCharts:
         "bkwdrd":"Backwards read", "recrewr":"Record rewrite", "striderd":"Strided Read",
         "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
-        self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
-        "striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
-
         self.normTemplate = Template('''<script type="text/javascript">
             // Load the Visualization API and the piechart package.
             google.load('visualization', '1.0', {'packages':['corechart']});
@@ -57,61 +54,6 @@ class GoogleCharts:
             chart.draw(data, options);
         }
         </script>''')
-        self.summaryTemplate = Template('''<script type='text/javascript'>
-            $(function () {
-                $('#summary').highcharts({
-            
-                    chart: {
-                        type: 'boxplot'
-                    },
-                    
-                    title: {
-                        text: 'Summary sorted by operation',
-                        style : {
-                            color : 'black'
-                        }
-                    },
-                    
-            
-                    xAxis: {
-                        categories: {{ categories }},
-                        title: {
-                            text: 'Operation',
-                            style : {
-                                color : 'black'
-                            }
-                        }
-                    },
-                    
-                    yAxis: {
-                        title: {
-                            text: 'Operation speed [MB/s]',
-                            style : {
-                                color : 'black'
-                            }
-                        }
-                    },
-                
-                    series: [{
-                        name: 'baseline',
-                        data: {{ baseline }},
-                        color : 'black',
-                        tooltip: {
-                            headerFormat: '{point.key}<br/>'
-                        }
-                    }, {
-                        name: 'set1',
-                        data: {{ set1 }},
-                        color : 'red',
-                        tooltip: {
-                            headerFormat: '{point.key}<br/>'
-                        }
-                    }]
-                
-                });
-            });
-        </script>
-        ''')
         self.regressionTemplate = Template('''<script type='text/javascript'>
             $(function () {
                 $('#{{ id }}_regression').highcharts({
@@ -195,25 +137,6 @@ class GoogleCharts:
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
                 title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 
                 dataRows = json.dumps(dataRows))
-
-    def summary(self, Base, Set1):
-        # whiskers
-        # Base[5] - meds
-        # Base[8] - mins
-        # Base[9] - maxes
-        # baseline bars
-        # Base[6] - first quartiles
-        # Base[7] - third quartiles
-        categories = []
-        baseline = []
-        set1 = []
-        for i in range(0, len(self.order)):
-            categories.append(self.opnames[self.order[i]])
-            baseline.append([Base[8][i], Base[6][i], Base[5][i], Base[7][i], Base[9][i]])
-            set1.append([Set1[8][i], Set1[6][i], Set1[5][i], Set1[7][i], Set1[9][i]])
-
-        return self.summaryTemplate.render(categories = json.dumps(categories),
-                baseline = json.dumps(baseline), set1 = json.dumps(set1))
 
     def regression(self, Op, RegLine):
         baselineFaster = []
