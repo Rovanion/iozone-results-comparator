@@ -40,18 +40,12 @@ class Html:
         self.googlecharts = googlecharts.GoogleCharts()
 
     def write_header(self):
-#FIXME
         html_header='''
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
         <html>
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
         <title>Iozone results</title>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/highcharts-more.js"></script>
-
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         </head>
         <body>
@@ -123,7 +117,6 @@ class Html:
         self.htmldoc.write('<div id="'+ Op + '_bs" class="normplot plot"></div>\n')
         self.htmldoc.write(self.googlecharts.norm_plot(Op, self.bs))
         self.norm_table(Op, self.bs)
-        self.htmldoc.write('<div id="'+ Op + '_regression" class="normplot plot"></div>\n')
         self.norm_regression(Op)
         self.htmldoc.write('<a href="#top">Back on top</a>\n')
         
@@ -232,7 +225,8 @@ class Html:
         ci_min = self.fs.regressionLines[Op].confIntMin
         ci_max = self.fs.regressionLines[Op].confIntMax
 
-        self.htmldoc.write(self.googlecharts.regression(Op, self.fs.regressionLines[Op]))
+        self.htmldoc.write('<img src=\"' + Op + '_compare.png\" alt=\"' + Op + '\_compare" class="plot"/>\n')
+        self.plotter.regression(Op, self.fs.regressionLines[Op])
 
         self.htmldoc.write('<table><tr><th colspan="2"> Regression line </th></tr>\n')
         self.htmldoc.write('<tr class=\"topline\"><td> slope </td><td>' + str(round(slope,5)) + '</td></tr>\n')

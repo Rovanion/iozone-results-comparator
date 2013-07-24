@@ -54,72 +54,6 @@ class GoogleCharts:
             chart.draw(data, options);
         }
         </script>''')
-        self.regressionTemplate = Template('''<script type='text/javascript'>
-            $(function () {
-                $('#{{ id }}_regression').highcharts({
-                    chart: {
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: 'Linear regression of all {{ operation }} values',
-                        style : {
-                            color : 'black'
-                        }
-                    },
-                    xAxis: {
-                        title: {
-                            text: 'baseline throughput [MB/s]',
-                            style : {
-                                color : 'black'
-                            }
-                        }
-                    },    
-                    yAxis: {
-                        title: {
-                            text: 'set1 throughput [MB/s]',
-                            style : {
-                                color : 'black'
-                            }
-                        }
-                    },            
-                    series: [{
-                        name: 'faster in baseline',
-                        type: 'scatter',
-                        data: {{ baselineFaster }},
-                        zIndex: 1,
-                        marker: {
-                            fillColor: 'red',
-                        }
-                    }, {
-                        name: 'faster in set1',
-                        type: 'scatter',
-                        data: {{ set1Faster }},
-                        zIndex: 1,
-                        marker: {
-                            fillColor: 'black',
-                        }
-                    }, {
-                        name: 'reg. line 90% conf. int.',
-                        data: [[0,0], [{{ ciMin }}, {{ ciMax }}]],
-                        type: 'arearange',
-                        color: 'pink',
-                        fillOpacity: 0.3,
-                        zIndex: 0,
-                        pointInterval : {{ maxX }}
-                    }, {
-                        name: 'y=x line',
-                        data: [[0,0], [{{ maxX }}, {{ maxX }}]],
-                        type: 'line',
-                        color: 'black',
-                        zIndex: 0,
-                        marker: {
-                            enabled: false
-                        }
-                    }]    
-                });    
-            });
-        </script>
-        ''')
         
     def norm_plot(self, Op, Source):
         # columns have following meanding:
@@ -137,23 +71,6 @@ class GoogleCharts:
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
                 title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 
                 dataRows = json.dumps(dataRows))
-
-    def regression(self, Op, RegLine):
-        baselineFaster = []
-        set1Faster = []
-        maxX = 0
-        for (x, y) in RegLine.points:
-            if (x > maxX):
-                maxX = x
-            if (x < y):
-                baselineFaster.append([x, y])
-            else:
-                set1Faster.append([x, y])
-
-        return self.regressionTemplate.render(id = Op, operation = self.opnames[Op],
-                baselineFaster = json.dumps(baselineFaster), 
-                set1Faster = json.dumps(set1Faster), maxX = maxX,
-                ciMin = RegLine.confIntMin * maxX, ciMax = RegLine.confIntMax * maxX)
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

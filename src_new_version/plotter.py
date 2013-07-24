@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011, 2013
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -23,78 +23,114 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import fontManager, FontProperties
-import warnings
 
 class Plotter:
-	def __init__(self, OutDir):
-		self.outdir = OutDir
-		self.opnames={"iwrite":"Write", "rewrite":"Re-write", "iread":"Read",
-		"reread":"Re-read", "randrd":"Random\nread", "randwr":"Random\nwrite",
-		"bkwdrd":"Backwards\nread", "recrewr":"Record\nrewrite", "striderd":"Strided\nRead",
-		"fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
+    def __init__(self, OutDir):
+        self.outdir = OutDir
+        self.opnames={"iwrite":"Write", "rewrite":"Re-write", "iread":"Read",
+        "reread":"Re-read", "randrd":"Random\nread", "randwr":"Random\nwrite",
+        "bkwdrd":"Backwards\nread", "recrewr":"Record\nrewrite", "striderd":"Strided\nRead",
+        "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
-		self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
-		"striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
-		
-	def summary(self, Base, Set1):
-		# create the whiskers summary plot
-		textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
-		plt.clf()
-		width=0.35
-		x=numpy.arange(len(Base))
+        self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
+        "striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
+        
+    def summary(self, Base, Set1):
+        # create the whiskers summary plot
+        textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
+        plt.clf()
+        width=0.35
+        x=numpy.arange(len(Base))
 
-		# baseline set1 bars one next another
-		x1=x+width/2
-		x2=x+1.5*width
+        # baseline set1 bars one next another
+        x1=x+width/2
+        x2=x+1.5*width
 
-		fig = plt.figure(figsize=(9,6))
-		DefaultSize = fig.get_size_inches()
-		fig.set_size_inches( (DefaultSize[0]*1.5, DefaultSize[1]))
-		ax = fig.add_subplot(111)
+        fig = plt.figure()
+        DefaultSize = fig.get_size_inches()
+        fig.set_size_inches( (DefaultSize[0]*1.75, DefaultSize[1]))
+        ax = fig.add_subplot(111)
 
-		# whiskers
-		# Base[5] - meds
-		# Base[8] - mins
-		# Base[9] - maxes
-		ax.errorbar(x1,Base[5],yerr=[numpy.array(Base[5]) - numpy.array(Base[8]),numpy.array(Base[9]) - numpy.array(Base[5])],color='red',linestyle='None',marker='None')
-		ax.errorbar(x2,Set1[5],yerr=[numpy.array(Set1[5]) - numpy.array(Set1[8]),numpy.array(Set1[9]) - numpy.array(Set1[5])],color='black',linestyle='None',marker='None')
+        # whiskers
+        # Base[5] - meds
+        # Base[8] - mins
+        # Base[9] - maxes
+        ax.errorbar(x1,Base[5],yerr=[numpy.array(Base[5]) - numpy.array(Base[8]),numpy.array(Base[9]) - numpy.array(Base[5])],color='red',linestyle='None',marker='None')
+        ax.errorbar(x2,Set1[5],yerr=[numpy.array(Set1[5]) - numpy.array(Set1[8]),numpy.array(Set1[9]) - numpy.array(Set1[5])],color='black',linestyle='None',marker='None')
 
-		# baseline bars
-		# Base[6] - first quartiles
-		# Base[7] - third quartiles
-		rects1 = ax.bar(x,numpy.array(Base[5]) - numpy.array(Base[6]),width,bottom=Base[6],color='red')
-		ax.bar(x,numpy.array(Base[7]) - numpy.array(Base[5]),width,bottom=Base[5],color='red')
+        # baseline bars
+        # Base[6] - first quartiles
+        # Base[7] - third quartiles
+        rects1 = ax.bar(x,numpy.array(Base[5]) - numpy.array(Base[6]),width,bottom=Base[6],color='red')
+        ax.bar(x,numpy.array(Base[7]) - numpy.array(Base[5]),width,bottom=Base[5],color='red')
 
-		# set1 bars
-		rects2 = ax.bar(x+width,numpy.array(Set1[5]) - numpy.array(Set1[6]),width,bottom=Set1[6],color='white')
-		ax.bar(x+width,numpy.array(Set1[7]) - numpy.array(Set1[5]),width,bottom=Set1[5],color='white')
+        # set1 bars
+        rects2 = ax.bar(x+width,numpy.array(Set1[5]) - numpy.array(Set1[6]),width,bottom=Set1[6],color='white')
+        ax.bar(x+width,numpy.array(Set1[7]) - numpy.array(Set1[5]),width,bottom=Set1[5],color='white')
 
-		ax.set_ylabel('Operation speed [MB/s]')
-		ax.set_title('Summary sorted by operation')
-		ax.set_xticks(x+width)
-		opNames = []
-		# operations names on X axis
-		# TODO operations missing?
-		for op in self.order:
-			opNames.append(self.opnames[op])
-		ax.set_xticklabels(tuple(opNames), size=9)
+        ax.set_ylabel('Operation speed [MB/s]')
+        ax.set_title('Summary sorted by operation')
+        ax.set_xticks(x+width)
+        opNames = []
+        # operations names on X axis
+        # TODO operations missing?
+        for op in self.order:
+            opNames.append(self.opnames[op])
+        ax.set_xticklabels(tuple(opNames), size=9)
 
-		# legend
-		font = FontProperties(size='small');
-		a = plt.legend((rects1[0], rects2[0]), ('Baseline', 'Set1'), loc=0, prop=font);
-		txt = matplotlib.offsetbox.TextArea(textstr, textprops=dict(size=7))
-		box = a._legend_box
-		box.get_children().append(txt)
-		box.set_figure(box.figure)
+        # legend
+        font = FontProperties(size='small');
+        a = plt.legend((rects1[0], rects2[0]), ('Baseline', 'Set1'), loc=0, prop=font);
+        txt = matplotlib.offsetbox.TextArea(textstr, textprops=dict(size=7))
+        box = a._legend_box
+        box.get_children().append(txt)
+        box.set_figure(box.figure)
+        plt.savefig(self.outdir+'/'+'summary')
 
-		# Fedora 14 bug 562421 workaround
-		with warnings.catch_warnings():
-			warnings.filterwarnings("ignore",category=UserWarning)
-			plt.savefig(self.outdir+'/'+'summary')
+    def regression(self, Op, RegLine):
+        name = Op + '_compare'
+        maxX = 0
+        baselineFasterX = []
+        baselineFasterY = []
+        set1FasterX = []
+        set1FasterY = []
+        # faster in baseline will be plotted in red, faster in set1 in black
+        for (x, y) in RegLine.points:
+            if (x > maxX):
+                maxX = x
+            if (x < y):
+                baselineFasterX.append(x)
+                baselineFasterY.append(y)
+            else:
+                set1FasterX.append(x)
+                set1FasterY.append(y)
 
-		fig.set_size_inches( (DefaultSize[0]/1.5, DefaultSize[1]))
-		plt.clf()
+        plt.clf()
+        fig = plt.figure()
+        DefaultSize = fig.get_size_inches()
+        fig.set_size_inches( (DefaultSize[0]*1.75, DefaultSize[1]))
+        ax = fig.add_subplot(111)
+        #  Legend does not support <class 'matplotlib.collections.PolyCollection'> workaround. This line is not actually visible
+        d, = ax.plot([0, 1.05*maxX], [0, 1.05*maxX*((RegLine.confIntMax+RegLine.confIntMin)/2)], '-', color='pink')
+        a, = ax.plot(baselineFasterX, baselineFasterY, 'r.')
+        b, = ax.plot(set1FasterX, set1FasterY, 'k.')
+        # y = x line
+        c, = ax.plot([0, 1.05*maxX], [0, 1.05*maxX], 'k-')
+        # ci_min line
+        ax.plot([0, 1.05*maxX], [0, 1.05*maxX*RegLine.confIntMin], 'r-')
+        # ci_maxX line
+        ax.plot([0, 1.05*maxX], [0, 1.05*maxX*RegLine.confIntMax], 'r-')
+        # filling between ci_min and ci_maxX lines
+        ax.fill_between([0, 1.05*maxX], [0, 1.05*maxX*RegLine.confIntMin], [0, 1.05*maxX*RegLine.confIntMax], color='pink')
+        plt.grid(True)
+        plt.xlabel('baseline throughput [MB/s]')
+        plt.ylabel('set1 throughput [MB/s]')
+        plt.title('Linear regression of all ' + self.opnames[Op] + ' values')
+        font = FontProperties(size='x-small');
+        leg = plt.legend((a, b, c, d), ('Faster in baseline', 'Faster in set1', 'y = x line', 'reg. line 90% conf. int.'), loc=0, prop=font);
+        plt.savefig(self.outdir+'/'+name)
+        
 
 if __name__ == '__main__':
-	print 'Try running iozone_results_comparator.py'
+    print 'Try running iozone_results_comparator.py'
 
