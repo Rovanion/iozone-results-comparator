@@ -20,6 +20,7 @@
 
 import sys
 import argparse
+import re
 
 import parse_iozone
 import stats_comparision
@@ -29,8 +30,9 @@ import operation_results
 # the main class
 class IozoneResultsComparator:
     def __init__(self):
+        self.sets = {}
+
         self.parse_args()    
-        self.get_data()
 
     def parse_args(self):
         self.argparser = argparse.ArgumentParser(description='Iozone results comparator') 
@@ -42,11 +44,12 @@ class IozoneResultsComparator:
             help='Enables the multiset visual comparision mode.')
         self.argparser.add_argument('--html_dir', nargs=1, required=False, action='store', 
             default='html_out', help='Where to output HTML.')
-        self.args = self.argparser.parse_args()
-    
+        (self.args, self.remainingArgs) = self.argparser.parse_known_args()
+        self.sets['baseline'] = self.args.baseline
+        self.sets['set1'] = self.args.set1
 
     # get results from files, store them in iozone result objects inside of stats_comparision objects
-    def get_data(self):
+    def get_data_normal_mode(self):
         self.fs = stats_comparision.StatsComparision()
         self.bs = stats_comparision.StatsComparision()
 
@@ -86,9 +89,25 @@ class IozoneResultsComparator:
 
         self.html = html.Html(self.args.html_dir, self.fs, self.bs, self.args.baseline, self.args.set1)
         self.html.normal_mode()
-        #if (self.args.html):
+
+    def parse_multiset_args(self):
+        currentSet = ''
+        setArg = re.compile('--set\d+')
+        if not comparator.remainingArgs or not setArg.match(comparator.remainingArgs[0]):
+                raise Exception('Wrong multiset arguments')
+
+        for arg in comparator.remainingArgs:
+            if setArg.match(arg):
+                currentSet = arg
+                self.sets[currentSet] = []
+            else:
+                self.sets[currentSet].append(arg)
 
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()
-    comparator.compare()
+    if not comparator.args.multiset:
+        comparator.get_data_normal_mode()
+        comparator.compare()
+    else:
+        comparator.parse_multiset_args()
 
