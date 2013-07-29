@@ -33,14 +33,13 @@ class Html:
         self.htmldoc=open(OutDir+'/index.html','w')
 
         self.googlecharts = googlecharts.GoogleCharts()
+        self.plotter = plotter.Plotter(self.outdir)
 
     def init_normal_mode(self, Fs, Bs, BaseFiles, Set1Files):
         self.fs = Fs
         self.bs = Bs
         self.basefiles = BaseFiles
         self.set1files = Set1Files
-
-        self.plotter = plotter.Plotter(self.outdir)
 
     def write_header(self):
         html_header='''
@@ -96,6 +95,21 @@ class Html:
         self.htmldoc.write('ttest p-value => Student\'s t-test p-value = probability the both data sets are equal <br>')
         self.htmldoc.write('ttest equality => If p-value is higher than 0.1, data sets are considered being equal with 90% probability. Otherwise the data sets are considered being different.<br>')
         self.htmldoc.write('Linear regression of all results regression line is in y = ax form, b coeficient is zero. </p>')
+        self.htmldoc.write('<p>for details about operations performed see <a href="http://www.iozone.org/docs/IOzone_msword_98.pdf">Iozone documentation</a>')
+        self.htmldoc.write('</p>')
+
+    def write_multiset_info(self):
+        self.htmldoc.write('<DL class="filelist">')
+        for setName in sorted(self.filenames.keys()):
+            self.htmldoc.write('<DT><STRONG>' + setName + ' data set</STRONG><UL>')
+            for file_name in self.filenames[setName]:
+                self.htmldoc.write('<LI>'+file_name)
+            self.htmldoc.write('</UL>')
+        self.htmldoc.write('</DL>')
+        self.htmldoc.write('<p>Plotted values are median with first and third quartile errorbars.<br>')
+        self.htmldoc.write('median => Second quartile = cuts data set in half = 50th percentile <br>')
+        self.htmldoc.write('first quartile => cuts off lowest 25% of data = 25th percentile <br>')
+        self.htmldoc.write('third quartile => cuts off highest 25% of data, or lowest 75% = 75th percentile <br>')
         self.htmldoc.write('<p>for details about operations performed see <a href="http://www.iozone.org/docs/IOzone_msword_98.pdf">Iozone documentation</a>')
         self.htmldoc.write('</p>')
 
@@ -236,6 +250,28 @@ class Html:
         self.htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
         self.htmldoc.write('<tr class=\"topline bottomline\"><td> ci. max 90% </td><td>' + str(round(ci_min,5)) + '</td></tr>\n')
         self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
+
+    def init_multiset_mode(self, dataSets, filenames):
+        self.multiset = dataSets
+        self.filenames = filenames
+
+    def multiset_mode(self):
+        self.write_header()
+        for op in self.plotter.order:
+            if op not in self.multiset.common_ops:
+                break
+            self.multiset_operation(op)            
+        self.write_multiset_info()
+        self.write_footer()
+
+    def multiset_operation(self, op):
+        self.htmldoc.write('<h3 id="' + op + '">' + self.googlecharts.opnames[op] + '</h3>\n')
+        self.htmldoc.write('<div id="'+ op + '_fs" class="normplot plot"></div>\n')
+        self.htmldoc.write(self.googlecharts.multiset_plot(op, self.multiset.fs, 'fs'))
+        self.htmldoc.write('<div id="'+ op + '_bs" class="normplot plot"></div>\n')
+        self.htmldoc.write(self.googlecharts.multiset_plot(op, self.multiset.bs, 'bs'))
+        self.htmldoc.write('<a href="#top">Back on top</a>\n')
+        self.htmldoc.write('<hr>\n')
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

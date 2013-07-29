@@ -24,6 +24,7 @@ class MultisetData:
         # val = dict with operation name keys and opearation_results values
         self.fs = {}
         self.bs = {}
+        self.common_ops = []
 
     def addDataSet(self, setName):
         self.fs[setName] = {}
@@ -44,6 +45,14 @@ class MultisetData:
         for dataSet in self.bs.keys():
             for op in self.bs[dataSet].keys():
                 self.bs[dataSet][op].compute_all_stats()
+
+    def get_common(self):
+        # get common operations
+        self.common_ops = self.fs['baseline'].keys()
+        for op in self.common_ops:
+            for setName in sorted(self.fs.keys())[1:]:
+                if not op in self.fs[setName].keys():
+                    self.common_ops.remove(op)
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

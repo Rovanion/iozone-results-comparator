@@ -29,7 +29,7 @@ class GoogleCharts:
         "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
         self.normTemplate = Template('''<script type="text/javascript">
-            // Load the Visualization API and the piechart package.
+            // Load the Visualization API
             google.load('visualization', '1.0', {'packages':['corechart']});
             // Set a callback to run when the Google Visualization API is loaded.
             google.setOnLoadCallback(drawChart);
@@ -45,11 +45,30 @@ class GoogleCharts:
                 data.addColumn({type:'number', role:'interval'});  // interval role col.
                 data.addColumn({type:'number', role:'interval'});  // interval role col.
                 data.addRows({{ dataRows }});
-            // Set chart options
             var options = {title : '{{ title }}', colors : ['black', 'red'],
                 focusTarget : 'category', vAxis : {title : 'Operation speed [MB/s]'},
                 hAxis : {title : '{{ xlabel }}', textStyle : {fontSize : 9}}};
             // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.LineChart(document.getElementById('{{ id }}'));
+            chart.draw(data, options);
+        }
+        </script>''')
+        
+        self.multisetTemplate = Template('''<script type="text/javascript">
+            google.load('visualization', '1.0', {'packages':['corechart']});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'This does not matter'); // Implicit domain label col.
+                {% for setName in setNames %}
+                    data.addColumn('number', '{{ setName }}'); // Implicit series 1 data col.
+                    data.addColumn({type:'number', role:'interval'});  // interval role col.
+                    data.addColumn({type:'number', role:'interval'});  // interval role col.
+                {% endfor %}
+                data.addRows({{ dataRows }});
+            var options = {title : '{{ title }}',
+                focusTarget : 'category', vAxis : {title : 'Operation speed [MB/s]'},
+                hAxis : {title : '{{ xlabel }}', textStyle : {fontSize : 9}}};
             var chart = new google.visualization.LineChart(document.getElementById('{{ id }}'));
             chart.draw(data, options);
         }
@@ -61,16 +80,38 @@ class GoogleCharts:
         dataRows = []
         
         x = 4
-        for i in range(0, len(Source.base[Op].medians)):
-            dataRows.append([str(x), round(Source.base[Op].medians[i], 2),
-                round(Source.base[Op].first_qrts[i], 2),
-                round(Source.base[Op].third_qrts[i], 2), round(Source.set1[Op].medians[i], 2),
-                round(Source.set1[Op].first_qrts[i], 2), round(Source.set1[Op].third_qrts[i], 2)])
+        for xVal in range(0, len(Source.base[Op].medians)):
+            dataRows.append([str(x), round(Source.base[Op].medians[xVal], 2),
+                round(Source.base[Op].first_qrts[xVal], 2),
+                round(Source.base[Op].third_qrts[xVal], 2), round(Source.set1[Op].medians[xVal], 2),
+                round(Source.set1[Op].first_qrts[xVal], 2), round(Source.set1[Op].third_qrts[xVal], 2)])
             x = x*2
 
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
                 title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 
                 dataRows = json.dumps(dataRows))
+
+    def multiset_plot(self, Op, Source, dataType):
+        dataRows = []
+
+        if dataType == 'fs':
+            xlabel = 'File size [kB]'
+        else:
+            xlabel = 'Block size [kB]'
+
+        # xAxisLabel, repeated for every set : "set median, set errbar low, set errbar high"
+        x = 4
+        for xVal in range(0, len(Source['baseline'][Op].medians)):
+            dataRows.append([str(x)])
+            for setName in sorted(Source.keys()):
+                dataRows[-1].append(round(Source[setName][Op].medians[xVal], 2))
+                dataRows[-1].append(round(Source[setName][Op].first_qrts[xVal], 2))
+                dataRows[-1].append(round(Source[setName][Op].third_qrts[xVal], 2))
+            x = x*2
+
+        return self.multisetTemplate.render(id = Op + '_' + dataType,
+                title = self.opnames[Op], xlabel = xlabel, 
+                dataRows = json.dumps(dataRows), setNames = sorted(Source.keys()))
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

@@ -117,6 +117,8 @@ class IozoneResultsComparator:
 
     def multiset_mode(self):
         self.multiset.computeStats()
+        self.html.init_multiset_mode(self.multiset, self.sets)
+        self.html.multiset_mode()
 
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()
@@ -126,5 +128,6 @@ if __name__ == '__main__':
     else:
         comparator.parse_multiset_args()
         comparator.get_data_multiset_mode()
+        comparator.multiset.get_common()
         comparator.multiset_mode()
 
