@@ -39,7 +39,7 @@ class GoogleCharts:
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'This does not matter'); // Implicit domain label col.
                 data.addColumn('number', 'baseline'); // Implicit series 1 data col.
-                data.addColumn({type:'number', role:'interval', label:'Bar'});  // interval role col.
+                data.addColumn({type:'number', role:'interval'});  // interval role col.
                 data.addColumn({type:'number', role:'interval'});  // interval role col.
                 data.addColumn('number', 'set1'); // Implicit series 1 data col.
                 data.addColumn({type:'number', role:'interval'});  // interval role col.

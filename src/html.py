@@ -25,19 +25,22 @@ import plotter
 import googlecharts
 
 class Html:
-    def __init__(self, OutDir, Fs, Bs, BaseFiles, Set1Files):
+    def __init__(self, OutDir):
         self.outdir = OutDir
-        self.fs = Fs
-        self.bs = Bs
-        self.basefiles = BaseFiles
-        self.set1files = Set1Files
         if not (os.path.exists(OutDir)):
             os.makedirs(OutDir)
         shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
         self.htmldoc=open(OutDir+'/index.html','w')
 
-        self.plotter = plotter.Plotter(self.outdir)
         self.googlecharts = googlecharts.GoogleCharts()
+
+    def init_normal_mode(self, Fs, Bs, BaseFiles, Set1Files):
+        self.fs = Fs
+        self.bs = Bs
+        self.basefiles = BaseFiles
+        self.set1files = Set1Files
+
+        self.plotter = plotter.Plotter(self.outdir)
 
     def write_header(self):
         html_header='''
