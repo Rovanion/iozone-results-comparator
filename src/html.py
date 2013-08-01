@@ -135,6 +135,7 @@ class Html:
         self.htmldoc.write(self.googlecharts.norm_plot(Op, self.bs))
         self.norm_table(Op, self.bs)
         self.norm_regression(Op)
+        self.norm_percentual(Op)
         self.htmldoc.write('<a href="#top">Back on top</a>\n')
         
 
@@ -250,6 +251,11 @@ class Html:
         self.htmldoc.write('<tr class=\"topline\"><td> std. error </td><td>' + str(round(std_err,5)) + '</td></tr>\n')
         self.htmldoc.write('<tr class=\"topline bottomline\"><td> ci. max 90% </td><td>' + str(round(ci_min,5)) + '</td></tr>\n')
         self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
+
+    def norm_percentual(self, Op):
+        self.htmldoc.write('<div id="'+ Op + '_pcnt" class="normplot plot"></div>\n')
+        self.htmldoc.write(self.googlecharts.percentual_plot(Op, self.fs))
+
 
     def init_multiset_mode(self, dataSets, filenames):
         self.multiset = dataSets
