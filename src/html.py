@@ -69,8 +69,7 @@ class Html:
         print 'Finished.\nTo view results open in your web browser:'
         print 'file://' + os.getcwd() + '/' + self.outdir + '/index.html'
 
-    def write_info(self):
-        self.htmldoc.write('<hr>')
+    def write_filelist(self):
         self.htmldoc.write('<DL class="filelist">')
         self.htmldoc.write('<DT><STRONG>Baseline data set</STRONG><UL>')
         for file_name in self.basefiles:
@@ -81,6 +80,9 @@ class Html:
             self.htmldoc.write('<LI>'+file_name)
         self.htmldoc.write('</UL>')
         self.htmldoc.write('</DL>')
+
+    def write_info(self):
+        self.htmldoc.write('<hr>')
         self.htmldoc.write('<p>Plotted values are median with first and third quartile errorbars.<br>')
         self.htmldoc.write('mean => Arithmetic mean<br>')
         self.htmldoc.write('standar dev. => Sample standard deviation<br>')
@@ -115,6 +117,7 @@ class Html:
 
     def normal_mode(self):
         self.write_header()
+        self.write_filelist()
         self.norm_summary()
         self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
 
