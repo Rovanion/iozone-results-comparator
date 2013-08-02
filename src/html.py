@@ -153,8 +153,8 @@ class Html:
         self.htmldoc.write('</tr>\n')
 
         # the two table main parts
-        self.norm_table_set(Op, Source, 'baseline')
-        self.norm_table_set(Op, Source, 'set1')
+        self.norm_table_set(Source.base[Op], 'baseline')
+        self.norm_table_set(Source.set1[Op], 'set1')
 
         self.write_diff_ttest(Source.differences[Op], Source.ttest_pvals[Op], Source.ttest_res[Op])
 
@@ -182,18 +182,18 @@ class Html:
             self.htmldoc.write('<td>'+res+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
-    def norm_table_set(self, Op, Source, SetName):
+    def norm_table_set(self, Source, SetName):
         self.htmldoc.write('<tr class=\"topline\">\n')
         self.htmldoc.write('<td rowspan="10">' + SetName + '</td><td>mean val.</td>\n')
-        for mean in Source.base[Op].means:
+        for mean in Source.means:
             self.htmldoc.write('<td class=\"topline\">'+str(round(mean,2))+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
-        rows = (('standard dev.', Source.base[Op].devs), ('ci. min. 90%', Source.base[Op].ci_mins),
-            ('ci. max. 90%', Source.base[Op].ci_maxes), ('geom. mean', Source.base[Op].gmeans),
-            ('<b>median</b>', Source.base[Op].medians), ('<b>first quartile</b>', Source.base[Op].first_qrts),
-            ('<b>third quartile</b>', Source.base[Op].third_qrts), ('minimum', Source.base[Op].mins),
-            ('maximum', Source.base[Op].maxes))
+        rows = (('standard dev.', Source.devs), ('ci. min. 90%', Source.ci_mins),
+            ('ci. max. 90%', Source.ci_maxes), ('geom. mean', Source.gmeans),
+            ('<b>median</b>', Source.medians), ('<b>first quartile</b>', Source.first_qrts),
+            ('<b>third quartile</b>', Source.third_qrts), ('minimum', Source.mins),
+            ('maximum', Source.maxes))
         for (name, data) in rows:
             self.htmldoc.write('<td>' + name + '</td>\n')
             for val in data:
