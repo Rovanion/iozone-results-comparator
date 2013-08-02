@@ -253,8 +253,10 @@ class Html:
         self.htmldoc.write('<tr><td> ci. min. 90% </td><td>' + str(round(ci_max,5)) + '</td></tr></table>\n')
 
     def norm_percentual(self, Op):
-        self.htmldoc.write('<div id="'+ Op + '_pcnt" class="normplot plot"></div>\n')
-        self.htmldoc.write(self.googlecharts.percentual_plot(Op, self.fs))
+        self.htmldoc.write('<img src=\"' + Op + '_pcnt.png\" alt=\"summary\" class="plot"/>\n')
+        self.htmldoc.write('<div class="note">Black - faster in set1, red - faster in baseline. Bigger the bullet, bigger the difference.</div><br/>')
+
+        self.plotter.percentual_plot(Op, self.fs)
 
 
     def init_multiset_mode(self, dataSets, filenames):

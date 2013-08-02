@@ -74,27 +74,6 @@ class GoogleCharts:
                 chart.draw(data, options);
             }
         </script>''')
-
-        self.percentualTemplate = Template('''<script type="text/javascript">
-            google.load('visualization', '1.0', {'packages':['corechart']});
-            google.setOnLoadCallback(drawChart);
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                {% for (name, fs, bs, faster, val) in data %}
-                    ['{{ name }}', {{ fs }}, {{ bs }}, {{ faster }}, {{ val }}],
-                {% endfor %}
-                ], true) ;
-                var options = {
-                    title: 'Percentual difference',
-                    hAxis: {title: 'File size', logScale : true},
-                    vAxis: {title: 'Block size', logScale : true},
-                    colorAxis : {colors : ['red', 'black'], legend : {position: 'none'}},
-                    bubble: {textStyle: {fontSize: 1}, opacity : 1.0}
-                };
-                var chart = new google.visualization.BubbleChart(document.getElementById('{{ id }}'));
-                chart.draw(data, options);
-            }
-        </script>''')
         
     def norm_plot(self, Op, Source):
         # columns have following meanding:
@@ -134,19 +113,6 @@ class GoogleCharts:
         return self.multisetTemplate.render(id = Op + '_' + dataType,
                 title = self.opnames[Op], xlabel = xlabel, 
                 dataRows = json.dumps(dataRows), setNames = sorted(Source.keys()))
-
-    def percentual_plot(self, Op, Source):
-        data = []
-        base = Source.base[Op].indexedData
-        set1 = Source.set1[Op].indexedData
-        for (bs, fs) in base:
-            baseAvg = numpy.mean(base[(bs, fs)])
-            set1Avg = numpy.mean(set1[(bs, fs)])
-            val = abs((baseAvg-set1Avg))/(baseAvg/100)
-            faster = 1 if val > 1 else  0
-            data.append(( str(fs) + ' x ' + str(bs), fs, bs, faster, val));
-
-        return self.percentualTemplate.render(id = Op + '_pcnt', data = data)
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

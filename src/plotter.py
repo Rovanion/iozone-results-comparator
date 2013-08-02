@@ -98,7 +98,7 @@ class Plotter:
         for (x, y) in RegLine.points:
             if (x > maxX):
                 maxX = x
-            if (x < y):
+            if (x > y):
                 baselineFasterX.append(x)
                 baselineFasterY.append(y)
             else:
@@ -130,6 +130,36 @@ class Plotter:
         leg = plt.legend((a, b, c, d), ('Faster in baseline', 'Faster in set1', 'y = x line', 'reg. line 90% conf. int.'), loc=0, prop=font);
         plt.savefig(self.outdir+'/'+name)
         
+    def percentual_plot(self, Op, Source):
+        xVals = []
+        yVals = []
+        diameters = []
+        colors = []
+        base = Source.base[Op].indexedData
+        set1 = Source.set1[Op].indexedData
+
+        for (bs, fs) in base:
+            xVals.append(str(fs))
+            yVals.append(str(bs))
+            baseAvg = numpy.mean(base[(bs, fs)])
+            set1Avg = numpy.mean(set1[(bs, fs)])
+            colors.append('k' if set1Avg > baseAvg else 'r')
+            diameters.append(10 * abs((baseAvg-set1Avg))/(baseAvg/100))
+
+        plt.clf()
+        fig = plt.figure()
+        DefaultSize = fig.get_size_inches()
+        fig.set_size_inches( (DefaultSize[0]*1.75, DefaultSize[1]))
+
+        plt.grid()
+        plt.scatter(xVals, yVals, diameters, colors, label='foo')
+        plt.loglog(basex=2, basey=2)
+
+        plt.xlabel('File size')
+        plt.ylabel('Block size')
+        plt.title('Percentual difference')
+
+        plt.savefig(self.outdir + '/' +  Op + '_pcnt')
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

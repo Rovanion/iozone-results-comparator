@@ -151,3 +151,8 @@ a {
     height : 600px;
 }
 
+.note {
+    font-size : 75%;
+	text-align : center;
+}
+
