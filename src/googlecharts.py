@@ -80,13 +80,11 @@ class GoogleCharts:
         # xAxisLabel, baseline median, base errbar low, base errbar high, set1 median, set1 errbar low, set1 errbar high
         dataRows = []
         
-        x = 4
         for xVal in range(0, len(Source.base[Op].medians)):
-            dataRows.append([str(x), round(Source.base[Op].medians[xVal], 2),
+            dataRows.append([str(Source.base[Op].colnames[xVal]), round(Source.base[Op].medians[xVal], 2),
                 round(Source.base[Op].first_qrts[xVal], 2),
                 round(Source.base[Op].third_qrts[xVal], 2), round(Source.set1[Op].medians[xVal], 2),
                 round(Source.set1[Op].first_qrts[xVal], 2), round(Source.set1[Op].third_qrts[xVal], 2)])
-            x = x*2
 
         return self.normTemplate.render(id = Op + '_' + Source.base[Op].datatype,
                 title = self.opnames[Op], xlabel = Source.base[Op].xlabel, 

@@ -122,7 +122,6 @@ class IozoneResultsComparator:
 
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()
-    print 'Processing...'
     if not comparator.args.multiset:
         comparator.get_data_normal_mode()
         comparator.compare()

@@ -55,6 +55,7 @@ class Html:
         <div class="main">
         <div class="inner">
         '''
+        print 'Processing...'
         self.htmldoc.write(html_header)
 
     def write_footer(self):
@@ -66,7 +67,7 @@ class Html:
         '''
         self.htmldoc.write(html_footer)
         self.htmldoc.close()
-        print 'Finished.\nTo view results open in your web browser:'
+        print 'Finished\nTo view results open in your web browser:'
         print 'file://' + os.getcwd() + '/' + self.outdir + '/index.html'
 
     def write_filelist(self):
