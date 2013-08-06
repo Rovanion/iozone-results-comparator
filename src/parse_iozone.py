@@ -156,7 +156,6 @@ class ParseIozone:
         res.set_colnames(colnames)
 
         for BS in sorted(all_BS.keys()):
-            res.data[BS] = []
             for file_number in range (len(self.files)):
                 row = []
                 for FS in sorted(all_FS.keys()):
@@ -194,7 +193,6 @@ class ParseIozone:
         res.set_colnames(colnames)
 
         for FS in sorted(all_FS.keys()):
-            res.data[FS] = []
             for file_number in range (len(self.files)):
                 row = []
                 for BS in sorted(all_BS.keys()):
@@ -207,7 +205,6 @@ class ParseIozone:
                         row.append(self.columns[FS,BS,operation][file_number])
                     else:
                         row.append(0)
-                #res.data[FS].append(row)
                 res.add_row(FS, row)
         return (res)
 
