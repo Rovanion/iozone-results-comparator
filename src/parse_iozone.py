@@ -116,11 +116,8 @@ class ParseIozone:
             #File parsing is complete.
             for key in self.columns.iterkeys():
                 if ( not ( this_file_columns.has_key(key) ) ):
-                    sys.stderr.write('%s: file number %d: value %s exists in previous files but not in this one!\n'
-                            %(file_name, file_counter, full_column_name) )
                     self.columns[key].append(None)
                     this_file_columns[key]=None
-        return
 
     # check which operations were present on inut iozone files
     def get_all_operations(self):

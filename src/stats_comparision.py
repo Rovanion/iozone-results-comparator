@@ -55,6 +55,7 @@ class StatsComparision:
     
     def compare(self):
         self.get_common()
+        self.delete_uncommon()
 
         for op in self.common_ops:
             self.base[op].compute_all_stats()
@@ -120,6 +121,15 @@ class StatsComparision:
             for colname in self.base[op].colnames:
                 if colname in self.set1[op].colnames:
                     self.op_common_cols[op].append(colname)
+
+    def delete_uncommon(self):
+        for op in self.common_ops:
+            for colname in reversed(self.base[op].colnames):
+                if not colname in self.op_common_cols[op]:
+                    self.base[op].removeColumn(colname)
+            for colname in reversed(self.set1[op].colnames):
+                if not colname in self.op_common_cols[op]:
+                    self.set1[op].removeColumn(colname)
     
     def summary(self):
         for (source, dest) in ((self.base, self.summary_base), (self.set1, self.summary_set1)):

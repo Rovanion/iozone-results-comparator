@@ -66,7 +66,7 @@ class OperationResults:
             self.data[rowname] = []
         self.data[rowname].append(values)
         for valnr in range(len(values)):
-            if (values[valnr] == float(0)):
+            if (values[valnr] == float(0) or values[valnr] == None):
                 continue
             self.lindata[valnr].append(values[valnr])
             self.alldata.append(values[valnr])
@@ -75,6 +75,30 @@ class OperationResults:
             if (rowname, colname) not in self.indexedData.keys():
                 self.indexedData[(rowname, colname)] = []
             self.indexedData[(rowname, colname)].append(values[valnr])
+
+    def removeColumn(self, name):
+        colNr = 0
+        while name != self.colnames[colNr]:
+            colNr += 1
+
+        self.colnames.remove(name)
+
+        # self.alldata has to be reconstructed
+        self.alldata = []
+
+        # remove from indexedData
+        for (row, col) in self.indexedData.keys():
+            if col == name:
+                del self.indexedData[(row, col)]
+            # reconstruct alldata
+            else:
+                for val in self.indexedData[(row, col)]:
+                    self.alldata.append(val)
+
+        # removal from self.data not needed since this item is not used TODO remove it
+
+        # remove from lindata
+        self.lindata.remove(self.lindata[colNr])
     
     # confidence = confidence interval probability rate in percent
     def compute_all_stats(self, confidence=0.90):

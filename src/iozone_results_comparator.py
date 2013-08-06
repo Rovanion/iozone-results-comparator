@@ -77,7 +77,7 @@ class IozoneResultsComparator:
         else:
             source = dest.set1
         res = operation_results.OperationResults(Type=dataType)
-        res.set_colnames(source[operations[0]].colnames)
+        res.set_colnames(source[operations[0]].colnames[:]) # we want to copy the list by value, not by refference
         for op in operations:
             for rowName in source[op].data.keys():
                 for fileValues in source[op].data[rowName]:
@@ -122,6 +122,7 @@ class IozoneResultsComparator:
 
 if __name__ == '__main__':
     comparator = IozoneResultsComparator()
+    print 'Processing...'
     if not comparator.args.multiset:
         comparator.get_data_normal_mode()
         comparator.compare()
