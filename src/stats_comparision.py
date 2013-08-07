@@ -75,9 +75,8 @@ class StatsComparision:
             self.differences[op] = []
             self.ttest_pvals[op] = []
             self.ttest_res[op] = []
-            # TODO common cols jeste nefunguje na 100%, neuvazuje se posunuti od zacatku
             for colnr in range(len(self.op_common_cols[op])):
-                diff = (self.base[op].medians[colnr] / self.set1[op].medians[colnr] -1)*100
+                diff = (self.set1[op].medians[colnr] / self.base[op].medians[colnr] -1)*100
                 self.differences[op].append(diff)
 
                 (tstat, pval) = stats.ttest_ind(self.base[op].lindata[colnr], self.set1[op].lindata[colnr])
