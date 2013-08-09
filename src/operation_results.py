@@ -95,7 +95,7 @@ class OperationResults:
                 for val in self.indexedData[(row, col)]:
                     self.alldata.append(val)
 
-        # removal from self.data not needed since this item is used only
+        # removal from self.data not performed since this item is used only
         # for creating the ALL pseudooperation data and not later
 
         # remove from lindata

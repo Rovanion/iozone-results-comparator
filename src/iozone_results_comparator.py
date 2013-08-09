@@ -27,6 +27,7 @@ import stats_comparision
 import html
 import operation_results
 import multiset_data
+import tsv_output
 
 # the main class
 class IozoneResultsComparator:
@@ -35,6 +36,7 @@ class IozoneResultsComparator:
 
         self.parse_args()    
         self.html = html.Html(self.args.html_dir)
+        self.tsv = tsv_output.TsvOutput(self.args.tsv_dir)
 
     def parse_args(self):
         self.argparser = argparse.ArgumentParser(description='Iozone results comparator') 
@@ -45,7 +47,9 @@ class IozoneResultsComparator:
         self.argparser.add_argument('--multiset', required=False, action='store_true',
             help='Enables the multiset visual comparision mode.')
         self.argparser.add_argument('--html_dir', nargs=1, required=False, action='store', 
-            default='html_out', help='Where to output HTML.')
+            default='html_out', help='Where to wite the output HTML.')
+        self.argparser.add_argument('--tsv_dir', nargs=1, required=False, action='store', 
+            default='tsv_out', help='Where to write the output TSV.')
         (self.args, self.remainingArgs) = self.argparser.parse_known_args()
         self.sets['baseline'] = self.args.baseline
         self.sets['set1'] = self.args.set1
@@ -89,6 +93,7 @@ class IozoneResultsComparator:
         self.bs.compare()
         self.fs.computeRegressionLines()
 
+        self.tsv.normalMode(self.fs, self.bs)
         self.html.init_normal_mode(self.fs, self.bs, self.args.baseline, self.args.set1)
         self.html.normal_mode()
 
