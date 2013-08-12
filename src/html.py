@@ -25,8 +25,9 @@ import plotter
 import googlecharts
 
 class Html:
-    def __init__(self, OutDir):
+    def __init__(self, OutDir, tabdDir):
         self.outdir = OutDir
+        self.tabdDir = tabdDir
         if not (os.path.exists(OutDir)):
             os.makedirs(OutDir)
         shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
@@ -158,8 +159,13 @@ class Html:
         self.norm_table_set(Source.set1[Op], 'set1')
 
         self.write_diff_ttest(Source.differences[Op], Source.ttest_pvals[Op], Source.ttest_res[Op])
-
         self.htmldoc.write('</table>\n')
+
+        hrefBaseline = Op + '_' + Source.base[Op].datatype + '_baseline.tsv'
+        hrefSet1 = Op + '_' + Source.set1[Op].datatype + '_set1.tsv'
+        self.htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../' + self.tabdDir 
+            + '/' + hrefBaseline + '\">' + hrefBaseline + '</a>')
+        self.htmldoc.write(' and <a href=\"../' + self.tabdDir + '/' + hrefSet1 + '\">' + hrefSet1 + '</a>.</div>\n')
 
     def write_diff_ttest(self, Diffs, Pvals, Results):
         # write differences

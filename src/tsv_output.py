@@ -63,14 +63,23 @@ class TsvOutput:
         for rowName in sorted(rowColMap.keys()):
             for runNr in range(0, nrOfRuns ):
                 self.tabd.write(data.ylabel + ' = ' + str(rowName) + ' Run = ' + str(runNr + 1))
+                # missing values from the beginning of the row? 
+                firstNonEmpty = data.colnames[0]
+                while (firstNonEmpty < rowColMap[rowName][0]):
+                    self.tabd.write('\t')
+                    firstNonEmpty *= 2
+
                 for colName in rowColMap[rowName]:
                     self.tabd.write('\t' + str(round(data.indexedData[(rowName, colName)][runNr], 2)))
+
+                # missing values from the end of the row? 
+                lastNonEmpty = rowColMap[rowName][-1]
+                while (lastNonEmpty < data.colnames[-1]):
+                    self.tabd.write('\t')
+                    lastNonEmpty *= 2
                 self.tabd.write('\n')
     
-        # TODO
-        ## write all statistic values
-        #statVals = (avgs, devs, ci_mins, ci_maxes, gms, meds, frstQrts, thrdQrts, minVals, maxVals)
-        #write_tabd_stats(tabd, statVals)
+        self.write_tabd_stats(data)
         self.write_oocalc_formulas(str(4 + nrOfRuns * len(rowColMap.keys())))
         self.tabd.close()
     
@@ -91,21 +100,24 @@ class TsvOutput:
         self.tabd.write('#minimum\t=QUARTILE(B5:B' + dataEnd + ';0)\n')
         self.tabd.write('#maximum\t=QUARTILE(B5:B' + dataEnd + ';4)\n')
 
-# write statistical values to the bottom lines of tab delimited output
-# tabd - where to write
-# statVals - list of values in specific order(see valNames var in this function)
-def write_tabd_stats(tabd, statVals):
-    # data nr value name
-    valNames = ('mean val.', 'standard dev.', 'ci. min. 90%', 'ci. max 90%', 'geom. mean', 'median',
-        'first quartile', 'third quartile', 'minimum', 'maximum')
-
-    tabd.write('# Statistics (excluding 0 values)\n')
-    for v in range(len(statVals)):
-        tabd.write('#' + valNames[v])
-        for m in range(len(statVals[v])):
-            tabd.write('\t'+str(round(statVals[v][m],2)))
-        tabd.write('\n')
-    return
+    # write statistical values to the bottom lines of tab delimited output
+    # tabd - where to write
+    # statVals - list of values in specific order(see valNames var in this function)
+    def write_tabd_stats(self, data):
+        # data nr value name
+        order = ('mean val.', 'standard dev.', 'ci. min. 90%', 'ci. max 90%', 'geom. mean', 'median',
+            'first quartile', 'third quartile', 'minimum', 'maximum')
+        sources = {'mean val.' : data.means, 'standard dev.' : data.devs, 'ci. min. 90%' : data.ci_mins,
+                'ci. max 90%' : data.ci_maxes, 'geom. mean' : data.gmeans, 'median' : data.medians,
+                'first quartile' : data.first_qrts, 'third quartile' : data.third_qrts, 
+                'minimum' : data.mins, 'maximum' : data.maxes}
+    
+        self.tabd.write('# Statistics (excluding 0 values)\n')
+        for stat in order:
+            self.tabd.write('#' + stat)
+            for val in sources[stat]:
+                self.tabd.write('\t'+str(round(val, 2)))
+            self.tabd.write('\n')
 
 # craate tab delimited output of sumary sorted by operation and overall summary
 # data - both sets data in  [[(FS, BSdata)],[(FS, BSdata)]] # [0] = base, [1] = set1 format
