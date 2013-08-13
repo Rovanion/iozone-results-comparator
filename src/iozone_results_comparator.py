@@ -35,7 +35,7 @@ class IozoneResultsComparator:
         self.sets = {}
 
         self.parse_args()    
-        self.html = html.Html(self.args.html_dir, self.args.tsv_dir)
+        self.html = html.Html(self.args.html_dir, self.args.tsv_dir, sys.argv[0])
         self.tsv = tsv_output.TsvOutput(self.args.tsv_dir)
 
     def parse_args(self):

@@ -25,13 +25,14 @@ import plotter
 import googlecharts
 
 class Html:
-    def __init__(self, OutDir, tabdDir):
+    def __init__(self, OutDir, tabdDir, argv0):
         self.outdir = OutDir
         self.tabdDir = tabdDir
         if not (os.path.exists(OutDir)):
             os.makedirs(OutDir)
-        shutil.copyfile('./stylesheet.css',OutDir+'/stylesheet.css')
-        self.htmldoc=open(OutDir+'/index.html','w')
+        (head, tail) = os.path.split(argv0)
+        shutil.copyfile(head + '/stylesheet.css', OutDir + '/stylesheet.css')
+        self.htmldoc=open(OutDir+'/index.html', 'w')
 
         self.googlecharts = googlecharts.GoogleCharts()
         self.plotter = plotter.Plotter(self.outdir)

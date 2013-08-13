@@ -23,11 +23,7 @@ SET1=$(find ./xfs -name "*.iozone" | sort)
 SET2=$(find ./ext2 -name "*.iozone" | sort)
 SET3=$(find ./ext3 -name "*.iozone" | sort)
 
-cp ../src/stylesheet.css .
-
 #../old_version/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1} --detail ALL
 ../src/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1}
 #../src/iozone_results_comparator.py --baseline ${BASELINE} --set1 ${SET1} --set2 ${SET2} --set3 ${SET3} --multiset
-
-rm -f stylesheet.css
 
