@@ -19,6 +19,9 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from copy import deepcopy
+
+import operation_results
 
 class TsvOutput:
     def __init__(self, outputDir):
@@ -35,6 +38,11 @@ class TsvOutput:
             self.tab_delimited(self.fs.set1[op], op, 'set1')
             self.tab_delimited(self.bs.base[op], op, 'baseline')
             self.tab_delimited(self.bs.set1[op], op, 'set1')
+
+        # why deepcopy? Because of the ALL pseudooperation removal we are passing the data
+        # by value, not by reference
+        self.tab_delimited_summary(deepcopy(dataBS.base), dataBS.common_ops[:], 'baseline')
+        self.tab_delimited_summary(deepcopy(dataBS.set1), dataBS.common_ops[:], 'set1')
 
     # craate tab delimieted output for single operation
     # data - OperationResults object
@@ -119,108 +127,57 @@ class TsvOutput:
                 self.tabd.write('\t'+str(round(val, 2)))
             self.tabd.write('\n')
 
-# craate tab delimited output of sumary sorted by operation and overall summary
-# data - both sets data in  [[(FS, BSdata)],[(FS, BSdata)]] # [0] = base, [1] = set1 format
-# operations - operations order for tab delimited
-def tab_delimited_summary(data, order):
-    for setNr in range(len(data)):
-        if (setNr == 0):
-            setName = 'baseline'
-        else:
-            setName = 'set1'
-        tabdOperationName = 'summary_sorted_by_operation' + '_' + setName + '.tsv'
-        tabdAllName = 'summary_all' + '_' + setName + '.tsv'
-        tabdOperation = open(tabdDir+'/'+tabdOperationName, 'w')
-        tabdAll = open(tabdDir+'/'+tabdAllName, 'w')
+    # craate tab delimited output of sumary sorted by operation and overall summary
+    def tab_delimited_summary(self, data, operations, setName):
+        self.tabd = open(self.outputDir + '/' + 'summary_sorted_by_operation' + '_' + setName + '.tsv', 'w')
 
-        tabdOperation.write('# iozone measured throughput[MB/s] for any FS and any BS. Open it with: LC_ALL=en_US.UTF-8\n')
-        tabdOperation.write('# Read this file into Open Office  with command oocalc <filename>\n')
-        tabdOperation.write('# Read this file into language R with command data <- read.delim("<filename>",comment.char = "#")\n')
-        tabdAll.write('# iozone measured throughput[MB/s] for any FS, any BS and any operation. Open it with: LC_ALL=en_US.UTF-8\n')
-        tabdAll.write('# Read this file into Open Office  with command oocalc <filename>\n')
-        tabdAll.write('# Read this file into language R with command data <- read.delim("<filename>",comment.char = "#")\n')
-        tabdAll.write('ALL\n')
+        self.tabd.write('# iozone measured throughput[MB/s] for any FS and any BS. Open it with: LC_ALL=en_US.UTF-8\n')
+        self.tabd.write('# Read this file into Open Office  with command oocalc <filename>\n')
+        self.tabd.write('# Read this file into language R with command data <- read.delim("<filename>",comment.char = "#")\n')
 
-        tabdOperation.write('Operation')
-        for operation in order:
-            tabdOperation.write('\t'+operation)
-        tabdOperation.write('\n')
+        # we don't want the ALL pseudooperation here
+        operations.remove('ALL')
+        del data['ALL']
 
-        # prepare data for stats
-        columnValues = [] # [[col1_row1, col1_row2, ...], [col2_row1, col2_row2, ...], ...]
-        allSetData = []
-        valsOp = {}
-        valsAll = {}
-        for m in order:
-            columnValues.append([])
+        self.tabd.write('Operation')
+        for operation in operations:
+            self.tabd.write('\t' + operation)
+        self.tabd.write('\n')
 
-        # prepare data in format more usable for what will follow
-        for opNr in range(len(data[setNr])):
-            (x, y) = data[setNr][opNr]
-            Run = 0
-            FS = y[0][0]
-            for row in y:
-                if (row[0] == FS):
-                    Run += 1
-                else:
-                    FS = row[0]
-                    Run = 1
-                for bsNr in range(len(x)):
-                    valsOp[(FS, x[bsNr], Run, opNr)] = row[bsNr+1]
-                    valsAll[(opNr, FS, x[bsNr], Run)] = row[bsNr+1]
-                    columnValues[opNr].append(row[bsNr+1])
-                    allSetData.append(row[bsNr+1])
+        nrOfRuns = len(data[operations[0]].indexedData[data[operations[0]].indexedData.keys()[0]])
 
-        # write conted of tabd sorted by operation
-        row = []
-        dataLineNr = 4
-        for key in sorted(valsOp.keys()):
-            (FS, BS, Run, opNr) = key
-            if (valsOp[key] != 0):
-                val = str(round(valsOp[key],2))
-            else:
-                val = ''
-            row.append(val)
-            if (opNr == 0):
-                caption = 'Filesize[kB] = ' + str(FS) + ' Block size [kB] = ' + str(BS) + ' Run=' + str(Run)
-            if (opNr == (len(order) - 1 )):
-                empty = True;
-                for val in row:
-                    if val:
-                        empty = False;
-                if not (empty):
-                    tabdOperation.write(caption)
-                    for val in row:
-                        tabdOperation.write('\t' + val)
-                    tabdOperation.write('\n')
-                    dataLineNr += 1
-                row = []
-
-        # write overall tabd content
-        tabdAllLine = 4
-        for key in sorted(valsAll.keys()):
-            (opNr, FS, BS, Run) = key
-            if (valsAll[key] != 0):
-                tabdAll.write('Operation ' + order[opNr] + ' Filesize[kB] = ' + str(FS) + ' Block size [kB] = ' + str(BS) + ' Run = ' + str(Run) + '\t' + str(round(valsAll[key],2)) + '\n')
-                tabdAllLine += 1
+        # write the data
+        for (row, col) in sorted(data[operations[0]].indexedData.keys()):
+            for run in range(0, nrOfRuns):
+                self.tabd.write(data[operations[0]].ylabel + ' = ' + str(row) + ' ' +
+                        data[operations[0]].xlabel + ' = ' + str(col) + ' Run = ' + str(run + 1))
+                for op in operations:
+                    self.tabd.write('\t' + str(round(data[op].indexedData[(row, col)][run], 2)))
+                self.tabd.write('\n')
 
         # compute statistics
-        (avgs, devs, errs, ci_mins, ci_maxes, gms, meds, frstQrts, thrdQrts, minVals, maxVals) = compute_all_stats(columnValues)
+
+        # operation_results object is used for computing the stats and 
+        # as a temporary storage of stats before outputing them to the TSV file
+        opRes = operation_results.OperationResults('fs') # the type really does not matter at all here
+
+        for op in operations:
+            (mean, dev, ci_min, ci_max, gmean, median, first_qrt, third_qrt, minimum, maximum) = opRes.stats(data[op].alldata)
+            opRes.means.append(mean) 
+            opRes.devs.append(dev) 
+            opRes.ci_mins.append(ci_min)
+            opRes.ci_maxes.append(ci_max)
+            opRes.gmeans.append(gmean)
+            opRes.medians.append(median)
+            opRes.first_qrts.append(first_qrt)
+            opRes.third_qrts.append(third_qrt)
+            opRes.mins.append(minimum)
+            opRes.maxes.append(maximum)
 
         # write all statistic values to tabd sorted by operation
-        statValsOperation = (avgs, devs, ci_mins, ci_maxes, gms, meds, frstQrts, thrdQrts, minVals, maxVals)
-        write_tabd_stats(tabdOperation, statValsOperation)
-        write_oocalc_formulas(tabdOperation, str(dataLineNr))
-        tabdOperation.close()
-
-
-        # write all statistic values to all data tabd
-        columnValues = [allSetData]
-        (avgs, devs, errs, ci_mins, ci_maxes, gms, meds, frstQrts, thrdQrts, minVals, maxVals) = compute_all_stats(columnValues)
-        statValsAll = (avgs, devs, ci_mins, ci_maxes, gms, meds, frstQrts, thrdQrts, minVals, maxVals)
-        write_tabd_stats(tabdAll, statValsAll)
-        write_oocalc_formulas(tabdAll, str(tabdAllLine))
-        tabdAll.close()
+        self.write_tabd_stats(opRes)
+        self.write_oocalc_formulas(str(4 + nrOfRuns * len(data[operations[0]].indexedData.keys())))
+        self.tabd.close()
 
 if __name__ == '__main__':
     print 'Try running iozone_results_comparator.py'

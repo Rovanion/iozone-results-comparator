@@ -109,8 +109,8 @@ class StatsComparision:
                 
     def get_common(self):
         # get common operations
-        for op in sorted(self.base):
-            if op in self.set1:
+        for op in self.order:
+            if op in self.set1 and op in self.base:
                 self.common_ops.append(op)
 
         # get common cols
@@ -135,10 +135,7 @@ class StatsComparision:
             for op in self.common_ops:
                 dest.append([])
 
-            for op in self.order:
-                if op not in self.common_ops:
-                    break
-
+            for op in self.common_ops:
                 vals = (source[op].mean, source[op].dev, source[op].ci_min, source[op].ci_max,
                     source[op].gmean, source[op].median, source[op].first_qrt,
                     source[op].third_qrt, source[op].minimum, source[op].maximum)

@@ -123,9 +123,7 @@ class Html:
         self.norm_summary()
         self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
 
-        for op in self.plotter.order:
-            if op not in self.fs.common_ops:
-                break
+        for op in self.fs.common_ops:
             self.norm_operation(op)            
         self.write_info()
         self.write_footer()
@@ -216,9 +214,7 @@ class Html:
         self.htmldoc.write('<table>\n')
         self.htmldoc.write('<tr>')
         self.htmldoc.write('<td/><td>Operation</td>\n')
-        for op in self.plotter.order:
-            if op not in self.fs.common_ops:
-                break
+        for op in self.fs.common_ops:
             self.htmldoc.write('<td><a href=\"#' + op + '\">'+self.googlecharts.opnames[op]+'</a></td>\n')
         self.htmldoc.write('</tr>\n')
 
@@ -238,14 +234,17 @@ class Html:
 
         self.htmldoc.write('<tr class=\"bottomline topline\">\n')
         self.htmldoc.write('<td colspan="2">linear regression slope 90%</td>\n')
-        for op in self.plotter.order:
-            if op not in self.fs.common_ops:
-                break
+        for op in self.fs.common_ops:
             self.htmldoc.write('<td>'+str(round(self.fs.regressionLines[op].confIntMin,2))+' - '+str(round(self.fs.regressionLines[op].confIntMax,2))+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
         self.write_diff_ttest(self.fs.summary_diffs, self.fs.summary_pvals, self.fs.summary_res)
         self.htmldoc.write('</table>\n')
+        self.htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../' + self.tabdDir + 
+                '/summary_sorted_by_operation_baseline.tsv\">summary_sorted_by_operation_baseline.tsv</a>')
+        self.htmldoc.write(' and <a href=\"../' + self.tabdDir +
+                '/summary_sorted_by_operation_set1.tsv\">summary_sorted_by_operation_set1.tsv</a>.<br>')
+        
 
     def norm_regression(self, Op):
         slope = self.fs.regressionLines[Op].slope
