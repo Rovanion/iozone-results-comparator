@@ -32,15 +32,12 @@ class Plotter:
         "bkwdrd":"Backwards\nread", "recrewr":"Record\nrewrite", "striderd":"Strided\nRead",
         "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
-        self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
-        "striderd", "fwrite", "frewrite", "fread", "freread", "ALL"]
-        
-    def summary(self, Base, Set1):
+    def summary(self, Base, Set1, ops):
         # create the whiskers summary plot
         textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
         plt.clf()
         width=0.35
-        x=numpy.arange(len(Base))
+        x=numpy.arange(len(Base[5]))
 
         # baseline set1 bars one next another
         x1=x+width/2
@@ -73,8 +70,7 @@ class Plotter:
         ax.set_xticks(x+width)
         opNames = []
         # operations names on X axis
-        # TODO operations missing?
-        for op in self.order:
+        for op in ops:
             opNames.append(self.opnames[op])
         ax.set_xticklabels(tuple(opNames), size=9)
 

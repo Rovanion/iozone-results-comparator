@@ -26,6 +26,9 @@ class MultisetData:
         self.bs = {}
         self.common_ops = []
 
+        self.order=["iwrite", "rewrite", "iread", "reread", "randrd", "randwr", "bkwdrd", "recrewr", 
+        "striderd", "fwrite", "frewrite", "fread", "freread"]
+        
     def addDataSet(self, setName):
         self.fs[setName] = {}
         self.bs[setName] = {}
@@ -48,9 +51,9 @@ class MultisetData:
 
     def get_common(self):
         # get common operations
-        self.common_ops = self.fs['baseline'].keys()
+        self.common_ops = self.order
         for op in self.common_ops:
-            for setName in sorted(self.fs.keys())[1:]:
+            for setName in sorted(self.fs.keys()):
                 if not op in self.fs[setName].keys():
                     self.common_ops.remove(op)
 

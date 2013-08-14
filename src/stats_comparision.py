@@ -89,10 +89,8 @@ class StatsComparision:
                     self.ttest_res[op].append('DIFF')
 
     def summary_ttest(self):
-        for i in range(len(self.order)):
-            op = self.order[i]
-            if op not in self.common_ops:
-                break
+        for i in range(len(self.common_ops)):
+            op = self.common_ops[i]
             # summary_base[5] - medians
             diff = (self.summary_set1[5][i] / self.summary_base[5][i] -1)*100
             self.summary_diffs.append(diff)
@@ -132,7 +130,8 @@ class StatsComparision:
     
     def summary(self):
         for (source, dest) in ((self.base, self.summary_base), (self.set1, self.summary_set1)):
-            for op in self.common_ops:
+            #for op in self.common_ops:
+            for i in range(0, 10): # we've got 10 statistic values, see below
                 dest.append([])
 
             for op in self.common_ops:

@@ -122,7 +122,7 @@ class Html:
         self.write_header()
         self.write_filelist()
         self.norm_summary()
-        self.plotter.summary(self.fs.summary_base, self.fs.summary_set1)
+        self.plotter.summary(self.fs.summary_base, self.fs.summary_set1, self.fs.common_ops)
 
         for op in self.fs.common_ops:
             self.norm_operation(op)            
@@ -275,9 +275,7 @@ class Html:
 
     def multiset_mode(self):
         self.write_header()
-        for op in self.plotter.order:
-            if op not in self.multiset.common_ops:
-                break
+        for op in self.multiset.common_ops:
             self.multiset_operation(op)            
         self.write_multiset_info()
         self.write_footer()
