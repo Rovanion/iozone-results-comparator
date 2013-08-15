@@ -135,11 +135,15 @@ class OperationResults:
         n = len(data)
 
         mean = numpy.mean(data) # arithmetic mean
-        dev = numpy.std(data, ddof=1) # delta degree of freedom = 1  -  sample standard deviation (Bessel's correction)
-        se = dev/numpy.sqrt(n) # standard error
-        err = se * stats.t._ppf((1+confidence)/2., n-1) # confidence interval
-        ci_min = mean - err # confidence interval
-        ci_max = mean + err # confidence interval
+        if len(data) == 1:
+            dev = 0
+            ci_min = ci_max = mean
+        else:
+            dev = numpy.std(data, ddof=1) # delta degree of freedom = 1  -  sample standard deviation (Bessel's correction)
+            se = dev/numpy.sqrt(n) # standard error
+            err = se * stats.t._ppf((1+confidence)/2., n-1) # confidence interval
+            ci_min = mean - err # confidence interval
+            ci_max = mean + err # confidence interval
         gmean = stats.gmean(data) # geometric mean
         median = numpy.median(data) # median
         first_qrt = stats.scoreatpercentile(data, 25) # first quartile

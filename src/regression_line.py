@@ -49,6 +49,12 @@ class RegressionLine:
         discriminant = numpy.sqrt( B**2 + 4 * A**2)
         
         a = ( -B + discriminant ) / ( 2 * A )
+        self.slope = a
+        if len(self.xVals) == 1:
+            self.stdError = 0
+            self.confIntMax = self.confIntMin = a
+            return
+        
         # distance of points from line with slope=a
         D = numpy.abs(a*x-y) / numpy.sqrt(a**2 + 1)
         # standard error of a
@@ -56,7 +62,6 @@ class RegressionLine:
         # 90% confidence interval
         h = a_se * stats.t._ppf((1+0.90)/2., len(x)-1)
 
-        self.slope = a
         self.stdError = a_se
         self.confIntMax = a + h
         self.confIntMin = a - h

@@ -76,8 +76,13 @@ class StatsComparision:
             self.ttest_pvals[op] = []
             self.ttest_res[op] = []
             for colnr in range(len(self.op_common_cols[op])):
-                diff = (self.set1[op].medians[colnr] / self.base[op].medians[colnr] -1)*100
+                diff = (self.set1[op].medians[colnr] / self.base[op].medians[colnr] - 1) * 100
                 self.differences[op].append(diff)
+
+                if len(self.base[op].lindata[colnr]) == 1 and len(self.set1[op].lindata[colnr]) == 1:
+                    self.ttest_pvals[op].append(float('NaN'))
+                    self.ttest_res[op].append('N/A')
+                    continue
 
                 (tstat, pval) = stats.ttest_ind(self.base[op].lindata[colnr], self.set1[op].lindata[colnr])
                 self.ttest_pvals[op].append(pval)
@@ -94,6 +99,11 @@ class StatsComparision:
             # summary_base[5] - medians
             diff = (self.summary_set1[5][i] / self.summary_base[5][i] -1)*100
             self.summary_diffs.append(diff)
+
+            if len(self.base[op].alldata) == 1 and len(self.set1[op].alldata) == 1:
+                self.summary_pvals.append(float('NaN'))
+                self.summary_res.append('N/A')
+                continue
 
             (tstat, pval) = stats.ttest_ind(self.base[op].alldata, self.set1[op].alldata)
             self.summary_pvals.append(pval)
