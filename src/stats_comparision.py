@@ -79,7 +79,7 @@ class StatsComparision:
                 diff = (self.set1[op].medians[colnr] / self.base[op].medians[colnr] - 1) * 100
                 self.differences[op].append(diff)
 
-                if len(self.base[op].lindata[colnr]) == 1 and len(self.set1[op].lindata[colnr]) == 1:
+                if len(self.base[op].lindata[colnr]) == 1 or len(self.set1[op].lindata[colnr]) == 1:
                     self.ttest_pvals[op].append(float('NaN'))
                     self.ttest_res[op].append('N/A')
                     continue
