@@ -127,33 +127,61 @@ class Plotter:
         plt.savefig(self.outdir+'/'+name)
         
     def percentual_plot(self, Op, Source):
-        xVals = []
-        yVals = []
-        diameters = []
-        colors = []
         base = Source.base[Op].indexedData
         set1 = Source.set1[Op].indexedData
 
-        for (bs, fs) in base:
-            xVals.append(str(fs))
-            yVals.append(str(bs))
-            baseAvg = numpy.mean(base[(bs, fs)])
-            set1Avg = numpy.mean(set1[(bs, fs)])
-            colors.append('k' if set1Avg > baseAvg else 'r')
-            diameters.append(10 * abs((baseAvg-set1Avg))/(baseAvg/100))
+        # percent categories tune here:
+        categories = [0, 5, 15, 30, float('inf')]
 
         plt.clf()
         fig = plt.figure()
         DefaultSize = fig.get_size_inches()
         fig.set_size_inches( (DefaultSize[0]*1.75, DefaultSize[1]))
-
         plt.grid()
-        plt.scatter(xVals, yVals, diameters, colors, label='foo')
-        plt.loglog(basex=2, basey=2)
 
+        # this is ineffective, but the code is much nicer to read this way
+        for catNr in range(len(categories) - 2, -1, -1):    # going backwards produces nicer legend
+            baseX = []
+            baseY = []
+            baseDia = []
+            set1X = []
+            set1Y = []
+            set1Dia = []
+
+            for (bs, fs) in base:
+                baseAvg = numpy.mean(base[(bs, fs)])
+                set1Avg = numpy.mean(set1[(bs, fs)])
+                pcnt = abs((baseAvg-set1Avg))/(baseAvg/100)
+                if (pcnt < categories[catNr]) or (pcnt >= categories[catNr + 1]): 
+                    continue
+                if set1Avg > baseAvg:
+                    set1X.append(str(fs))
+                    set1Y.append(str(bs))
+                    set1Dia.append(10 * pcnt)
+                else:
+                    baseX.append(str(fs))
+                    baseY.append(str(bs))
+                    baseDia.append(10 * pcnt)
+
+            intLeft = str(categories[catNr])
+            intRight = str(categories[catNr + 1])
+            if intRight == 'inf':
+                name = ' > ' + intLeft + '%'
+            else:
+                name = intLeft + '% - ' + intRight + '%'
+            color = (catNr + 1) * (0.999 / (len(categories) - 1))
+
+            if len(baseDia) > 0:
+                plt.scatter(baseX, baseY, baseDia, (color, 0 , 0), label='Faster in Baseline ' + name)
+            if len(set1Dia) > 0:
+                plt.scatter(set1X, set1Y, set1Dia, (1 - color, 1 - color, 1 - color), label='Faster in Set1 ' + name)
+        
+        plt.loglog(basex=2, basey=2)
         plt.xlabel('File size')
         plt.ylabel('Block size')
         plt.title('Percentual difference')
+
+        plt.legend(loc = 'upper left', scatterpoints = 1, fontsize = 10)
 
         plt.savefig(self.outdir + '/' +  Op + '_pcnt')
 
