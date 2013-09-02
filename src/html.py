@@ -244,7 +244,7 @@ class Html:
         self.htmldoc.write('<div class=\"rawdata belowtable\">See raw data <a href=\"../' + self.tabdDir + 
                 '/summary_sorted_by_operation_baseline.tsv\">summary_sorted_by_operation_baseline.tsv</a>')
         self.htmldoc.write(' and <a href=\"../' + self.tabdDir +
-                '/summary_sorted_by_operation_set1.tsv\">summary_sorted_by_operation_set1.tsv</a>.<br>')
+                '/summary_sorted_by_operation_set1.tsv\">summary_sorted_by_operation_set1.tsv</a>.</div>')
         
 
     def norm_regression(self, Op):
@@ -264,10 +264,7 @@ class Html:
 
     def norm_percentual(self, Op):
         self.htmldoc.write('<img src=\"' + Op + '_pcnt.png\" alt=\"summary\" class="plot"/>\n')
-        self.htmldoc.write('<div class="note">Black - faster in set1, red - faster in baseline. Bigger the bullet, bigger the difference.</div><br/>')
-
         self.plotter.percentual_plot(Op, self.fs)
-
 
     def init_multiset_mode(self, dataSets, filenames):
         self.multiset = dataSets
