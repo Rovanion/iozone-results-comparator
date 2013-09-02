@@ -132,6 +132,8 @@ class Plotter:
 
         # percent categories tune here:
         categories = [0, 5, 15, 30, float('inf')]
+        colorsSlower = ['#FFFF66', '#FFBB00', '#FF7700', '#FF0000']
+        colorsFaster = ['#0066FF', '#000099', '#660066', '#000000']
 
         plt.clf()
         fig = plt.figure()
@@ -169,12 +171,11 @@ class Plotter:
                 name = ' > ' + intLeft + '%'
             else:
                 name = intLeft + '% - ' + intRight + '%'
-            color = (catNr + 1) * (0.999 / (len(categories) - 1))
 
             if len(baseDia) > 0:
-                plt.scatter(baseX, baseY, baseDia, (color, 0 , 0), label='Faster in Baseline ' + name)
+                plt.scatter(baseX, baseY, baseDia, colorsSlower[catNr], label='Slower in Set1 ' + name)
             if len(set1Dia) > 0:
-                plt.scatter(set1X, set1Y, set1Dia, (1 - color, 1 - color, 1 - color), label='Faster in Set1 ' + name)
+                plt.scatter(set1X, set1Y, set1Dia, colorsFaster[catNr], label='Faster in Set1 ' + name)
         
         plt.loglog(basex=2, basey=2)
         plt.xlabel('File size')
