@@ -56,7 +56,7 @@ class Html:
 
         <script type="text/javascript">  
             $(document).ready(function(){
-                $(".normtable tr.hide_master").click(function(){
+                $("tr.hide_master").click(function(){
                     $(this).nextUntil("tr:not(.hidden)").toggle();
                     if ($(this).prev().prev().children().first().attr("rowspan") == 3)
                         $(this).prev().prev().children().first().attr("rowspan", 10);
@@ -230,8 +230,8 @@ class Html:
             self.htmldoc.write('</tr>\n')
 
     def norm_summary(self):
-        rownames = ('standard dev.', 'ci. min. 90%', 'ci. max. 90%', 'geom. mean',
-            'median', 'first quartile', 'third quartile', 'minimum', 'maximum')
+        rownames = ('<b>median</b>', '<b>third quartile</b>', 'minimum', 'maximum', 'mean val.',
+                'standard dev.', 'ci. min. 90%', 'ci. max. 90%', 'geom. mean')
 
         self.htmldoc.write('<h3 id="summary top">Overall summary</h3>')
         self.htmldoc.write('<img src=\"summary.png\" alt=\"summary\" class="plot"/>\n')
@@ -245,12 +245,17 @@ class Html:
         # summary data is stored in fs instance, no need for counting this redundantly in bs
         for (setname, source) in (('baeline', self.fs.summary_base), ('set1', self.fs.summary_set1)):
             self.htmldoc.write('<tr class=\"topline\">\n')
-            self.htmldoc.write('<td rowspan="10">' + setname + '</td><td>mean val.</td>\n')
+            self.htmldoc.write('<td rowspan="3">' + setname + '</td><td><b>first quartile</b></td>\n')
             for val in source[0]:
                 self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
             self.htmldoc.write('</tr>\n')
             for i in range(len(rownames)):
-                self.htmldoc.write('<tr><td>' + rownames[i] + '</td>\n')
+                if (rownames[i] == '<b>median</b>'):
+                    self.htmldoc.write('<tr><td>' + rownames[i] + '</td>\n')
+                elif (rownames[i] == '<b>third quartile</b>'):
+                    self.htmldoc.write('<tr class=\"hide_master\"><td>' + rownames[i] + '<div class="arrow"></div></td>\n')
+                else:
+                    self.htmldoc.write('<tr class=\"hidden\"><td>' + rownames[i] + '</td>\n')
                 # source[0] is mean
                 for val in source[1+i]:
                     self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')

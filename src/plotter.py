@@ -49,21 +49,21 @@ class Plotter:
         ax = fig.add_subplot(111)
 
         # whiskers
-        # Base[5] - meds
-        # Base[8] - mins
-        # Base[9] - maxes
-        ax.errorbar(x1,Base[5],yerr=[numpy.array(Base[5]) - numpy.array(Base[8]),numpy.array(Base[9]) - numpy.array(Base[5])],color='red',linestyle='None',marker='None')
-        ax.errorbar(x2,Set1[5],yerr=[numpy.array(Set1[5]) - numpy.array(Set1[8]),numpy.array(Set1[9]) - numpy.array(Set1[5])],color='black',linestyle='None',marker='None')
+        # Base[1] - meds
+        # Base[3] - mins
+        # Base[4] - maxes
+        ax.errorbar(x1,Base[1],yerr=[numpy.array(Base[1]) - numpy.array(Base[3]),numpy.array(Base[4]) - numpy.array(Base[1])],color='red',linestyle='None',marker='None')
+        ax.errorbar(x2,Set1[1],yerr=[numpy.array(Set1[1]) - numpy.array(Set1[3]),numpy.array(Set1[4]) - numpy.array(Set1[1])],color='black',linestyle='None',marker='None')
 
         # baseline bars
-        # Base[6] - first quartiles
-        # Base[7] - third quartiles
-        rects1 = ax.bar(x,numpy.array(Base[5]) - numpy.array(Base[6]),width,bottom=Base[6],color='red')
-        ax.bar(x,numpy.array(Base[7]) - numpy.array(Base[5]),width,bottom=Base[5],color='red')
+        # Base[0] - first quartiles
+        # Base[2] - third quartiles
+        rects1 = ax.bar(x,numpy.array(Base[1]) - numpy.array(Base[0]),width,bottom=Base[0],color='red')
+        ax.bar(x,numpy.array(Base[2]) - numpy.array(Base[1]),width,bottom=Base[1],color='red')
 
         # set1 bars
-        rects2 = ax.bar(x+width,numpy.array(Set1[5]) - numpy.array(Set1[6]),width,bottom=Set1[6],color='white')
-        ax.bar(x+width,numpy.array(Set1[7]) - numpy.array(Set1[5]),width,bottom=Set1[5],color='white')
+        rects2 = ax.bar(x+width,numpy.array(Set1[1]) - numpy.array(Set1[0]),width,bottom=Set1[0],color='white')
+        ax.bar(x+width,numpy.array(Set1[2]) - numpy.array(Set1[1]),width,bottom=Set1[1],color='white')
 
         ax.set_ylabel('Operation speed [MB/s]')
         ax.set_title('Summary sorted by operation')

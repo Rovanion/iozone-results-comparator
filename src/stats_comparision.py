@@ -145,9 +145,9 @@ class StatsComparision:
                 dest.append([])
 
             for op in self.common_ops:
-                vals = (source[op].mean, source[op].dev, source[op].ci_min, source[op].ci_max,
-                    source[op].gmean, source[op].median, source[op].first_qrt,
-                    source[op].third_qrt, source[op].minimum, source[op].maximum)
+                vals = (source[op].first_qrt, source[op].median, source[op].third_qrt,
+                        source[op].minimum, source[op].maximum, source[op].mean,
+                        source[op].dev, source[op].ci_min, source[op].ci_max, source[op].gmean)
                 for i in range(len(vals)):
                     dest[i].append(vals[i])
 
