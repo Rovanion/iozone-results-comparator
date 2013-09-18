@@ -51,6 +51,22 @@ class Html:
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
         <title>Iozone results</title>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">  
+            $(document).ready(function(){
+                $(".normtable tr.hide_master").click(function(){
+                    $(this).nextUntil("tr:not(.hidden)").toggle();
+                    if ($(this).prev().prev().children().first().attr("rowspan") == 3) {
+                        $(this).prev().prev().children().first().attr("rowspan", 10); 
+                    }
+                    else {
+                        $(this).prev().prev().children().first().attr("rowspan", 3);
+                    }
+                });
+            });
+        </script>        
+
         </head>
         <body>
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -144,7 +160,7 @@ class Html:
         
 
     def norm_table(self, Op, Source):
-        self.htmldoc.write('<table>\n')
+        self.htmldoc.write('<table class=\"normtable\">\n')
         # table header
         self.htmldoc.write('<tr>')
         self.htmldoc.write('<th class=\"bottomline\">'+self.googlecharts.opnames[Op]+'</th>\n')
@@ -190,18 +206,25 @@ class Html:
 
     def norm_table_set(self, Source, SetName):
         self.htmldoc.write('<tr class=\"topline\">\n')
-        self.htmldoc.write('<td rowspan="10">' + SetName + '</td><td>mean val.</td>\n')
-        for mean in Source.means:
-            self.htmldoc.write('<td class=\"topline\">'+str(round(mean,2))+'</td>\n')
+        self.htmldoc.write('<td rowspan="3">' + SetName + '</td><td><b>first quartile</b></td>\n')
+        for first_qrt in Source.first_qrts:
+            self.htmldoc.write('<td class=\"topline\">'+str(round(first_qrt,2))+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
-        rows = (('standard dev.', Source.devs), ('ci. min. 90%', Source.ci_mins),
-            ('ci. max. 90%', Source.ci_maxes), ('geom. mean', Source.gmeans),
-            ('<b>median</b>', Source.medians), ('<b>first quartile</b>', Source.first_qrts),
-            ('<b>third quartile</b>', Source.third_qrts), ('minimum', Source.mins),
-            ('maximum', Source.maxes))
+        rows = (
+                ('<b>median</b>', Source.medians), ('<b>third quartile</b>', Source.third_qrts),
+                ('mean val.', Source.means), ('standard dev.', Source.devs),
+                ('ci. min. 90%', Source.ci_mins), ('ci. max. 90%', Source.ci_maxes),
+                ('geom. mean', Source.gmeans), ('minimum', Source.mins),
+                ('maximum', Source.maxes)
+            )
         for (name, data) in rows:
-            self.htmldoc.write('<td>' + name + '</td>\n')
+            if (name == '<b>median</b>'):
+                self.htmldoc.write('<tr><td>' + name + '</td>\n')
+            elif (name == '<b>third quartile</b>'):
+                self.htmldoc.write('<tr class=\"hide_master\"><td>' + name + '</td>\n')
+            else:
+                self.htmldoc.write('<tr class=\"hidden\"><td>' + name + '</td>\n')
             for val in data:
                 self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
             self.htmldoc.write('</tr>\n')
@@ -227,7 +250,7 @@ class Html:
                 self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
             self.htmldoc.write('</tr>\n')
             for i in range(len(rownames)):
-                self.htmldoc.write('<td>' + rownames[i] + '</td>\n')
+                self.htmldoc.write('<tr><td>' + rownames[i] + '</td>\n')
                 # source[0] is mean
                 for val in source[1+i]:
                     self.htmldoc.write('<td>'+str(round(val,2))+'</td>\n')
