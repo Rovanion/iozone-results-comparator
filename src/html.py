@@ -32,6 +32,7 @@ class Html:
             os.makedirs(OutDir)
         (head, tail) = os.path.split(argv0)
         shutil.copyfile(head + '/stylesheet.css', OutDir + '/stylesheet.css')
+        shutil.copyfile(head + '/arrows.png', OutDir + '/arrows.png')
         self.htmldoc=open(OutDir+'/index.html', 'w')
 
         self.googlecharts = googlecharts.GoogleCharts()
@@ -57,12 +58,11 @@ class Html:
             $(document).ready(function(){
                 $(".normtable tr.hide_master").click(function(){
                     $(this).nextUntil("tr:not(.hidden)").toggle();
-                    if ($(this).prev().prev().children().first().attr("rowspan") == 3) {
-                        $(this).prev().prev().children().first().attr("rowspan", 10); 
-                    }
-                    else {
-                        $(this).prev().prev().children().first().attr("rowspan", 3);
-                    }
+                    if ($(this).prev().prev().children().first().attr("rowspan") == 3)
+                        $(this).prev().prev().children().first().attr("rowspan", 10);
+                    else if ($(this).prev().prev().children().first().attr("rowspan") == 10)
+                        $(this).prev().prev().children().first().attr("rowspan", 3); 
+                    $(this).find(".arrow").toggleClass("up");
                 });
             });
         </script>        
@@ -183,25 +183,25 @@ class Html:
         self.htmldoc.write(' and <a href=\"../' + self.tabdDir + '/' + hrefSet1 + '\">' + hrefSet1 + '</a>.</div>\n')
 
     def write_diff_ttest(self, Diffs, Pvals, Results):
+        # write ttest results in text form
+        self.htmldoc.write('<tr class=\"bottomline topline hide_master\">\n')
+        self.htmldoc.write('<td colspan="2">ttest equality<div class="arrow"></td>\n')
+        for res in Results:
+            self.htmldoc.write('<td>'+res+'</td>\n')
+        self.htmldoc.write('</tr>\n')
+
         # write differences
-        self.htmldoc.write('<tr class=\"bottomline topline\">\n')
+        self.htmldoc.write('<tr class=\"bottomline hidden\">\n')
         self.htmldoc.write('<td colspan="2">baseline set1 difference</td>\n')
         for diff in Diffs:
             self.htmldoc.write('<td>'+str(round(diff,2))+' % </td>\n')
         self.htmldoc.write('</tr>\n')
 
         # write p-values
-        self.htmldoc.write('<tr class=\"bottomline\">\n')
+        self.htmldoc.write('<tr class=\"bottomline hidden\">\n')
         self.htmldoc.write('<td colspan="2">ttest p-value</td>\n')
         for pval in Pvals:
             self.htmldoc.write('<td>'+str(round(pval,4))+'</td>\n')
-        self.htmldoc.write('</tr>\n')
-
-        # write ttest results in text form
-        self.htmldoc.write('<tr class=\"bottomline\">\n')
-        self.htmldoc.write('<td colspan="2">ttest equality</td>\n')
-        for res in Results:
-            self.htmldoc.write('<td>'+res+'</td>\n')
         self.htmldoc.write('</tr>\n')
 
     def norm_table_set(self, Source, SetName):
@@ -222,7 +222,7 @@ class Html:
             if (name == '<b>median</b>'):
                 self.htmldoc.write('<tr><td>' + name + '</td>\n')
             elif (name == '<b>third quartile</b>'):
-                self.htmldoc.write('<tr class=\"hide_master\"><td>' + name + '</td>\n')
+                self.htmldoc.write('<tr class=\"hide_master\"><td>' + name + '<div class="arrow"></div></td>\n')
             else:
                 self.htmldoc.write('<tr class=\"hidden\"><td>' + name + '</td>\n')
             for val in data:
@@ -268,7 +268,6 @@ class Html:
                 '/summary_sorted_by_operation_baseline.tsv\">summary_sorted_by_operation_baseline.tsv</a>')
         self.htmldoc.write(' and <a href=\"../' + self.tabdDir +
                 '/summary_sorted_by_operation_set1.tsv\">summary_sorted_by_operation_set1.tsv</a>.</div>')
-        
 
     def norm_regression(self, Op):
         slope = self.fs.regressionLines[Op].slope
