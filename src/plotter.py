@@ -32,6 +32,10 @@ class Plotter:
         "bkwdrd":"Backwards\nread", "recrewr":"Record\nrewrite", "striderd":"Strided\nRead",
         "fwrite":"Fwrite","frewrite":"Frewrite", "fread":"Fread", "freread":"Freread", "ALL":"ALL"}
 
+        # fix matplotlib 1.3 warning
+        if 'figure.max_open_warning' in matplotlib.rcParams.keys():
+            matplotlib.rcParams['figure.max_open_warning'] = 30
+
     def summary(self, Base, Set1, ops):
         # create the whiskers summary plot
         textstr = 'Plotted values are\n - (sample minimum)\n - lower quartile \n - median\n - upper quartine\n - (sample maximum)\nfor each datapoint.'
@@ -157,12 +161,12 @@ class Plotter:
                 if (pcnt < categories[catNr]) or (pcnt >= categories[catNr + 1]): 
                     continue
                 if set1Avg > baseAvg:
-                    set1X.append(str(fs))
-                    set1Y.append(str(bs))
+                    set1X.append(fs)
+                    set1Y.append(bs)
                     set1Dia.append(10 * pcnt)
                 else:
-                    baseX.append(str(fs))
-                    baseY.append(str(bs))
+                    baseX.append(fs)
+                    baseY.append(bs)
                     baseDia.append(10 * pcnt)
 
             intLeft = str(categories[catNr])
