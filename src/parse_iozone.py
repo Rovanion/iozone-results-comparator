@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#   Copyright (C) 2011
+#   Copyright (C) 2011-2015
 #   Adam Okuliar        aokuliar at redhat dot com
 #   Jiri Hladky         hladky dot jiri at gmail dot com
 #   Petr Benas          petrbenas at gmail dot com
@@ -50,7 +50,14 @@ class ParseIozone:
 
     # split line to get data for operations
     def split_iozone_line(self,line):
-        field_list = [16, 8, 8, 8, 9, 9, 8, 8, 8, 9, 9, 9, 9, 8, 9]
+        # See CONTROL_STRING3 definition in iozone.c source code
+        #Manual test - check the position of the last digit in iozone result file
+        if ( self.version < 3.4 ):
+            field_list = [16, 8, 8, 8, 9, 9, 8, 8, 8, 9, 9, 9, 9, 8, 9]
+        else:
+            field_list = [16, 8, 9, 9, 9, 9, 9, 9, 9, 10, 10, 9, 9, 9, 9]
+  #                          24    42    60 69 78 87      07  16 25 34 43
+
         offset = 0
         output = []
         line=line.rstrip('\n')
@@ -81,6 +88,12 @@ class ParseIozone:
             f = open(file_name, "r")
             for line in f:
                 matchObj = re.match( r'^\s+\d+\s+\d+\s+\d+', line, re.M)
+                versionRe = re.match( r'^\s+Version [$]Revision: (\d+[.]\d+) [$]', line, re.M);
+
+                if versionRe:
+                    #Version line
+                    self.version = float( versionRe.group(1) );
+                 
                 if matchObj:
                     #Data lines
                     line_in_array = self.split_iozone_line(line);
