@@ -50,33 +50,11 @@ class ParseIozone:
 
     # split line to get data for operations
     def split_iozone_line(self,line):
-        # See CONTROL_STRING3 definition in iozone.c source code
-        #Manual test - check the position of the last digit in iozone result file
-        if ( self.version < 3.4 ):
-            field_list = [16, 8, 8, 8, 9, 9, 8, 8, 8, 9, 9, 9, 9, 8, 9]
-        else:
-            field_list = [16, 8, 9, 9, 9, 9, 9, 9, 9, 10, 10, 9, 9, 9, 9]
-  #                          24    42    60 69 78 87      07  16 25 34 43
-
-        offset = 0
         output = []
-        line=line.rstrip('\n')
-        for i in range(len(field_list)):
-            width = field_list[i]
-            substring=line[offset:width+offset]
-            offset += width
-            if len(substring) == width:
-                matchObj = re.match( r'^\s+$', substring, re.M)
-                if matchObj:
-                    output.append(None)
-                else:
-                    output.append(int(substring))
-            else:
-                output.append(None)
-                if i != len(field_list) -1 or ( width - len(substring) ) > 3 :
-                    sys.stderr.write('%s "%s"\n' % ("Line:", line ) )
-                    sys.stderr.write('\t%s "%s"\n' % ("Substring:", substring ) )
-                    sys.stderr.write('\t%s %d, %s %d\n' % ("Length:", len(substring), "Expecting:", width  ) )
+        line = line.rstrip('\n')
+        line = line.split()
+        for elem in line:
+            output.append(int(elem))
         return output
 
     # read data from input files
